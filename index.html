@@ -1,0 +1,3248 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>English Grammar B1–B2 — Grammar Learning &amp; Practice</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --navy:#0f2744; --text:#1d3a5c; --muted:#5f7d9c;
+  --primary:#4a86c8; --primary-d:#356ea9; --light:#e9f2fb; --lighter:#f5faff;
+  --border:#d7e6f5; --bg:#f4f8fc; --white:#fff;
+  --ok:#2f8f5b; --ok-bg:#e9f8f0; --bad:#c0453f; --bad-bg:#fdeceb;
+  --warn:#9a6a10; --warn-bg:#fdf5e3;
+  --radius:14px; --shadow:0 2px 10px rgba(20,60,110,.07);
+}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{color:var(--navy);line-height:1.35;margin:0 0 .5em}
+p{margin:0 0 .9em}
+a{color:var(--primary-d)}
+button{font-family:inherit;font-size:inherit;cursor:pointer}
+
+/* ---------- TOPBAR ---------- */
+.topbar{
+  position:sticky;top:0;z-index:300;background:var(--white);
+  border-bottom:1px solid var(--border);display:flex;align-items:center;
+  gap:14px;padding:9px 18px;min-height:60px;
+}
+.icon-btn{
+  display:none;background:var(--light);border:1px solid var(--border);
+  border-radius:10px;width:42px;height:42px;font-size:20px;color:var(--primary-d);
+  line-height:1;flex:0 0 auto;
+}
+.brand{display:flex;flex-direction:column;line-height:1.25;flex:0 0 auto}
+.brand-title{font-weight:700;color:var(--navy);letter-spacing:.4px;font-size:15px}
+.brand-sub{font-size:12px;color:var(--muted)}
+.search{position:relative;margin-left:auto;width:min(380px,45vw)}
+.search input{
+  width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:10px;
+  background:var(--lighter);color:var(--text);outline:none;font-size:14.5px;
+}
+.search input:focus{border-color:var(--primary);background:#fff;box-shadow:0 0 0 3px rgba(74,134,200,.14)}
+.search-results{
+  position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;
+  border:1px solid var(--border);border-radius:12px;box-shadow:0 10px 26px rgba(15,39,68,.13);
+  max-height:60vh;overflow:auto;display:none;z-index:400;
+}
+.search-results.show{display:block}
+.sr-item{padding:10px 14px;border-bottom:1px solid var(--lighter);cursor:pointer}
+.sr-item:last-child{border-bottom:0}
+.sr-item:hover{background:var(--lighter)}
+.sr-item b{color:var(--primary-d);font-weight:600}
+.sr-item small{display:block;color:var(--muted);font-size:12.5px}
+.sr-empty{padding:14px;color:var(--muted);font-size:14px}
+
+/* ---------- LAYOUT ---------- */
+.layout{display:grid;grid-template-columns:288px minmax(0,1fr);max-width:1380px;margin:0 auto;align-items:start}
+#sidebar{
+  position:sticky;top:60px;max-height:calc(100vh - 60px);overflow-y:auto;
+  background:var(--white);border-right:1px solid var(--border);
+  padding:14px 12px 48px;
+}
+main{padding:26px 34px 90px;min-width:0}
+.overlay{position:fixed;inset:0;background:rgba(15,39,68,.42);z-index:250;display:none}
+.overlay.show{display:block}
+
+/* ---------- SIDEBAR ---------- */
+.nav-item{
+  display:block;width:100%;text-align:left;background:transparent;border:0;
+  border-radius:10px;padding:9px 12px;color:var(--text);font-size:14px;font-weight:600;
+  letter-spacing:.3px;margin-bottom:2px;
+}
+.nav-item:hover{background:var(--lighter)}
+.nav-item.active{background:var(--light);color:var(--primary-d)}
+.side-group{margin:6px 0 10px}
+.side-topic{
+  display:flex;align-items:center;gap:8px;width:100%;text-align:left;background:transparent;
+  border:0;border-radius:10px;padding:8px 12px;font-size:13.5px;font-weight:700;
+  color:var(--navy);letter-spacing:.3px;
+}
+.side-topic:hover{background:var(--lighter)}
+.side-topic.active{background:var(--light);color:var(--primary-d)}
+.side-topic .num{color:var(--primary);font-weight:700}
+.side-subs{padding-left:10px;border-left:2px solid var(--lighter);margin-left:14px}
+.side-sub{
+  display:flex;align-items:center;gap:7px;width:100%;text-align:left;background:transparent;
+  border:0;border-radius:8px;padding:6px 10px;font-size:13.3px;color:var(--muted);
+}
+.side-sub:hover{background:var(--lighter);color:var(--text)}
+.side-sub.active{background:var(--light);color:var(--primary-d);font-weight:600}
+.tick{color:var(--ok);font-size:12px;font-weight:700}
+.side-sep{height:1px;background:var(--border);margin:12px 6px}
+.side-label{font-size:11.5px;letter-spacing:1.2px;color:var(--muted);padding:4px 12px;font-weight:700}
+
+/* ---------- COMMON ---------- */
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow)}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;border-radius:11px;border:1px solid var(--primary);
+  background:var(--primary);color:#fff;padding:10px 18px;font-weight:600;font-size:14.5px;
+  transition:background .15s,transform .1s;
+}
+.btn:hover{background:var(--primary-d);border-color:var(--primary-d)}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:#fff;color:var(--primary-d);border-color:var(--border)}
+.btn.ghost:hover{background:var(--light)}
+.btn.soft{background:var(--light);color:var(--primary-d);border-color:var(--light)}
+.btn.danger{background:#fff;color:var(--bad);border-color:#f0c9c7}
+.btn.danger:hover{background:var(--bad-bg)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn.sm{padding:7px 13px;font-size:13.5px;border-radius:9px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.spacer{flex:1}
+
+.badge{display:inline-block;background:var(--light);color:var(--primary-d);border-radius:999px;
+  padding:3px 12px;font-size:12px;font-weight:700;letter-spacing:.6px}
+.breadcrumb{font-size:13px;color:var(--muted);margin-bottom:12px}
+.breadcrumb span{cursor:pointer}
+.breadcrumb span:hover{color:var(--primary-d);text-decoration:underline}
+
+/* ---------- HOME ---------- */
+.hero{
+  background:linear-gradient(135deg,#eaf3fc 0%,#f7fbff 60%,#ffffff 100%);
+  border:1px solid var(--border);border-radius:18px;padding:34px 32px;margin-bottom:26px;
+}
+.hero h1{font-size:30px;letter-spacing:.4px;margin-bottom:6px}
+.hero p{color:var(--muted);margin:0;font-size:15.5px}
+.hero .pill{display:inline-block;margin-top:14px;background:#fff;border:1px solid var(--border);
+  border-radius:999px;padding:5px 14px;font-size:12.5px;color:var(--primary-d);font-weight:600}
+.grid-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.tcard{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:20px;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;transition:border-color .15s,transform .15s}
+.tcard:hover{border-color:#bcd8f0;transform:translateY(-2px)}
+.tcard .num{font-size:13px;font-weight:800;color:var(--primary);letter-spacing:1.5px}
+.tcard h3{font-size:17px;margin:0}
+.tcard p{font-size:13.8px;color:var(--muted);margin:0;flex:1}
+.tmeta{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted)}
+.bar{height:8px;background:var(--light);border-radius:99px;overflow:hidden}
+.bar > i{display:block;height:100%;background:linear-gradient(90deg,#7fb1e3,#4a86c8);border-radius:99px;transition:width .3s}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:26px}
+.stat{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px}
+.stat .v{font-size:24px;font-weight:800;color:var(--navy);line-height:1.2}
+.stat .l{font-size:12.5px;color:var(--muted);letter-spacing:.4px;text-transform:uppercase;font-weight:600}
+.stat .sub{font-size:12.5px;color:var(--muted)}
+
+/* ---------- LESSON ---------- */
+.sec-head{margin-bottom:18px}
+.sec-head h2{font-size:25px;margin-bottom:8px}
+.core{
+  background:var(--light);border-left:4px solid var(--primary);border-radius:0 12px 12px 0;
+  padding:13px 18px;font-weight:600;color:var(--navy);font-size:15px;
+}
+.blocks{margin-top:6px}
+.bh{font-size:17.5px;margin:26px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.bul{margin:0 0 14px;padding-left:22px}
+.bul li{margin-bottom:5px}
+.box{border-radius:12px;padding:14px 18px;margin:14px 0;border:1px solid transparent}
+.box-label{font-size:11.5px;font-weight:800;letter-spacing:1.1px;margin-bottom:6px}
+.box p{margin:0 0 6px}
+.box p:last-child{margin-bottom:0}
+.box.rule{background:var(--light);border-color:#c9e0f6}
+.box.rule .box-label{color:var(--primary-d)}
+.box.note{background:#f2f7fd;border-color:#dbe9f8}
+.box.note .box-label{color:#3d6f9e}
+.box.warn{background:var(--warn-bg);border-color:#f0e0bb}
+.box.warn .box-label{color:var(--warn)}
+.box.rem{background:#f3f0fb;border-color:#e2ddf5}
+.box.rem .box-label{color:#5a4aa0}
+.box.ext{background:#eef8f5;border-color:#d3ece3}
+.box.ext .box-label{color:#2c7a60}
+.box.ex{background:var(--lighter);border-color:var(--border)}
+.box.ex .box-label{color:var(--primary-d)}
+.box.ex ul{margin:0;padding-left:20px}
+.box.ex li{margin-bottom:5px}
+table.tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.3px;background:#fff;
+  border:1px solid var(--border);border-radius:12px;overflow:hidden}
+table.tbl th{background:var(--light);color:var(--navy);text-align:left;padding:10px 14px;font-size:13px;letter-spacing:.4px}
+table.tbl td{padding:10px 14px;border-top:1px solid var(--border);vertical-align:top}
+.tbl-wrap{overflow-x:auto}
+
+.qc{background:#fff;border:1px dashed #bcd8f0;border-radius:12px;padding:16px 18px;margin-top:18px}
+.qc h4{margin:0 0 10px;font-size:15px}
+.opt{
+  display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--border);
+  border-radius:10px;padding:11px 15px;margin-bottom:8px;color:var(--text);font-size:14.6px;
+  transition:background .12s,border-color .12s;
+}
+.opt:hover:not([disabled]){background:var(--lighter);border-color:#bcd8f0}
+.opt[disabled]{cursor:default}
+.opt.correct{background:var(--ok-bg);border-color:#9fd9bb;color:#1d6b45;font-weight:600}
+.opt.wrong{background:var(--bad-bg);border-color:#efc0be;color:#93332e;font-weight:600}
+.opt.sel{border-color:var(--primary);background:var(--light)}
+.feedback{border-radius:11px;padding:13px 16px;margin-top:12px;font-size:14.3px}
+.feedback.ok{background:var(--ok-bg);border:1px solid #a9ddc4;color:#1d6b45}
+.feedback.no{background:var(--bad-bg);border:1px solid #f0c8c6;color:#93332e}
+.feedback b{color:inherit}
+.feedback .rule-line{margin-top:8px;font-size:13.2px;opacity:.9}
+.section-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;padding-top:20px;border-top:1px solid var(--border)}
+.done-tag{color:var(--ok);font-weight:700;font-size:13.5px}
+
+/* ---------- QUIZ ---------- */
+.quiz-head{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin-bottom:16px}
+.quiz-head .qt{font-weight:700;color:var(--navy)}
+.quiz-head .qm{font-size:13px;color:var(--muted);margin-bottom:8px}
+.qcard{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px}
+.qtext{font-size:16.5px;font-weight:600;color:var(--navy);margin-bottom:16px}
+.qactions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.result-head{text-align:center;padding:22px}
+.score-big{font-size:44px;font-weight:800;color:var(--primary-d);line-height:1.1}
+.rev-item{border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;background:#fff}
+.rev-item .rq{font-weight:600;color:var(--navy);margin-bottom:8px}
+.rev-item .line{font-size:14px;margin-bottom:4px}
+.tag-ok{color:var(--ok);font-weight:700}
+.tag-no{color:var(--bad);font-weight:700}
+
+/* ---------- MISC ---------- */
+.empty{text-align:center;color:var(--muted);padding:36px 20px}
+.list-item{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+.prog-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.prog-row .name{width:190px;flex:0 0 auto;font-size:14px;font-weight:600}
+.prog-row .bar{flex:1}
+.prog-row .pct{width:46px;text-align:right;font-size:13.5px;color:var(--muted);font-weight:700}
+.gloss{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:12px}
+.gloss .term{font-weight:700;color:var(--navy)}
+.gloss .vi{font-size:14px;margin:4px 0}
+.gloss .exm{font-size:13.5px;color:var(--muted);font-style:italic}
+
+@media (max-width:900px){
+  .icon-btn{display:inline-flex;align-items:center;justify-content:center}
+  .layout{grid-template-columns:1fr}
+  #sidebar{
+    position:fixed;top:0;left:0;bottom:0;width:288px;max-height:100%;
+    transform:translateX(-103%);transition:transform .25s ease;z-index:260;
+    box-shadow:0 0 30px rgba(15,39,68,.2);
+  }
+  #sidebar.open{transform:none}
+  .brand-sub{display:none}
+  .search{width:auto;flex:1;margin-left:0}
+  main{padding:18px 15px 80px}
+  .hero{padding:24px 20px}
+  .hero h1{font-size:23px}
+  .btn{padding:12px 18px}
+  .prog-row .name{width:110px;font-size:13px}
+  table.tbl{font-size:13.5px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <button class="icon-btn" id="menuBtn" aria-label="Mở menu">☰</button>
+  <div class="brand">
+    <span class="brand-title">ENGLISH GRAMMAR B1–B2</span>
+    <span class="brand-sub">Grammar Learning &amp; Practice</span>
+  </div>
+  <div class="search">
+    <input id="searchInput" type="search" placeholder="Search grammar..." autocomplete="off" aria-label="Search grammar">
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="layout">
+  <aside id="sidebar"></aside>
+  <main id="main"></main>
+</div>
+
+<script>
+/* =====================================================================
+   1. LESSON DATA
+   ===================================================================== */
+const lessons = [
+/* ================= TOPIC 1 — PREPOSITIONS ================= */
+{
+  id:"prepositions", num:"01", title:"Prepositions", viTitle:"Giới từ",
+  desc:"Giới từ chỉ thời gian, vị trí, chuyển động, phương tiện; cụm cố định; noun / adjective / verb + preposition và preposition + V-ing.",
+  review:[
+    "at → thời điểm chính xác · on → ngày · in → khoảng thời gian dài",
+    "for + khoảng thời gian · since + mốc thời gian",
+    "by = hạn cuối · until = kéo dài đến",
+    "on time = đúng giờ · in time = kịp lúc",
+    "in = vị trí · into = chuyển động vào trong",
+    "between = giữa các đối tượng riêng biệt · among = trong một nhóm",
+    "at the station (điểm) · in the station (bên trong) · on the platform (bề mặt)",
+    "Sau giới từ → V-ing: interested in learning, good at speaking",
+    "Cụm cố định: at home · in fact · on purpose · by mistake",
+    "Noun + prep: reason for · solution to · effect on",
+    "Adj + prep: good at · afraid of · proud of · responsible for",
+    "Verb + prep: listen to · depend on · look for · apply for"
+  ],
+  sections:[
+  {
+    id:"time", title:"Prepositions of Time",
+    core:"AT → điểm thời gian · ON → ngày · IN → khoảng thời gian dài",
+    blocks:[
+      {t:"h", x:"1. AT — thời điểm cụ thể"},
+      {t:"p", x:"Dùng <b>at</b> với một thời điểm chính xác."},
+      {t:"ul", x:[
+        "<b>at</b> + giờ: at 5 o'clock · at 7:30 · at midnight · at noon · at lunchtime",
+        "<b>at</b> + một số thời điểm: at night · at the weekend · at Christmas · at Easter"
+      ]},
+      {t:"ex", x:["I usually get up <b>at 6 o'clock</b>.","We arrived <b>at midnight</b>."]},
+      {t:"warn", x:"<b>at night</b> nhưng <b>in the morning / in the afternoon / in the evening</b>."},
+
+      {t:"h", x:"2. ON — ngày và ngày cụ thể"},
+      {t:"ul", x:[
+        "Ngày trong tuần: on Monday · on Friday · on Sunday",
+        "Ngày + tháng: on 15 May · on 25 December",
+        "Ngày + một phần trong ngày: on Monday morning · on Friday evening",
+        "Ngày đặc biệt: on my birthday · on New Year's Day"
+      ]},
+      {t:"ex", x:["I have an English class <b>on Monday</b>.","We met <b>on Friday evening</b>."]},
+
+      {t:"h", x:"3. IN — khoảng thời gian dài hơn"},
+      {t:"ul", x:[
+        "Tháng: in January · in August",
+        "Năm: in 2026 · in 1999",
+        "Mùa: in summer · in winter",
+        "Thập niên / thế kỷ: in the 1990s · in the 21st century",
+        "Buổi trong ngày: in the morning · in the afternoon · in the evening"
+      ]},
+      {t:"ex", x:["I was born <b>in 2006</b>.","We usually study <b>in the evening</b>."]},
+
+      {t:"h", x:"4. AT / ON / IN — so sánh nhanh"},
+      {t:"tbl", head:["Giới từ","Dùng với","Ví dụ"], rows:[
+        ["<b>at</b>","giờ / thời điểm","at 7:00"],
+        ["<b>on</b>","ngày","on Monday"],
+        ["<b>in</b>","tháng / năm / khoảng thời gian","in July, in 2026"]
+      ]},
+      {t:"rem", x:"<b>AT</b> → điểm thời gian · <b>ON</b> → ngày · <b>IN</b> → khoảng thời gian lớn."},
+
+      {t:"h", x:"5. IN và WITHIN"},
+      {t:"p", x:"Cả hai có thể nói về một khoảng thời gian tính từ hiện tại."},
+      {t:"ul", x:[
+        "<b>in</b> + khoảng thời gian = sau bao lâu nữa",
+        "<b>within</b> + khoảng thời gian = không muộn hơn khoảng thời gian đó"
+      ]},
+      {t:"ex", x:[
+        "I'll see you <b>in two hours</b>. → Tôi sẽ gặp bạn sau hai giờ nữa.",
+        "Please reply <b>within two days</b>. → Hãy trả lời trong vòng hai ngày.",
+        "I'll finish it <b>in two days</b>. → sau hai ngày",
+        "I'll finish it <b>within two days</b>. → không muộn hơn hai ngày"
+      ]},
+
+      {t:"h", x:"6. FOR — khoảng thời gian kéo dài"},
+      {t:"ul", x:["for two hours · for three days · for six months · for a long time"]},
+      {t:"ex", x:["I have lived here <b>for three years</b>. → Tôi đã sống ở đây được ba năm."]},
+
+      {t:"h", x:"7. SINCE — từ một thời điểm trong quá khứ đến hiện tại"},
+      {t:"ul", x:["since 2020 · since Monday · since yesterday · since I was a child"]},
+      {t:"ex", x:["I have lived here <b>since 2020</b>. → Tôi đã sống ở đây từ năm 2020."]},
+      {t:"note", x:"<b>for + khoảng thời gian</b> (for five years) · <b>since + mốc thời gian</b> (since 2021)."},
+
+      {t:"h", x:"8. FROM ... TO / UNTIL / TILL"},
+      {t:"ex", x:[
+        "I work <b>from Monday to Friday</b>.",
+        "I'll wait <b>until 6 o'clock</b>.",
+        "Wait <b>till</b> tomorrow. (until = till)"
+      ]},
+
+      {t:"h", x:"9. BY — không muộn hơn một thời điểm"},
+      {t:"p", x:"<b>by + time</b> = trước hoặc vào đúng thời điểm đó."},
+      {t:"ex", x:["Please finish the report <b>by Friday</b>. → trước hoặc vào thứ Sáu."]},
+      {t:"warn", x:"<b>BY ≠ UNTIL</b>. <b>by Friday</b> = hạn cuối là thứ Sáu. <b>until Friday</b> = hành động tiếp tục kéo dài đến thứ Sáu."},
+      {t:"ex", x:["I need to finish it <b>by Friday</b>.","I'll stay here <b>until Friday</b>."]},
+
+      {t:"h", x:"10. ON TIME và IN TIME"},
+      {t:"ul", x:[
+        "<b>on time</b> = đúng giờ, đúng thời gian đã định",
+        "<b>in time</b> = kịp lúc, trước khi quá muộn"
+      ]},
+      {t:"ex", x:[
+        "The train arrived <b>on time</b>. → Xe lửa đến đúng giờ.",
+        "We arrived <b>in time for the movie</b>.",
+        "We arrived <b>in time to catch the bus</b>. → Chúng tôi đến kịp để bắt xe buýt."
+      ]}
+    ],
+    quick:{q:"We usually have dinner ___ 7 o'clock.", o:["in","on","at","by"], a:2,
+      e:"<b>at</b> dùng với giờ cụ thể.", r:"AT + thời điểm chính xác"},
+    questions:[
+      {q:"My birthday is ___ 15 May.", o:["in","on","at","for"], a:1,
+       e:"<b>on</b> dùng với ngày + tháng.", r:"ON + ngày / ngày tháng"},
+      {q:"I have lived here ___ 2020.", o:["for","since","from","during"], a:1,
+       e:"<b>since</b> + mốc thời gian (2020). <b>for</b> phải đi với khoảng thời gian.", r:"since + starting point"},
+      {q:"Please finish the report ___ Friday.", o:["until","by","in","at"], a:1,
+       e:"<b>by</b> = không muộn hơn thời điểm nào. <b>until</b> = kéo dài đến thời điểm đó.", r:"BY ≠ UNTIL"},
+      {q:"The meeting started ___ time, so nobody missed anything.", o:["in","on","at","by"], a:1,
+       e:"<b>on time</b> = đúng giờ đã định. <b>in time</b> = kịp lúc trước khi quá muộn.", r:"ON TIME / IN TIME"},
+      {q:"I'll be back ___ two hours.", o:["since","within","until","by"], a:1,
+       e:"<b>in / within + khoảng thời gian</b> = sau bao lâu nữa / không muộn hơn. Ở đây 'within two hours' = trong vòng hai giờ.", r:"IN / WITHIN + khoảng thời gian"}
+    ]
+  },
+  {
+    id:"place", title:"Prepositions of Place",
+    core:"AT = điểm · IN = bên trong không gian · ON = trên bề mặt",
+    blocks:[
+      {t:"h", x:"1. AT — tại một địa điểm / điểm"},
+      {t:"p", x:"Dùng <b>at</b> khi coi địa điểm như một <b>điểm cụ thể</b>."},
+      {t:"ul", x:["at the bus stop · at the station · at the airport · at school · at home · at work · at the door"]},
+      {t:"ex", x:["I'll meet you <b>at the station</b>."]},
+
+      {t:"h", x:"2. IN — bên trong một không gian"},
+      {t:"p", x:"<b>in + enclosed area</b> (không gian kín / có giới hạn)."},
+      {t:"ul", x:["in the room · in the house · in the building · in the car · in the garden · in Vietnam"]},
+      {t:"ex", x:["She is <b>in the room</b>.","in Vietnam · in Can Tho · in London"]},
+
+      {t:"h", x:"3. ON — trên một bề mặt"},
+      {t:"ul", x:["on the table · on the wall · on the floor · on the ceiling · on the page"]},
+      {t:"ex", x:["Your phone is <b>on the table</b>."]},
+
+      {t:"h", x:"4. AT / IN / ON — cùng một địa điểm, cách nhìn khác nhau"},
+      {t:"ex", x:[
+        "<b>at</b> the station → tại nhà ga (coi là một điểm)",
+        "<b>in</b> the station → bên trong nhà ga",
+        "<b>on</b> the platform → trên sân ga (bề mặt)"
+      ]},
+      {t:"note", x:"Điểm quan trọng là <b>cách người nói nhìn nhận vị trí</b>, không chỉ là địa điểm thực tế."},
+
+      {t:"h", x:"5. ABOVE — ở phía trên"},
+      {t:"ex", x:["The picture is <b>above the sofa</b>."]},
+      {t:"note", x:"<b>above</b> nhấn mạnh vị trí cao hơn. <b>over</b> thường có ý ở phía trên, đôi khi có sự bao phủ hoặc chuyển động."},
+
+      {t:"h", x:"6. OVER — phía trên / phủ lên / vượt qua"},
+      {t:"ex", x:["There is a bridge <b>over the river</b>.","She put a blanket <b>over the baby</b>.","<b>over</b> 100 people · <b>over</b> the weekend"]},
+
+      {t:"h", x:"7. BELOW — thấp hơn"},
+      {t:"ex", x:["The temperature is <b>below zero</b>.","Please read the information <b>below</b>."]},
+      {t:"p", x:"<b>below</b> thường dùng khi nói về mức độ, con số hoặc vị trí thấp hơn."},
+
+      {t:"h", x:"8. UNDER — bên dưới"},
+      {t:"ex", x:["The cat is <b>under the table</b>.","children <b>under 18</b> · <b>under</b> pressure · <b>under</b> control"]},
+
+      {t:"h", x:"9. BETWEEN — giữa hai hoặc các đối tượng được xem là riêng biệt"},
+      {t:"ex", x:["The bank is <b>between the school and the hospital</b>.","negotiations <b>between</b> the three countries"]},
+      {t:"p", x:"<b>between</b> có thể dùng với nhiều hơn hai đối tượng khi chúng được xem là các cá thể riêng biệt."},
+
+      {t:"h", x:"10. AMONG — giữa / trong một nhóm"},
+      {t:"ex", x:["She was sitting <b>among her friends</b>.","He felt comfortable <b>among strangers</b>."]},
+      {t:"rem", x:"<b>between</b> → các đối tượng riêng biệt, quan hệ giữa chúng. <b>among</b> → trong một nhóm."},
+
+      {t:"h", x:"11. BESIDE / NEXT TO — bên cạnh"},
+      {t:"ex", x:["She sat <b>beside me</b>. (= next to)","The pharmacy is <b>next to the bank</b>."]},
+      {t:"p", x:"<b>next to</b> thường nhấn mạnh vị trí rất gần / ngay sát bên."},
+
+      {t:"h", x:"12. OPPOSITE / ACROSS FROM — đối diện"},
+      {t:"ex", x:["The bank is <b>opposite the supermarket</b>.","The school is <b>across from the hospital</b>."]},
+
+      {t:"h", x:"13. IN FRONT OF / BEHIND"},
+      {t:"ex", x:["The car is <b>in front of the house</b>.","The garden is <b>behind the house</b>."]},
+
+      {t:"h", x:"14. INSIDE / OUTSIDE"},
+      {t:"ex", x:["The keys are <b>inside the box</b>.","The children are playing <b>outside the house</b>."]},
+      {t:"note", x:"<b>inside</b> nhấn mạnh phần bên trong của một không gian / vật chứa."}
+    ],
+    quick:{q:"Your keys are ___ the table.", o:["in","on","at","over"], a:1,
+      e:"<b>on</b> = trên một bề mặt.", r:"ON + bề mặt"},
+    questions:[
+      {q:"She lives ___ Vietnam.", o:["at","on","in","to"], a:2,
+       e:"<b>in</b> + quốc gia / thành phố.", r:"IN + quốc gia, thành phố"},
+      {q:"I'll meet you ___ the station.", o:["at","in","on","between"], a:0,
+       e:"<b>at</b> khi coi địa điểm như một điểm hẹn cụ thể.", r:"AT = điểm"},
+      {q:"The bank is ___ the school and the hospital.", o:["among","between","beside","next"], a:1,
+       e:"<b>between A and B</b> = giữa hai đối tượng riêng biệt.", r:"BETWEEN vs AMONG"},
+      {q:"The temperature is five degrees ___ zero.", o:["under","below","beneath","down"], a:1,
+       e:"<b>below</b> dùng khi nói về mức độ / con số thấp hơn.", r:"BELOW = thấp hơn một mức"}
+    ]
+  },
+  {
+    id:"movement", title:"Prepositions of Movement",
+    core:"to · into · out of · from · through · across · along · past · around · up · down · towards",
+    blocks:[
+      {t:"h", x:"1. TO — hướng tới một nơi"},
+      {t:"p", x:"<b>go / come / travel + to + place</b>"},
+      {t:"ex", x:["I went <b>to school</b>.","She travelled <b>to France</b>."]},
+      {t:"warn", x:"Một số trường hợp <b>không dùng to</b>: <b>go home</b> ✅ — <b>go to home</b> ❌. Tương tự: come home, arrive home."},
+
+      {t:"h", x:"2. INTO — đi vào bên trong"},
+      {t:"p", x:"<b>move + into + enclosed space</b>: có chuyển động từ ngoài → trong."},
+      {t:"ex", x:["She walked <b>into the room</b>."]},
+      {t:"rem", x:"<b>in</b> = trạng thái (She is in the room.) · <b>into</b> = chuyển động vào trong (She walked into the room.)."},
+
+      {t:"h", x:"3. OUT OF — đi ra khỏi"},
+      {t:"ex", x:["He walked <b>out of the building</b>. → từ bên trong → bên ngoài."]},
+
+      {t:"h", x:"4. FROM — từ"},
+      {t:"ex", x:["I come <b>from Vietnam</b>.","She walked <b>from the station to the hotel</b>."]},
+      {t:"p", x:"Cấu trúc: <b>from A to B</b>."},
+
+      {t:"h", x:"5. THROUGH — xuyên qua bên trong"},
+      {t:"ex", x:["We walked <b>through the tunnel</b>.","The train went <b>through the tunnel</b>."]},
+
+      {t:"h", x:"6. ACROSS — băng qua một bề mặt / khu vực"},
+      {t:"ex", x:["We walked <b>across the street</b>.","They swam <b>across the river</b>."]},
+      {t:"rem", x:"<b>across</b> = từ bên này sang bên kia trên một bề mặt (walk across the road). <b>through</b> = đi xuyên qua bên trong (walk through the forest)."},
+
+      {t:"h", x:"7. ALONG — dọc theo"},
+      {t:"ex", x:["We walked <b>along the river</b>.","There are trees <b>along the road</b>."]},
+
+      {t:"h", x:"8. PAST — đi ngang qua"},
+      {t:"ex", x:["She walked <b>past the bank</b>. → đi ngang qua ngân hàng."]},
+
+      {t:"h", x:"9. AROUND / ROUND — xung quanh"},
+      {t:"ex", x:["We walked <b>around the park</b>.","The Earth moves <b>around the Sun</b>."]},
+      {t:"p", x:"<b>around</b> và <b>round</b> thường có thể thay thế nhau trong nhiều trường hợp."},
+
+      {t:"h", x:"10. UP / DOWN"},
+      {t:"ex", x:["He walked <b>up the stairs</b>.","They climbed <b>up the hill</b>.","She walked <b>down the stairs</b>.","They ran <b>down the hill</b>."]},
+
+      {t:"h", x:"11. TOWARDS — hướng về phía"},
+      {t:"ex", x:["He walked <b>towards the door</b>."]},
+      {t:"rem", x:"<b>to</b> → hướng đến đích. <b>towards</b> → hướng về phía đó, không nhất thiết đến đích."}
+    ],
+    quick:{q:"He walked ___ the room and sat down.", o:["in","into","on","at"], a:1,
+      e:"Có chuyển động từ ngoài vào trong → dùng <b>into</b>.", r:"IN = vị trí · INTO = chuyển động"},
+    questions:[
+      {q:"We walked ___ the forest for two hours.", o:["across","through","along","over"], a:1,
+       e:"<b>through</b> = đi xuyên qua bên trong một không gian.", r:"ACROSS vs THROUGH"},
+      {q:"He walked ___ the building and got into a taxi.", o:["out","out of","outside","from"], a:1,
+       e:"<b>out of</b> = ra khỏi (từ trong → ngoài).", r:"OUT OF"},
+      {q:"We walked ___ the street to the other side.", o:["through","across","along","past"], a:1,
+       e:"<b>across</b> = băng qua một bề mặt / khu vực.", r:"ACROSS"},
+      {q:"We walked ___ the river and enjoyed the view.", o:["along","across","through","past"], a:0,
+       e:"<b>along</b> = dọc theo một đường / con sông.", r:"ALONG"}
+    ]
+  },
+  {
+    id:"transport", title:"Prepositions with Transport",
+    core:"by bus / by train / by car / by plane — nhưng on the bus, in a car",
+    blocks:[
+      {t:"h", x:"1. BY + phương tiện"},
+      {t:"ul", x:["by bus · by train · by car · by plane · by bicycle"]},
+      {t:"ex", x:["I go to school <b>by bus</b>."]},
+
+      {t:"h", x:"2. ON / IN + phương tiện cụ thể"},
+      {t:"ul", x:[
+        "<b>on</b> the bus · <b>on</b> the train · <b>on</b> the plane",
+        "<b>in</b> a car · <b>in</b> a taxi"
+      ]},
+      {t:"rem", x:"<b>by + phương tiện</b> khi nói về cách di chuyển nói chung. <b>on / in + the + phương tiện</b> khi nói về một chuyến cụ thể."},
+      {t:"ex", x:["I usually travel <b>by train</b>.","She is <b>on the train</b> now.","They arrived <b>in a taxi</b>."]}
+    ],
+    quick:{q:"I go to school ___ bus.", o:["on","by","in","with"], a:1,
+      e:"<b>by + phương tiện</b> khi nói về cách di chuyển.", r:"BY + phương tiện"},
+    questions:[
+      {q:"She is ___ the train at the moment.", o:["by","on","in","at"], a:1,
+       e:"<b>on the train</b> = đang ở trên một chuyến tàu cụ thể.", r:"ON the bus / train / plane"},
+      {q:"They travelled to the airport ___ a taxi.", o:["by","on","in","at"], a:2,
+       e:"Với taxi / car dùng <b>in a taxi</b>, <b>in a car</b>.", r:"IN a car / taxi"}
+    ]
+  },
+  {
+    id:"fixed", title:"Fixed Expressions",
+    core:"Cụm giới từ cố định — học thuộc cả cụm, không dịch từng từ",
+    blocks:[
+      {t:"p", x:"Đây là phần rất quan trọng ở B1–B2 vì không phải lúc nào cũng có thể dịch trực tiếp từ tiếng Việt."},
+
+      {t:"h", x:"AT"},
+      {t:"ul", x:["at home · at work · at school · at university · at the station · at the airport",
+        "at the beginning · at the end · at first · at last · at least · at once · at the moment"]},
+
+      {t:"h", x:"IN"},
+      {t:"ul", x:["in fact · in general · in particular · in advance · in danger · in trouble",
+        "in love · in public · in private · in charge of · in addition to · in spite of"]},
+
+      {t:"h", x:"ON"},
+      {t:"ul", x:["on time · on holiday · on business · on purpose · on fire · on sale",
+        "on the way · on television · on the phone"]},
+
+      {t:"h", x:"BY"},
+      {t:"ul", x:["by accident · by mistake · by hand · by chance · by car · by bus · by myself · by the way"]},
+
+      {t:"ex", x:[
+        "I'm sorry, I took your umbrella <b>by mistake</b>.",
+        "She is <b>in charge of</b> the project.",
+        "The building is <b>on fire</b>!",
+        "<b>At first</b>, I didn't like him, but now we're friends.",
+        "<b>In spite of</b> the rain, we went out."
+      ]},
+      {t:"rem", x:"Học <b>cả cụm</b> như một đơn vị từ vựng: <i>in charge of</i>, <i>on purpose</i>, <i>by mistake</i>."}
+    ],
+    quick:{q:"I'm sorry, I took your umbrella ___ mistake.", o:["by","on","in","at"], a:0,
+      e:"Cụm cố định <b>by mistake</b> = do nhầm lẫn.", r:"BY + mistake / accident / chance"},
+    questions:[
+      {q:"She is ___ charge of the marketing department.", o:["on","in","at","by"], a:1,
+       e:"Cụm cố định <b>in charge of</b> = phụ trách.", r:"IN + charge of"},
+      {q:"The building is ___ fire! Call the fire brigade.", o:["in","on","at","by"], a:1,
+       e:"Cụm cố định <b>on fire</b> = đang cháy.", r:"ON + fire"},
+      {q:"___ first, I found the lesson difficult, but later it became easy.", o:["In","On","At","By"], a:2,
+       e:"<b>at first</b> = lúc đầu (tương phản với 'at last').", r:"AT + first / last / least"}
+    ]
+  },
+  {
+    id:"noun-prep", title:"Noun + Preposition",
+    core:"reason for · solution to · answer to · cause of · effect on · increase in · difference between",
+    blocks:[
+      {t:"p", x:"Một số danh từ thường đi với giới từ cố định. Cần học thuộc cả cụm."},
+      {t:"tbl", head:["Cấu trúc","Ví dụ"], rows:[
+        ["<b>reason for</b>","the reason <b>for</b> the problem"],
+        ["<b>solution to</b>","a solution <b>to</b> the problem"],
+        ["<b>answer to</b>","the answer <b>to</b> the question"],
+        ["<b>cause of</b>","the cause <b>of</b> the accident"],
+        ["<b>effect on</b>","the effect <b>on</b> students"],
+        ["<b>increase in</b>","an increase <b>in</b> prices"],
+        ["<b>difference between</b>","the difference <b>between</b> the two systems"],
+        ["<b>advantage of</b>","the advantage <b>of</b> living here"],
+        ["<b>disadvantage of</b>","the disadvantage <b>of</b> this method"],
+        ["<b>relationship with / between</b>","a relationship <b>with</b> my teacher · the relationship <b>between</b> parents and children"]
+      ]},
+      {t:"warn", x:"Không suy luận theo tiếng Việt: <b>solution to</b> ✅ — <b>solution of</b> ❌ (khi nói về giải pháp cho một vấn đề)."},
+      {t:"rem", x:"<b>reason for</b> · <b>solution to</b> · <b>answer to</b> · <b>cause of</b> · <b>effect on</b> · <b>increase in</b>."}
+    ],
+    quick:{q:"There is no simple solution ___ this problem.", o:["of","to","for","on"], a:1,
+      e:"<b>solution to + vấn đề</b> là cấu trúc cố định.", r:"NOUN + PREPOSITION"},
+    questions:[
+      {q:"What is the reason ___ your absence yesterday?", o:["of","for","to","about"], a:1,
+       e:"<b>reason for</b> = lý do cho điều gì.", r:"reason for"},
+      {q:"The accident was the cause ___ many changes in the law.", o:["for","of","to","in"], a:1,
+       e:"<b>cause of</b> = nguyên nhân của điều gì.", r:"cause of"},
+      {q:"There has been an increase ___ the price of food.", o:["of","on","in","to"], a:2,
+       e:"<b>increase in</b> + lĩnh vực bị tăng.", r:"increase in"}
+    ]
+  },
+  {
+    id:"adj-prep", title:"Adjective + Preposition",
+    core:"good at · interested in · afraid of · proud of · responsible for · different from",
+    blocks:[
+      {t:"p", x:"Một số cấu trúc B1–B2 quan trọng:"},
+      {t:"tbl", head:["Cấu trúc","Ví dụ"], rows:[
+        ["<b>interested in</b>","I'm interested <b>in</b> English."],
+        ["<b>good at</b>","She is good <b>at</b> mathematics."],
+        ["<b>bad at</b>","I'm bad <b>at</b> remembering names."],
+        ["<b>afraid of</b>","He is afraid <b>of</b> spiders."],
+        ["<b>proud of</b>","She is proud <b>of</b> her son."],
+        ["<b>responsible for</b>","He is responsible <b>for</b> the project."],
+        ["<b>famous for</b>","The city is famous <b>for</b> its food."],
+        ["<b>different from</b>","This book is different <b>from</b> that one."],
+        ["<b>similar to</b>","Your idea is similar <b>to</b> mine."],
+        ["<b>worried about</b>","I'm worried <b>about</b> the exam."],
+        ["<b>excited about</b>","She is excited <b>about</b> the trip."],
+        ["<b>good for</b>","Exercise is good <b>for</b> your health."],
+        ["<b>bad for</b>","Too much sugar is bad <b>for</b> you."]
+      ]},
+      {t:"note", x:"Phân biệt <b>good at</b> (giỏi về một kỹ năng) và <b>good for</b> (tốt cho sức khỏe / lợi ích)."},
+      {t:"ex", x:["They are interested <b>in learning</b> English. (sau giới từ → V-ing)"]}
+    ],
+    quick:{q:"She is very good ___ mathematics.", o:["in","at","on","for"], a:1,
+      e:"<b>good at + môn học / kỹ năng</b>.", r:"ADJECTIVE + PREPOSITION"},
+    questions:[
+      {q:"I'm interested ___ learning English.", o:["on","in","at","about"], a:1,
+       e:"<b>interested in</b> + noun / V-ing.", r:"interested in"},
+      {q:"He is afraid ___ spiders.", o:["from","of","with","about"], a:1,
+       e:"<b>afraid of</b> = sợ điều gì.", r:"afraid of"},
+      {q:"This book is different ___ that one.", o:["than","from","to","of"], a:1,
+       e:"<b>different from</b> là dạng chuẩn trong tiếng Anh B1–B2.", r:"different from"},
+      {q:"Exercise is good ___ your health.", o:["at","for","in","to"], a:1,
+       e:"<b>good for</b> = tốt cho ai / cái gì.", r:"good for vs good at"}
+    ]
+  },
+  {
+    id:"verb-prep", title:"Verb + Preposition",
+    core:"listen to · wait for · depend on · look for · apply for · succeed in",
+    blocks:[
+      {t:"p", x:"Các động từ đi kèm giới từ cố định — học cả cụm động từ."},
+      {t:"tbl", head:["Cấu trúc","Ví dụ"], rows:[
+        ["<b>listen to</b>","Listen <b>to</b> me."],
+        ["<b>wait for</b>","I'm waiting <b>for</b> the bus."],
+        ["<b>look at</b>","Look <b>at</b> this picture."],
+        ["<b>look for</b>","I'm looking <b>for</b> my keys."],
+        ["<b>look after</b>","She looks <b>after</b> her younger brother."],
+        ["<b>depend on</b>","It depends <b>on</b> the situation."],
+        ["<b>belong to</b>","This book belongs <b>to</b> me."],
+        ["<b>talk about</b>","We talked <b>about</b> the exam."],
+        ["<b>think about</b>","I'm thinking <b>about</b> my future."],
+        ["<b>agree with</b>","I agree <b>with</b> you."],
+        ["<b>pay for</b>","I paid <b>for</b> the meal."],
+        ["<b>apply for</b>","She applied <b>for</b> the job."],
+        ["<b>deal with</b>","We need to deal <b>with</b> this problem."],
+        ["<b>suffer from</b>","He suffers <b>from</b> back pain."],
+        ["<b>succeed in</b>","She succeeded <b>in</b> passing the exam."]
+      ]},
+      {t:"warn", x:"<b>listen to</b> ✅ — <b>listen</b> ❌ (khi có tân ngữ). Tương tự: <b>wait for</b> ✅ — <b>wait</b> ❌ (khi có tân ngữ)."},
+      {t:"note", x:"<b>succeed in + V-ing</b>: She succeeded in passing the exam."}
+    ],
+    quick:{q:"I'm waiting ___ the bus.", o:["to","for","at","on"], a:1,
+      e:"<b>wait for somebody / something</b>.", r:"VERB + PREPOSITION"},
+    questions:[
+      {q:"Listen ___ me, please.", o:["to","for","at","with"], a:0,
+       e:"<b>listen to</b> + tân ngữ.", r:"listen to"},
+      {q:"It depends ___ the situation.", o:["on","of","in","to"], a:0,
+       e:"<b>depend on</b> = phụ thuộc vào.", r:"depend on"},
+      {q:"She applied ___ the job last week.", o:["to","for","on","at"], a:1,
+       e:"<b>apply for a job</b> = nộp đơn xin việc.", r:"apply for"},
+      {q:"She succeeded ___ passing the exam.", o:["on","in","at","for"], a:1,
+       e:"<b>succeed in + V-ing</b>.", r:"succeed in"}
+    ]
+  },
+  {
+    id:"prep-ving", title:"Preposition + V-ing",
+    core:"Sau giới từ, nếu có động từ → dùng V-ing (KHÔNG dùng to + V)",
+    blocks:[
+      {t:"rule", x:"<b>preposition + V-ing</b>. Không dùng <b>to + V</b> sau giới từ."},
+      {t:"ex", x:[
+        "I'm interested <b>in learning</b> English.",
+        "Thank you <b>for helping</b> me.",
+        "She left <b>without saying</b> goodbye.",
+        "He is good <b>at playing</b> football.",
+        "<b>Before going</b> to bed, I read a book.",
+        "<b>After finishing</b> the work, we went home."
+      ]},
+      {t:"h", x:"“TO” đôi khi là giới từ, không phải infinitive marker"},
+      {t:"warn", x:"Trong các cụm dưới đây, <b>to là preposition</b>, nên theo sau là <b>V-ing</b>:"},
+      {t:"ul", x:[
+        "look forward <b>to meeting</b> you",
+        "be used <b>to getting</b> up early",
+        "object <b>to paying</b> more",
+        "contribute <b>to improving</b> the system"
+      ]},
+      {t:"warn", x:"❌ look forward to <b>see</b> you · ✅ look forward to <b>seeing</b> you"},
+      {t:"rem", x:"Nếu sau <b>to</b> là một động từ ở dạng V-ing → <b>to</b> đó là giới từ. Nếu sau <b>to</b> là động từ nguyên mẫu → <b>to</b> là infinitive marker."}
+    ],
+    quick:{q:"I'm interested in ___ English.", o:["learn","to learn","learning","learned"], a:2,
+      e:"Sau giới từ <b>in</b> phải dùng <b>V-ing</b>.", r:"PREPOSITION + V-ING"},
+    questions:[
+      {q:"Thank you for ___ me.", o:["help","to help","helping","helped"], a:2,
+       e:"<b>for</b> là giới từ → V-ing.", r:"PREPOSITION + V-ING"},
+      {q:"I look forward to ___ you next week.", o:["meet","to meet","meeting","met"], a:2,
+       e:"Trong <b>look forward to</b>, <i>to</i> là giới từ → V-ing.", r:"to là giới từ"},
+      {q:"She left without ___ goodbye.", o:["say","to say","saying","said"], a:2,
+       e:"<b>without</b> là giới từ → V-ing.", r:"PREPOSITION + V-ING"},
+      {q:"He is good at ___ football.", o:["play","to play","playing","played"], a:2,
+       e:"<b>good at + V-ing</b>.", r:"ADJECTIVE + PREPOSITION + V-ING"}
+    ]
+  },
+  {
+    id:"contrasts", title:"Common Contrasts",
+    core:"in/into · on/onto · above/over · below/under · beside/besides · by/until · for/since · during/for · between/among · across/through",
+    blocks:[
+      {t:"h", x:"1. IN / INTO"},
+      {t:"ex", x:["The dog is <b>in</b> the house. (vị trí)","The dog ran <b>into</b> the house. (chuyển động vào)"]},
+      {t:"h", x:"2. ON / ONTO"},
+      {t:"ex", x:["The book is <b>on</b> the table. (vị trí)","He climbed <b>onto</b> the roof. (chuyển động lên trên)"]},
+      {t:"h", x:"3. ABOVE / OVER"},
+      {t:"ex", x:["The temperature is <b>above</b> 30°C. (cao hơn)","There is a bridge <b>over</b> the river. (phía trên / bao phủ)","<b>over</b> 100 students (vượt quá)"]},
+      {t:"h", x:"4. BELOW / UNDER"},
+      {t:"ex", x:["<b>below</b> zero (thấp hơn một mức)","<b>under</b> the table (ở phía dưới / bị bao phủ)"]},
+      {t:"h", x:"5. BESIDE / BESIDES"},
+      {t:"ex", x:["Sit <b>beside</b> me. (bên cạnh)","<b>Besides</b> English, I study French. (ngoài ra)"]},
+      {t:"h", x:"6. BY / UNTIL"},
+      {t:"ex", x:["Finish it <b>by</b> Friday. (hạn chót)","Stay here <b>until</b> Friday. (kéo dài đến)"]},
+      {t:"h", x:"7. FOR / SINCE"},
+      {t:"ex", x:["<b>for</b> three years (khoảng thời gian)","<b>since</b> 2023 (mốc thời gian)"]},
+      {t:"h", x:"8. DURING / FOR"},
+      {t:"ex", x:["<b>during</b> the meeting (during + noun / sự kiện)","<b>for</b> two hours (for + khoảng thời gian)"]},
+      {t:"warn", x:"❌ during two hours · ✅ for two hours"},
+      {t:"h", x:"9. BETWEEN / AMONG"},
+      {t:"ex", x:["<b>between</b> → giữa các đối tượng riêng biệt","<b>among</b> → trong một nhóm"]},
+      {t:"h", x:"10. ACROSS / THROUGH"},
+      {t:"ex", x:["<b>across</b> → băng qua (walk across the road)","<b>through</b> → xuyên qua bên trong (walk through the forest)"]},
+
+      {t:"h", x:"11. Preposition + Noun / Pronoun"},
+      {t:"p", x:"Sau giới từ thường dùng <b>object pronoun</b>, không dùng subject pronoun."},
+      {t:"ex", x:["between <b>you and me</b> ✅ / between <b>you and I</b> ❌",
+        "She came with <b>him</b>.","This gift is for <b>her</b>.","They talked about <b>us</b>."]},
+
+      {t:"h", x:"12. Giới từ ở cuối câu"},
+      {t:"p", x:"Trong tiếng Anh tự nhiên, giới từ có thể đứng cuối câu, đặc biệt trong câu hỏi hoặc mệnh đề quan hệ."},
+      {t:"ex", x:["Who are you talking <b>to</b>?","What are you looking <b>at</b>?","That's the person I was talking <b>to</b>."]},
+      {t:"note", x:"Cách này hoàn toàn tự nhiên trong tiếng Anh hiện đại."},
+
+      {t:"h", x:"13. Giới từ trong mệnh đề quan hệ"},
+      {t:"ex", x:["Thông dụng: The person I spoke <b>to</b> was very helpful.",
+        "Trang trọng: The person <b>to whom</b> I spoke was very helpful.",
+        "The company I work <b>for</b>... / The company <b>for which</b> I work..."]},
+
+      {t:"h", x:"14. Bảng tóm tắt hệ thống"},
+      {t:"tbl", head:["Nhóm","Giới từ quan trọng"], rows:[
+        ["Thời gian","at, on, in, for, since, during, by, until, from...to"],
+        ["Vị trí","at, in, on, above, over, below, under"],
+        ["Khoảng cách / vị trí","between, among, beside, next to, opposite, behind, in front of"],
+        ["Chuyển động","to, into, out of, from, through, across, along, past, around"],
+        ["Phương hướng","towards, up, down"],
+        ["Phương tiện","by, on, in"],
+        ["Noun + prep","reason for, solution to, effect on, cause of"],
+        ["Adjective + prep","good at, interested in, afraid of, responsible for"],
+        ["Verb + prep","listen to, depend on, look for, apply for"],
+        ["Prep + V-ing","interested in learning, good at speaking"]
+      ]}
+    ],
+    quick:{q:"The dog ran ___ the house.", o:["in","into","on","at"], a:1,
+      e:"Có chuyển động từ ngoài vào trong → <b>into</b>.", r:"IN = vị trí · INTO = chuyển động"},
+    questions:[
+      {q:"Please finish the essay ___ Friday.", o:["until","by","for","since"], a:1,
+       e:"<b>by</b> = hạn chót. <b>until</b> = kéo dài đến.", r:"BY vs UNTIL"},
+      {q:"Sit ___ me, please.", o:["besides","beside","between","among"], a:1,
+       e:"<b>beside</b> = bên cạnh. <b>besides</b> = ngoài ra.", r:"BESIDE vs BESIDES"},
+      {q:"We have lived here ___ five years.", o:["since","for","from","during"], a:1,
+       e:"<b>for + khoảng thời gian</b>.", r:"FOR vs SINCE"},
+      {q:"We discussed the plan ___ the meeting.", o:["during","for","since","from"], a:0,
+       e:"<b>during + noun / sự kiện</b>. Không dùng 'during two hours'.", r:"DURING vs FOR"},
+      {q:"Between you and ___, this is a secret.", o:["I","me","my","mine"], a:1,
+       e:"Sau giới từ dùng <b>object pronoun</b>: between you and me.", r:"Preposition + object pronoun"}
+    ]
+  }
+  ]
+},
+
+/* ================= TOPIC 2 — PHRASAL VERBS ================= */
+{
+  id:"phrasal-verbs", num:"02", title:"Phrasal Verbs", viTitle:"Cụm động từ",
+  desc:"Verb + particle, transitive / intransitive, separable / inseparable, three-word phrasal verbs, particle families và các cụm B1–B2 thông dụng.",
+  review:[
+    "turn off the light · turn the light off · turn it off",
+    "Pronoun luôn đứng giữa: pick it up ✅ / pick up it ❌",
+    "Inseparable: look after somebody ✅ / look somebody after ❌",
+    "Three-word: put up with · look forward to · get on with · come up with",
+    "look forward to + V-ing (to là giới từ)",
+    "run out of something = hết cái gì",
+    "give up smoking · put off doing · end up paying",
+    "UP = hoàn thành / tăng · DOWN = giảm / ngừng · OUT = ra ngoài / hoàn toàn",
+    "OFF = tắt / rời khỏi · ON = tiếp tục / mặc vào · BACK = trở lại"
+  ],
+  sections:[
+  {
+    id:"what", title:"What are phrasal verbs?",
+    core:"Phrasal verb = verb + particle (adverb / preposition), tạo thành một nghĩa mới",
+    blocks:[
+      {t:"p", x:"<b>Phrasal verb</b> là phần rất quan trọng trong giao tiếp tiếng Anh vì nhiều phrasal verbs được dùng thay cho động từ trang trọng."},
+      {t:"h", x:"1. Cấu trúc cơ bản"},
+      {t:"ul", x:[
+        "<b>verb + adverb</b>: give + up → <b>give up</b>",
+        "<b>verb + preposition</b>: look + after → <b>look after</b>",
+        "<b>verb + adverb + preposition</b>: look + forward + to → <b>look forward to</b>"
+      ]},
+      {t:"rule", x:"Nghĩa của toàn cụm thường <b>không thể đoán hoàn toàn</b> từ nghĩa riêng của từng từ."},
+      {t:"ex", x:[
+        "<b>give</b> = đưa · <b>up</b> = lên → <b>give up</b> = từ bỏ",
+        "<b>look</b> = nhìn · <b>after</b> = sau → <b>look after</b> = chăm sóc"
+      ]},
+
+      {t:"h", x:"2. Hai loại cơ bản"},
+      {t:"ul", x:[
+        "<b>Phrasal verb có particle</b>: turn off · pick up · give away. Particle thường là: up, down, in, out, on, off, away, back, over, around, about...",
+        "<b>Verb + preposition</b>: look at · listen to · depend on · wait for. Những cụm này cũng thường được học chung trong nhóm phrasal / prepositional verbs."
+      ]},
+
+      {t:"h", x:"3. Intransitive phrasal verbs — không cần tân ngữ"},
+      {t:"ex", x:["The car <b>broke down</b>.","The plane <b>took off</b>.","Please <b>sit down</b>."]},
+      {t:"warn", x:"❌ The car broke down the road. — <b>break down</b> là nội động, không cần tân ngữ."},
+
+      {t:"h", x:"4. Transitive phrasal verbs — cần tân ngữ"},
+      {t:"ex", x:["Please <b>turn off the light</b>.","I <b>picked up the phone</b>.","She <b>looked after the baby</b>."]},
+
+      {t:"h", x:"5. Nghĩa đen và nghĩa thành ngữ"},
+      {t:"p", x:"Một số phrasal verbs có thể hiểu khá trực tiếp: <i>sit down, stand up, come in, go out, wake up</i>."},
+      {t:"p", x:"Nhưng nhiều cụm có <b>nghĩa thành ngữ</b>: give up = từ bỏ · bring up = đề cập · put up with = chịu đựng · come up with = nghĩ ra · get over = vượt qua."},
+      {t:"rem", x:"Nên học <b>cả cụm + nghĩa + ví dụ</b>, không học particle riêng lẻ."}
+    ],
+    quick:{q:"Which sentence is correct?", o:["The car broke down the road.","The car broke down.","The car broke the road down.","The car down broke."], a:1,
+      e:"<b>break down</b> là nội động — không cần tân ngữ.", r:"Intransitive phrasal verb"},
+    questions:[
+      {q:"“give up” có nghĩa là gì?", o:["đưa lên","từ bỏ","đi lên","trả lại"], a:1,
+       e:"<b>give up</b> = từ bỏ; nghĩa không suy ra trực tiếp từ give + up.", r:"Nghĩa thành ngữ của phrasal verb"},
+      {q:"“look after” có nghĩa là gì?", o:["nhìn về phía sau","chăm sóc","tìm kiếm","mong đợi"], a:1,
+       e:"<b>look after</b> = chăm sóc.", r:"Phrasal verb cơ bản"},
+      {q:"Câu nào đúng?", o:["The plane took off.","The plane took off the airport.","The plane took the airport off.","The plane off took."], a:0,
+       e:"<b>take off</b> (máy bay cất cánh) là nội động.", r:"Intransitive phrasal verb"}
+    ]
+  },
+  {
+    id:"separable", title:"Separable / Inseparable",
+    core:"turn off the light · turn the light off · turn it off — nhưng look after him (không tách)",
+    blocks:[
+      {t:"h", x:"1. Separable phrasal verbs — có thể tách"},
+      {t:"p", x:"Một số phrasal verbs có thể tách động từ và particle khi có tân ngữ."},
+      {t:"ex", x:["turn <b>off</b> the light","turn the light <b>off</b>"]},
+      {t:"rule", x:"Công thức: <b>verb + object + particle</b> hoặc <b>verb + particle + object</b>. Cả hai đều đúng."},
+
+      {t:"h", x:"2. Pronoun và separable phrasal verbs — quy tắc RẤT quan trọng"},
+      {t:"p", x:"Nếu tân ngữ là <b>pronoun</b> (it, him, her, them, me, you, us) thì phải đặt pronoun <b>ở giữa</b>."},
+      {t:"ex", x:["Turn <b>it off</b>. ✅","Turn <b>off it</b>. ❌","Pick <b>it up</b>. ✅","Pick <b>up it</b>. ❌","Put <b>them away</b>. ✅","Put <b>away them</b>. ❌"]},
+      {t:"tbl", head:["Câu","Đúng / Sai"], rows:[
+        ["Turn off the TV.","✅"],
+        ["Turn the TV off.","✅"],
+        ["Turn it off.","✅"],
+        ["Turn off it.","❌"]
+      ]},
+      {t:"rem", x:"Tân ngữ là danh từ → có thể đứng trước hoặc sau particle. Tân ngữ là pronoun → <b>bắt buộc</b> đứng giữa."},
+
+      {t:"h", x:"3. Inseparable phrasal verbs — không thể tách"},
+      {t:"ex", x:["look after somebody","look for something","deal with something","run into somebody"]},
+      {t:"warn", x:"❌ look somebody after · ❌ look something for"},
+      {t:"ex", x:["She <b>looks after her brother</b>.","I'm <b>looking for my keys</b>."]},
+
+      {t:"h", x:"4. Tân ngữ dài"},
+      {t:"p", x:"Nếu tân ngữ là cụm danh từ dài, thường đặt sau particle."},
+      {t:"ex", x:["She <b>turned off the television in the living room</b>.","Nhưng với pronoun: She <b>turned it off</b>."]}
+    ],
+    quick:{q:"Which is correct?", o:["Turn off it.","Turn it off.","Turn off them.","Turn it off it."], a:1,
+      e:"Với pronoun phải đặt ở giữa: <b>turn it off</b>.", r:"Pronoun + separable phrasal verb"},
+    questions:[
+      {q:"Câu nào SAI?", o:["Turn the TV off.","Turn off the TV.","Turn it off.","Turn off it."], a:3,
+       e:"Pronoun phải đứng giữa động từ và particle.", r:"Quy tắc pronoun"},
+      {q:"She ___ her younger brother every afternoon.", o:["looks her brother after","looks after her brother","looks after him brother","after looks her brother"], a:1,
+       e:"<b>look after</b> là inseparable — không tách được.", r:"Inseparable phrasal verb"},
+      {q:"I'll ___ at the station at 7 p.m.", o:["pick up you","pick you up","up pick you","pick up"], a:1,
+       e:"Tân ngữ là pronoun <i>you</i> → đặt giữa: <b>pick you up</b>.", r:"Pronoun đứng giữa"},
+      {q:"Please ___ your books.", o:["put away","put them away","away put","put away them"], a:0,
+       e:"Tân ngữ là danh từ <i>your books</i> → có thể đứng sau particle.", r:"Separable với danh từ"}
+    ]
+  },
+  {
+    id:"three-word", title:"Three-word Phrasal Verbs",
+    core:"verb + adverb + preposition — look forward to · put up with · get on with · come up with",
+    blocks:[
+      {t:"p", x:"Cấu trúc: <b>verb + adverb + preposition</b>."},
+      {t:"h", x:"look forward to = mong đợi"},
+      {t:"ex", x:["I <b>look forward to meeting</b> you."]},
+      {t:"warn", x:"<b>to</b> ở đây là <b>preposition</b>, vì vậy sau nó dùng <b>V-ing</b>. ✅ look forward to <b>seeing</b> you · ❌ look forward to <b>see</b> you"},
+      {t:"h", x:"get on with = tiếp tục làm / hòa hợp với"},
+      {t:"ex", x:["I need to <b>get on with my work</b>.","Do you <b>get on with your classmates</b>?"]},
+      {t:"h", x:"put up with = chịu đựng"},
+      {t:"ex", x:["I can't <b>put up with</b> this noise."]},
+      {t:"h", x:"look up to = ngưỡng mộ"},
+      {t:"ex", x:["I <b>look up to</b> my English teacher."]},
+      {t:"h", x:"look down on = coi thường"},
+      {t:"ex", x:["He <b>looks down on</b> other people."]},
+      {t:"h", x:"get away with = thoát khỏi hậu quả của việc làm sai"},
+      {t:"ex", x:["He <b>got away with cheating</b>."]},
+      {t:"h", x:"come up with = nghĩ ra"},
+      {t:"ex", x:["She <b>came up with a good idea</b>."]},
+      {t:"rem", x:"Ba cụm ba từ quan trọng nhất ở B1–B2: <b>look forward to + V-ing</b> · <b>put up with + noun/V-ing</b> · <b>come up with + idea/plan/solution</b>."}
+    ],
+    quick:{q:"I look forward to ___ you.", o:["meet","meeting","to meet","met"], a:1,
+      e:"Trong <b>look forward to</b>, <i>to</i> là giới từ → V-ing.", r:"Three-word phrasal verb + V-ing"},
+    questions:[
+      {q:"I can't put up ___ this noise any longer.", o:["to","with","for","on"], a:1,
+       e:"<b>put up with</b> = chịu đựng.", r:"put up with"},
+      {q:"She came ___ a brilliant solution.", o:["up with","up to","on with","out of"], a:0,
+       e:"<b>come up with + idea / plan / solution</b> = nghĩ ra.", r:"come up with"},
+      {q:"Do you get ___ your new colleagues?", o:["on with","up with","away with","down on"], a:0,
+       e:"<b>get on with somebody</b> = hòa thuận với ai.", r:"get on with"},
+      {q:"He cheated in the exam but he got ___ it.", o:["away with","up with","over","on with"], a:0,
+       e:"<b>get away with</b> = thoát khỏi hậu quả.", r:"get away with"}
+    ]
+  },
+  {
+    id:"particles", title:"Particle Families",
+    core:"UP · DOWN · OUT · ON · OFF · BACK · AWAY · IN · OVER · AROUND · ABOUT",
+    blocks:[
+      {t:"h", x:"UP — hoàn thành · tăng · tăng cường · hướng lên · kết thúc"},
+      {t:"ex", x:[
+        "<b>give up</b> = từ bỏ — Don't give up.",
+        "<b>pick up</b> = nhặt lên / đón / học được — Pick up your phone. · I'll pick you up at 7. · She picked up some French while travelling.",
+        "<b>grow up</b> = lớn lên — I grew up in Vietnam.",
+        "<b>wake up</b> = thức dậy — I wake up at 6 a.m.",
+        "<b>set up</b> = thiết lập — We need to set up a new system.",
+        "<b>find out</b> = phát hiện, tìm ra — I need to find out what happened.",
+        "<b>use up</b> = sử dụng hết — We've used up all the water.",
+        "<b>end up</b> = cuối cùng rơi vào tình huống nào đó — We ended up staying at home."
+      ]},
+      {t:"h", x:"DOWN — xuống · giảm · ngừng hoạt động · viết lại"},
+      {t:"ex", x:[
+        "<b>sit down</b> = ngồi xuống · <b>lie down</b> = nằm xuống",
+        "<b>slow down</b> = chậm lại — You should slow down.",
+        "<b>calm down</b> = bình tĩnh lại — Calm down and listen.",
+        "<b>cut down on</b> = cắt giảm — I'm trying to cut down on coffee.",
+        "<b>break down</b> = hỏng; suy sụp — My car broke down.",
+        "<b>turn down</b> = giảm âm lượng / từ chối — Turn down the music. · She turned down the offer.",
+        "<b>write down</b> = viết ra — Write down the answer."
+      ]},
+      {t:"h", x:"OUT — ra ngoài · biến mất · hoàn toàn · khám phá · phân phát"},
+      {t:"ex", x:[
+        "<b>go out</b> = đi ra ngoài — We went out last night.",
+        "<b>come out</b> = đi ra / được phát hành — The new book came out last week.",
+        "<b>find out</b> = tìm ra — I found out the truth.",
+        "<b>work out</b> = tập thể dục / tìm ra giải pháp / thành công — I work out every morning. · We need to work out a solution. · Everything worked out well.",
+        "<b>carry out</b> = thực hiện — The researchers carried out an experiment.",
+        "<b>run out of</b> = hết — We have run out of milk.",
+        "<b>point out</b> = chỉ ra — She pointed out my mistake.",
+        "<b>figure out</b> = hiểu / tìm ra — I can't figure out this problem."
+      ]},
+      {t:"h", x:"ON — tiếp tục · mặc vào · hoạt động"},
+      {t:"ex", x:[
+        "<b>carry on</b> = tiếp tục — Carry on working.",
+        "<b>go on</b> = tiếp tục / xảy ra — Please go on. · What's going on?",
+        "<b>put on</b> = mặc / đeo / bật — Put on your jacket. · Put on the TV.",
+        "<b>try on</b> = thử quần áo — Can I try on this shirt?",
+        "<b>turn on</b> = bật — Turn on the light.",
+        "<b>get on</b> = lên phương tiện / hòa thuận — Get on the bus. · I get on well with my classmates."
+      ]},
+      {t:"h", x:"OFF — rời khỏi · tắt · ngừng · tách khỏi"},
+      {t:"ex", x:[
+        "<b>turn off</b> = tắt — Turn off the light.",
+        "<b>take off</b> = cởi / máy bay cất cánh — Take off your shoes. · The plane took off.",
+        "<b>put off</b> = trì hoãn — Don't put off your homework.",
+        "<b>call off</b> = hủy — They called off the meeting.",
+        "<b>set off</b> = khởi hành — We set off early."
+      ]},
+      {t:"h", x:"BACK — trở lại · trả lại · quay lại"},
+      {t:"ex", x:[
+        "<b>come back</b> = quay lại — When will you come back?",
+        "<b>go back</b> = quay trở lại — I want to go back home.",
+        "<b>give back</b> = trả lại — Please give back my book.",
+        "<b>take back</b> = lấy lại / rút lại lời nói — I take back what I said.",
+        "<b>call back</b> = gọi lại — I'll call you back later."
+      ]},
+      {t:"h", x:"AWAY — rời xa hoặc loại bỏ"},
+      {t:"ex", x:[
+        "<b>go away</b> = đi khỏi — Go away!",
+        "<b>take away</b> = mang đi — Please take away these plates.",
+        "<b>throw away</b> = vứt đi — Don't throw away that box.",
+        "<b>give away</b> = cho đi / tiết lộ — She gave away her old clothes.",
+        "<b>put away</b> = cất đi — Put away your books."
+      ]},
+      {t:"h", x:"IN — đi vào / điền / nộp"},
+      {t:"ex", x:[
+        "<b>come in</b> = đi vào — Come in, please.",
+        "<b>go in</b> = đi vào — She went in quietly.",
+        "<b>fill in</b> = điền vào — Fill in this form.",
+        "<b>hand in</b> = nộp — Please hand in your assignment.",
+        "<b>check in</b> = làm thủ tục nhận phòng / lên máy bay — We checked in at the hotel.",
+        "<b>break in</b> = đột nhập / làm quen với thứ mới — Someone broke in last night."
+      ]},
+      {t:"h", x:"OVER — xem xét lại / vượt qua / tiếp quản"},
+      {t:"ex", x:[
+        "<b>come over</b> = ghé qua — Why don't you come over tonight?",
+        "<b>go over</b> = xem xét lại — Let's go over the answers.",
+        "<b>take over</b> = tiếp quản — The new manager took over the company.",
+        "<b>get over</b> = vượt qua — It took her months to get over the breakup."
+      ]},
+      {t:"h", x:"AROUND / ROUND — quanh · ABOUT — về / gây ra"},
+      {t:"ex", x:[
+        "<b>look around</b> = nhìn quanh / tham quan — We looked around the city.",
+        "<b>walk around</b> = đi vòng quanh — We walked around the park.",
+        "<b>turn around</b> = quay lại / xoay người — He turned around and left.",
+        "<b>think about</b> = suy nghĩ về — I'm thinking about my future.",
+        "<b>talk about</b> = nói về — We talked about the exam.",
+        "<b>bring about</b> = gây ra — The new policy brought about major changes."
+      ]}
+    ],
+    quick:{q:"The plane ___ at 6 a.m. and landed in Paris.", o:["took off","put off","set off","turned off"], a:0,
+      e:"<b>take off</b> = máy bay cất cánh.", r:"Particle OFF"},
+    questions:[
+      {q:"Don't ___ your homework until the last minute.", o:["put off","take off","turn off","call off"], a:0,
+       e:"<b>put off</b> = trì hoãn.", r:"Particle OFF"},
+      {q:"We have ___ milk. Can you buy some?", o:["run out of","run out","run into","run over"], a:0,
+       e:"<b>run out of + noun</b> = hết cái gì.", r:"run out of"},
+      {q:"She ___ some Spanish while she was travelling.", o:["picked up","picked out","took up","put up"], a:0,
+       e:"<b>pick up</b> = học được một cách tự nhiên.", r:"Particle UP"},
+      {q:"They ___ the meeting because of the storm.", o:["called off","called back","called on","called for"], a:0,
+       e:"<b>call off</b> = hủy.", r:"Particle OFF"},
+      {q:"I can't ___ this problem. Can you help me?", o:["figure out","find out","work out it","point out"], a:0,
+       e:"<b>figure out</b> = hiểu ra / tìm ra.", r:"Particle OUT"}
+    ]
+  },
+  {
+    id:"list", title:"B1–B2 Phrasal Verbs",
+    core:"Danh sách phrasal verbs trọng tâm và những cụm rất dễ nhầm",
+    blocks:[
+      {t:"h", x:"1. Bảng phrasal verbs B1–B2 quan trọng"},
+      {t:"tbl", head:["Phrasal verb","Nghĩa"], rows:[
+        ["break down","hỏng; suy sụp"],
+        ["break up","chia tay; tan rã"],
+        ["bring up","nuôi dưỡng; đề cập"],
+        ["call back","gọi lại"],
+        ["call off","hủy"],
+        ["carry on","tiếp tục"],
+        ["carry out","thực hiện"],
+        ["come across","tình cờ gặp"],
+        ["come back","quay lại"],
+        ["come up with","nghĩ ra"],
+        ["cut down on","cắt giảm"],
+        ["deal with","giải quyết"],
+        ["find out","phát hiện"],
+        ["figure out","hiểu / tìm ra"],
+        ["fill in","điền"],
+        ["get along / on with","hòa thuận"],
+        ["get away","trốn thoát"],
+        ["get away with","thoát khỏi hậu quả"],
+        ["get back","quay lại"],
+        ["get over","vượt qua"],
+        ["give away","cho đi / tiết lộ"],
+        ["give back","trả lại"],
+        ["give up","từ bỏ"],
+        ["go ahead","tiếp tục / tiến hành"],
+        ["grow up","lớn lên"],
+        ["hand in","nộp"],
+        ["keep on","tiếp tục"],
+        ["look after","chăm sóc"],
+        ["look for","tìm kiếm"],
+        ["look forward to","mong đợi"],
+        ["look into","điều tra / xem xét"],
+        ["look up","tra cứu"],
+        ["look up to","ngưỡng mộ"],
+        ["make up","bịa ra / hòa giải"],
+        ["pick up","nhặt / đón / học"],
+        ["point out","chỉ ra"],
+        ["put off","trì hoãn"],
+        ["put on","mặc / bật"],
+        ["put up with","chịu đựng"],
+        ["run into","tình cờ gặp"],
+        ["run out of","hết"],
+        ["set up","thiết lập"],
+        ["set off","khởi hành"],
+        ["take after","giống"],
+        ["take off","cởi / cất cánh"],
+        ["take over","tiếp quản"],
+        ["throw away","vứt đi"],
+        ["turn down","giảm / từ chối"],
+        ["turn off","tắt"],
+        ["turn on","bật"],
+        ["turn up","tăng âm lượng / xuất hiện"],
+        ["work out","tập thể dục / giải quyết / thành công"]
+      ]},
+
+      {t:"h", x:"2. Những cụm rất dễ nhầm"},
+      {t:"h", x:"LOOK FOR / LOOK AFTER / LOOK AT / LOOK FORWARD TO"},
+      {t:"ex", x:[
+        "<b>look for</b> = tìm kiếm — I'm looking for my phone.",
+        "<b>look after</b> = chăm sóc — She looks after her brother.",
+        "<b>look at</b> = nhìn — Look at this picture.",
+        "<b>look forward to</b> = mong đợi — I look forward to meeting you."
+      ]},
+      {t:"h", x:"TAKE OFF / TAKE AFTER / TAKE OVER"},
+      {t:"ex", x:[
+        "<b>take off</b> = cởi / cất cánh — The plane took off.",
+        "<b>take after</b> = giống ai — She takes after her mother.",
+        "<b>take over</b> = tiếp quản — He took over the business."
+      ]},
+      {t:"h", x:"TURN ON / TURN OFF / TURN UP / TURN DOWN"},
+      {t:"ex", x:[
+        "<b>turn on</b> = bật · <b>turn off</b> = tắt",
+        "<b>turn up</b> = tăng âm lượng / xuất hiện",
+        "<b>turn down</b> = giảm âm lượng / từ chối"
+      ]},
+      {t:"h", x:"GIVE UP / GIVE BACK / GIVE AWAY"},
+      {t:"ex", x:[
+        "<b>give up</b> = từ bỏ · <b>give back</b> = trả lại · <b>give away</b> = cho đi / tiết lộ"
+      ]},
+      {t:"h", x:"GET BACK / GET AWAY / GET OVER / GET ALONG"},
+      {t:"ex", x:[
+        "<b>get back</b> = quay lại · <b>get away</b> = rời đi / trốn thoát",
+        "<b>get over</b> = vượt qua · <b>get along with</b> = hòa thuận với"
+      ]},
+      {t:"rem", x:"Học theo cụm: <b>verb + particle + nghĩa + ví dụ</b>. Đừng học rời từng từ."}
+    ],
+    quick:{q:"She ___ her mother — they are both very patient.", o:["takes off","takes after","takes over","takes up"], a:1,
+      e:"<b>take after</b> = giống ai (về ngoại hình hoặc tính cách).", r:"take after"},
+    questions:[
+      {q:"I'm ___ my keys. Have you seen them?", o:["looking after","looking for","looking forward to","looking up"], a:1,
+       e:"<b>look for</b> = tìm kiếm.", r:"look for"},
+      {q:"Can you ___ the light? It's too dark.", o:["turn off","turn on","turn down","turn up"], a:1,
+       e:"<b>turn on</b> = bật (đèn, thiết bị).", r:"turn on / turn off"},
+      {q:"She ___ the job offer because the salary was low.", o:["turned down","turned up","turned off","turned over"], a:0,
+       e:"<b>turn down</b> = từ chối.", r:"turn down"},
+      {q:"It took him a long time to ___ the illness.", o:["get over","get away","get back","get on"], a:0,
+       e:"<b>get over</b> = vượt qua (bệnh, cú sốc).", r:"get over"}
+    ]
+  },
+  {
+    id:"structures", title:"Common Structures",
+    core:"come up with · run out of · put up with · phrasal verb + V-ing · be/get used to",
+    blocks:[
+      {t:"h", x:"1. come up with + idea / plan / solution / answer"},
+      {t:"ex", x:["She <b>came up with a good idea</b>.","We need to <b>come up with a solution</b>."]},
+
+      {t:"h", x:"2. run out of + noun"},
+      {t:"ex", x:["We've <b>run out of money</b>.","They <b>ran out of time</b>."]},
+      {t:"note", x:"Phân biệt: <b>run out of something</b> (We ran out of water.) và <b>something runs out</b> (The water ran out.)"},
+
+      {t:"h", x:"3. put up with + noun / pronoun / V-ing"},
+      {t:"ex", x:["I can't <b>put up with this noise</b>.","She puts up with <b>working long hours</b>."]},
+
+      {t:"h", x:"4. Phrasal verb + V-ing"},
+      {t:"p", x:"Một số phrasal verbs được theo sau bởi <b>V-ing</b>:"},
+      {t:"ul", x:["end up doing · give up smoking · keep on working · carry on talking · put off doing · look forward to meeting · feel like going"]},
+      {t:"ex", x:["He <b>ended up spending</b> all his money.","She <b>gave up smoking</b>.","We <b>put off making</b> a decision."]},
+
+      {t:"h", x:"5. get used to / be used to + noun / V-ing"},
+      {t:"p", x:"Mặc dù không hoàn toàn là phrasal verb, cấu trúc này rất dễ xuất hiện cùng nhóm cấu trúc có <b>to</b>."},
+      {t:"ex", x:["I'm <b>used to getting up</b> early.","I'm <b>getting used to living</b> alone."]},
+      {t:"warn", x:"<b>to</b> ở đây là <b>giới từ</b> → dùng V-ing. ❌ I'm used to get up early."},
+
+      {t:"h", x:"6. Cách học phrasal verbs hiệu quả"},
+      {t:"p", x:"Không nên học: give = cho, up = lên. Mà học nguyên cụm: <b>give up = từ bỏ</b> và đặt vào ngữ cảnh:"},
+      {t:"ex", x:["<b>Don't give up learning English.</b>","<b>look after</b> = chăm sóc","<b>look forward to</b> = mong đợi","<b>put off</b> = trì hoãn","<b>come up with</b> = nghĩ ra","<b>run out of</b> = hết"]},
+
+      {t:"h", x:"7. Tổng kết cấu trúc cần nhớ"},
+      {t:"tbl", head:["Loại","Ví dụ"], rows:[
+        ["<b>Separable</b>","turn off the TV · turn the TV off · turn it off"],
+        ["<b>Inseparable</b>","look after the child · look after him (❌ look the child after)"],
+        ["<b>Three-word</b>","put up with something · look forward to something/V-ing · get along with somebody · come up with something"],
+        ["<b>Pronoun</b>","Pick it up. · Turn it off. · Put them away."],
+        ["<b>Phrasal verb + V-ing</b>","give up smoking · put off doing · end up paying · look forward to meeting"]
+      ]}
+    ],
+    quick:{q:"We've ___ time. We must hurry.", o:["run out of","run out","run into","run over"], a:0,
+      e:"<b>run out of + noun</b> = hết cái gì.", r:"run out of"},
+    questions:[
+      {q:"She puts up with ___ long hours.", o:["work","to work","working","worked"], a:2,
+       e:"<b>put up with + V-ing</b> khi theo sau là động từ.", r:"put up with + V-ing"},
+      {q:"We need to ___ a solution to this problem.", o:["come up with","come up","come across","come over"], a:0,
+       e:"<b>come up with + solution</b> = nghĩ ra giải pháp.", r:"come up with"},
+      {q:"He ___ spending all his money on games.", o:["ended up","gave up","put off","carried on"], a:0,
+       e:"<b>end up + V-ing</b> = cuối cùng rơi vào tình huống nào đó.", r:"end up + V-ing"},
+      {q:"I'm getting used to ___ alone.", o:["live","to live","living","lived"], a:2,
+       e:"Trong <b>get used to</b>, <i>to</i> là giới từ → V-ing.", r:"get used to + V-ing"}
+    ]
+  }
+  ]
+},
+
+/* ================= TOPIC 3 — VERB + -ING / TO-INFINITIVE ================= */
+{
+  id:"verb-ing-to", num:"03", title:"Verb + -ing / to-infinitive", viTitle:"Động từ + V-ing / to V",
+  desc:"Chọn giữa V-ing và to + V, các động từ đổi nghĩa, bare infinitive, preposition + V-ing và used to.",
+  review:[
+    "enjoy → V-ing: enjoy doing",
+    "want → to V: want to do",
+    "want + person → to V: want somebody to do",
+    "make / let + person → V (bare infinitive)",
+    "preposition → V-ing: interested in doing",
+    "to là giới từ → V-ing: look forward to doing",
+    "stop / remember / regret / try / need → phải xét nghĩa",
+    "used to do ≠ be used to doing ≠ get used to doing"
+  ],
+  sections:[
+  {
+    id:"ving", title:"Verb + V-ing",
+    core:"enjoy · mind · suggest · finish · stop · avoid · consider · recommend · admit · deny · imagine · miss · practise + V-ing",
+    blocks:[
+      {t:"p", x:"Một số động từ <b>bắt buộc</b> theo sau bởi <b>V-ing</b>:"},
+      {t:"ul", x:["enjoy doing · mind doing · suggest doing · finish doing · stop doing · avoid doing · consider doing",
+        "recommend doing · admit doing · deny doing · imagine doing · miss doing · practise doing"]},
+      {t:"ex", x:[
+        "I <b>enjoy reading</b> English books.",
+        "Would you <b>mind closing</b> the door?",
+        "She <b>suggested going</b> to the cinema.",
+        "He <b>avoided answering</b> the question."
+      ]},
+      {t:"warn", x:"❌ enjoy to read · ❌ suggest to go · ❌ avoid to answer"},
+      {t:"rem", x:"<b>ENJOY → V-ING</b>. Đây là một trong những quy tắc được kiểm tra nhiều nhất ở B1–B2."}
+    ],
+    quick:{q:"She suggested ___ to the cinema.", o:["to go","going","go","gone"], a:1,
+      e:"<b>suggest + V-ing</b>.", r:"VERB + V-ING"},
+    questions:[
+      {q:"I enjoy ___ English books in my free time.", o:["to read","read","reading","reads"], a:2,
+       e:"<b>enjoy + V-ing</b>.", r:"enjoy doing"},
+      {q:"He avoided ___ the question.", o:["to answer","answering","answer","answered"], a:1,
+       e:"<b>avoid + V-ing</b>.", r:"avoid doing"},
+      {q:"Would you mind ___ the window?", o:["to close","closing","close","closed"], a:1,
+       e:"<b>mind + V-ing</b> trong lời nhờ vả lịch sự.", r:"mind doing"},
+      {q:"She has finished ___ her homework.", o:["to do","doing","do","did"], a:1,
+       e:"<b>finish + V-ing</b>.", r:"finish doing"}
+    ]
+  },
+  {
+    id:"toV", title:"Verb + to + V",
+    core:"want · hope · decide · plan · promise · agree · refuse · expect · offer · learn · need · manage · afford · seem · appear + to V",
+    blocks:[
+      {t:"p", x:"Một số động từ thường theo sau bởi <b>to-infinitive</b>:"},
+      {t:"ul", x:["want to do · hope to do · decide to do · plan to do · promise to do · agree to do · refuse to do",
+        "expect to do · offer to do · learn to do · need to do · manage to do · afford to do · seem to do · appear to do"]},
+      {t:"ex", x:[
+        "I <b>want to improve</b> my English.",
+        "She <b>decided to study</b> abroad.",
+        "He <b>refused to answer</b>."
+      ]},
+      {t:"rem", x:"<b>WANT → TO V</b>: want to do."}
+    ],
+    quick:{q:"She decided ___ abroad next year.", o:["studying","to study","study","studied"], a:1,
+      e:"<b>decide + to V</b>.", r:"VERB + TO V"},
+    questions:[
+      {q:"I want ___ my English before the exam.", o:["improving","to improve","improve","improved"], a:1,
+       e:"<b>want + to V</b>.", r:"want to do"},
+      {q:"He refused ___ my question.", o:["answering","to answer","answer","answered"], a:1,
+       e:"<b>refuse + to V</b>.", r:"refuse to do"},
+      {q:"She managed ___ the exam despite the difficulties.", o:["passing","to pass","pass","passed"], a:1,
+       e:"<b>manage + to V</b> = xoay xở / làm được điều gì khó.", r:"manage to do"}
+    ]
+  },
+  {
+    id:"obj-toV", title:"Verb + Object + to + V",
+    core:"want / ask / tell / advise / allow / invite / encourage / remind / persuade / expect / teach somebody to do",
+    blocks:[
+      {t:"p", x:"Một số động từ có cấu trúc <b>verb + somebody + to do</b>:"},
+      {t:"ul", x:["want somebody to do · ask somebody to do · tell somebody to do · advise somebody to do · allow somebody to do",
+        "invite somebody to do · encourage somebody to do · remind somebody to do · persuade somebody to do · expect somebody to do",
+        "teach somebody to do · help somebody (to) do"]},
+      {t:"ex", x:[
+        "I <b>want you to come</b>.",
+        "She <b>told me to wait</b>.",
+        "The teacher <b>encouraged us to speak</b> English.",
+        "My parents <b>advised me to study</b> harder."
+      ]},
+      {t:"rem", x:"<b>WANT + PERSON → TO V</b>: want somebody to do."}
+    ],
+    quick:{q:"She told me ___ for her outside.", o:["wait","waiting","to wait","waited"], a:2,
+      e:"<b>tell somebody to do something</b>.", r:"VERB + OBJECT + TO V"},
+    questions:[
+      {q:"The teacher encouraged us ___ English every day.", o:["speaking","to speak","speak","spoke"], a:1,
+       e:"<b>encourage somebody to do something</b>.", r:"encourage somebody to do"},
+      {q:"My parents advised me ___ harder.", o:["studying","to study","study","studied"], a:1,
+       e:"<b>advise somebody to do something</b>.", r:"advise somebody to do"},
+      {q:"I want ___ with us tonight.", o:["you coming","you to come","you come","that you come"], a:1,
+       e:"<b>want somebody to do something</b>.", r:"want somebody to do"}
+    ]
+  },
+  {
+    id:"bare", title:"Bare Infinitive",
+    core:"make somebody do · let somebody do · help somebody (to) do",
+    blocks:[
+      {t:"p", x:"Một số động từ đặc biệt dùng <b>verb + object + V</b> (không có <b>to</b>)."},
+      {t:"h", x:"MAKE"},
+      {t:"ex", x:["My teacher <b>made me study</b>."]},
+      {t:"warn", x:"❌ made me to study"},
+      {t:"h", x:"LET"},
+      {t:"ex", x:["My parents <b>let me go</b>."]},
+      {t:"warn", x:"❌ let me to go"},
+      {t:"h", x:"HELP — có thể dùng cả hai"},
+      {t:"ex", x:["She <b>helped me do</b> my homework.","She <b>helped me to do</b> my homework."]},
+      {t:"rem", x:"<b>MAKE / LET + PERSON → V</b> (bare infinitive). <b>HELP</b> chấp nhận cả hai dạng."}
+    ],
+    quick:{q:"My teacher made me ___ the exercise again.", o:["to do","doing","do","did"], a:2,
+      e:"<b>make somebody do something</b> — không có <i>to</i>.", r:"BARE INFINITIVE"},
+    questions:[
+      {q:"My parents let me ___ to the party.", o:["to go","going","go","went"], a:2,
+       e:"<b>let somebody do something</b> — không có <i>to</i>.", r:"let somebody do"},
+      {q:"She helped me ___ my homework.", o:["do","to do","doing","cả do và to do"], a:3,
+       e:"Sau <b>help</b> có thể dùng cả <i>do</i> và <i>to do</i>.", r:"help somebody (to) do"},
+      {q:"Câu nào SAI?", o:["My teacher made me study.","My parents let me go.","She made me to wait.","He let me use his phone."], a:2,
+       e:"Sau <b>make + object</b> dùng bare infinitive, không có <i>to</i>.", r:"make somebody do"}
+    ]
+  },
+  {
+    id:"meaning", title:"Meaning-changing Verbs",
+    core:"stop · remember · regret · try · need — V-ing và to V mang nghĩa khác nhau",
+    blocks:[
+      {t:"h", x:"1. STOP DOING / STOP TO DO"},
+      {t:"ex", x:["He stopped <b>smoking</b>. → Anh ấy đã bỏ hút thuốc.","He stopped <b>to smoke</b>. → Anh ấy dừng lại để hút thuốc."]},
+      {t:"ex", x:["She stopped <b>talking</b>. → Cô ấy ngừng nói.","She stopped <b>to talk</b> to me. → Cô ấy dừng lại để nói chuyện với tôi."]},
+
+      {t:"h", x:"2. REMEMBER DOING / REMEMBER TO DO"},
+      {t:"ex", x:["I remember <b>meeting</b> him. → nhớ rằng mình đã gặp anh ấy.","Remember <b>to lock</b> the door. → nhớ phải khóa cửa."]},
+
+      {t:"h", x:"3. REGRET DOING / REGRET TO DO"},
+      {t:"ex", x:["I regret <b>saying</b> that. → hối tiếc vì đã nói điều đó.","We regret <b>to inform</b> you that your application was unsuccessful. → lấy làm tiếc khi phải thông báo."]},
+
+      {t:"h", x:"4. TRY DOING / TRY TO DO"},
+      {t:"ex", x:["I tried <b>to open</b> the door. → cố gắng mở cửa.","Try <b>restarting</b> the computer. → thử khởi động lại máy để xem có hiệu quả không."]},
+
+      {t:"h", x:"5. NEED DOING / NEED TO DO"},
+      {t:"ex", x:["I need <b>to clean</b> my room. → tôi cần dọn phòng.","My room needs <b>cleaning</b>. ≈ My room needs <b>to be cleaned</b>. → phòng cần được dọn."]},
+
+      {t:"tbl", head:["Verb","V-ing","To + V"], rows:[
+        ["<b>remember</b>","nhớ đã làm","nhớ phải làm"],
+        ["<b>regret</b>","hối tiếc đã làm","tiếc phải thông báo"],
+        ["<b>try</b>","thử làm","cố gắng làm"],
+        ["<b>stop</b>","ngừng làm","dừng lại để làm"],
+        ["<b>need</b>","cần được làm","cần làm"]
+      ]},
+      {t:"rem", x:"Đây là nhóm thường xuất hiện trong bài kiểm tra B1–B2 — phải học thuộc và xét theo nghĩa."}
+    ],
+    quick:{q:"He stopped ___ two years ago. He doesn't smoke now.", o:["to smoke","smoking","smoke","smoked"], a:1,
+      e:"<b>stop doing</b> = ngừng hẳn một hoạt động.", r:"stop doing / stop to do"},
+    questions:[
+      {q:"Remember ___ the door before you leave.", o:["locking","to lock","lock","locked"], a:1,
+       e:"<b>remember to do</b> = nhớ phải làm việc gì.", r:"remember to do"},
+      {q:"I clearly remember ___ him at the conference last year.", o:["to meet","meeting","meet","met"], a:1,
+       e:"<b>remember doing</b> = nhớ rằng mình đã làm gì.", r:"remember doing"},
+      {q:"If the computer is slow, try ___ it.", o:["to restart","restarting","restart","restarted"], a:1,
+       e:"<b>try doing</b> = thử làm để xem có hiệu quả không.", r:"try doing / try to do"},
+      {q:"My room needs ___ — it's very messy.", o:["to clean","cleaning","clean","cleaned"], a:1,
+       e:"<b>need doing</b> = cần được làm (bị động).", r:"need doing"},
+      {q:"We regret ___ you that the course has been cancelled.", o:["informing","to inform","inform","informed"], a:1,
+       e:"<b>regret to do</b> = lấy làm tiếc khi phải thông báo.", r:"regret to do"}
+    ]
+  },
+  {
+    id:"like", title:"Like / Love / Hate / Prefer",
+    core:"like doing / like to do — khác biệt nhỏ; would like + to V; prefer A to B",
+    blocks:[
+      {t:"p", x:"Các động từ <b>like, love, hate, prefer</b> có thể đi với <b>V-ing</b> hoặc <b>to + V</b>. Trong nhiều trường hợp, sự khác biệt rất nhỏ."},
+      {t:"ex", x:["I like <b>reading</b>.","I like <b>to read</b>."]},
+      {t:"h", x:"Khác biệt tinh tế"},
+      {t:"ul", x:[
+        "<b>like doing</b> → sở thích nói chung: I like swimming.",
+        "<b>like to do</b> → thói quen / lựa chọn cụ thể: I like to get up early."
+      ]},
+      {t:"h", x:"WOULD LIKE + TO V"},
+      {t:"ex", x:["I would like <b>to learn</b> French.","Would you like <b>to come</b> with us?"]},
+      {t:"warn", x:"❌ would like doing"},
+      {t:"h", x:"PREFER"},
+      {t:"ex", x:[
+        "<b>prefer doing A to doing B</b>: I prefer <b>walking to taking</b> the bus.",
+        "<b>prefer to do A rather than do B</b>: I prefer <b>to walk rather than take</b> the bus."
+      ]},
+      {t:"warn", x:"Với <b>prefer A to B</b>, nếu A là V-ing thì B cũng thường là V-ing: prefer <b>reading to watching</b> TV."}
+    ],
+    quick:{q:"I would like ___ French next semester.", o:["learning","to learn","learn","learned"], a:1,
+      e:"Sau <b>would like</b> luôn dùng <b>to V</b>.", r:"WOULD LIKE + TO V"},
+    questions:[
+      {q:"I prefer ___ to taking the bus.", o:["walk","to walk","walking","walked"], a:2,
+       e:"<b>prefer doing A to doing B</b> — hai vế cùng dạng V-ing.", r:"prefer doing A to doing B"},
+      {q:"Would you like ___ with us tonight?", o:["coming","to come","come","came"], a:1,
+       e:"<b>would like + to V</b>.", r:"would like to do"},
+      {q:"Câu nào SAI?", o:["I like reading.","I like to read.","I would like reading.","I would like to read."], a:2,
+       e:"Sau <b>would like</b> không dùng V-ing.", r:"would like + to V"}
+    ]
+  },
+  {
+    id:"prep-ving3", title:"Preposition + V-ing",
+    core:"after finishing · before going · without saying · by using · instead of taking",
+    blocks:[
+      {t:"p", x:"Sau <b>giới từ</b>, nếu theo sau là động từ → dùng <b>V-ing</b>."},
+      {t:"ul", x:["after finishing · before going · without saying · by using · instead of taking · interested in learning · good at speaking"]},
+      {t:"ex", x:["She left <b>without saying</b> goodbye.","<b>Before going</b> to bed, I usually read."]},
+
+      {t:"h", x:"ĐỘNG TỪ + GIỚI TỪ + V-ING"},
+      {t:"ul", x:["apologize for doing · insist on doing · succeed in doing · think about doing · dream of doing",
+        "worry about doing · complain about doing · believe in doing"]},
+      {t:"ex", x:["She apologized for <b>being</b> late.","He succeeded in <b>passing</b> the exam.","I'm thinking about <b>changing</b> my major."]},
+
+      {t:"h", x:"“TO” không phải lúc nào cũng là to-infinitive"},
+      {t:"tbl", head:["Cấu trúc","Ví dụ","Giải thích"], rows:[
+        ["to + V","I want <b>to learn</b> English.","<i>to</i> là dấu hiệu của infinitive"],
+        ["to + V-ing","I look forward <b>to meeting</b> you.","<i>to</i> là preposition"]
+      ]},
+      {t:"ul", x:["look forward to doing · be used to doing · get used to doing · object to doing · contribute to doing"]},
+      {t:"warn", x:"<b>WARNING:</b> \"to\" không phải lúc nào cũng là infinitive marker. Trong \"look forward to meeting\", \"to\" là preposition."}
+    ],
+    quick:{q:"She left without ___ goodbye.", o:["say","to say","saying","said"], a:2,
+      e:"<b>without</b> là giới từ → V-ing.", r:"PREPOSITION + V-ING"},
+    questions:[
+      {q:"He succeeded in ___ the exam.", o:["pass","to pass","passing","passed"], a:2,
+       e:"<b>succeed in + V-ing</b>.", r:"Verb + preposition + V-ing"},
+      {q:"I'm thinking about ___ my major.", o:["change","to change","changing","changed"], a:2,
+       e:"<b>think about + V-ing</b>.", r:"think about doing"},
+      {q:"Before ___ to bed, I usually read a book.", o:["go","to go","going","went"], a:2,
+       e:"<b>before + V-ing</b> khi hai mệnh đề cùng chủ ngữ.", r:"Preposition + V-ing"},
+      {q:"I look forward to ___ from you soon.", o:["hear","hearing","to hear","heard"], a:1,
+       e:"Trong <b>look forward to</b>, <i>to</i> là giới từ → V-ing.", r:"to là giới từ"}
+    ]
+  },
+  {
+    id:"used-to", title:"Used to",
+    core:"used to do ≠ be used to doing ≠ get used to doing",
+    blocks:[
+      {t:"h", x:"1. USED TO + V"},
+      {t:"p", x:"= từng thường xuyên làm gì trong quá khứ, nhưng hiện tại không còn như vậy."},
+      {t:"ex", x:["I <b>used to play</b> football. → Trước đây tôi thường chơi bóng đá.","She <b>used to live</b> in Can Tho."]},
+
+      {t:"h", x:"2. BE USED TO + V-ing"},
+      {t:"p", x:"= quen với việc gì."},
+      {t:"ex", x:["I am <b>used to getting</b> up early. → Tôi quen với việc dậy sớm."]},
+      {t:"warn", x:"❌ I am used to get up early."},
+
+      {t:"h", x:"3. GET USED TO + V-ing"},
+      {t:"p", x:"= trở nên quen với việc gì."},
+      {t:"ex", x:["I'm <b>getting used to speaking</b> English.","She is <b>getting used to living</b> alone."]},
+
+      {t:"tbl", head:["Cấu trúc","Nghĩa","Ví dụ"], rows:[
+        ["<b>used to + V</b>","trước đây thường làm","I used to live here."],
+        ["<b>be used to + V-ing</b>","đã quen với","I am used to living here."],
+        ["<b>get used to + V-ing</b>","đang dần quen với","I am getting used to living here."]
+      ]},
+      {t:"rem", x:"<b>used to + V</b> (động từ nguyên mẫu) nhưng <b>be/get used to + V-ing</b> (vì <i>to</i> là giới từ)."}
+    ],
+    quick:{q:"I ___ play football when I was a child.", o:["am used to","used to","get used to","use to"], a:1,
+      e:"<b>used to + V</b> = trước đây thường làm gì.", r:"used to + V"},
+    questions:[
+      {q:"I'm used to ___ up early.", o:["get","getting","to get","got"], a:1,
+       e:"<b>be used to + V-ing</b> (to là giới từ).", r:"be used to + V-ing"},
+      {q:"She is getting used to ___ alone.", o:["live","living","to live","lived"], a:1,
+       e:"<b>get used to + V-ing</b>.", r:"get used to + V-ing"},
+      {q:"Câu nào SAI?", o:["I used to live in Can Tho.","I am used to living here.","I am used to get up early.","I am getting used to living here."], a:2,
+       e:"Sau <b>be used to</b> phải dùng V-ing.", r:"be used to + V-ing"}
+    ]
+  },
+  {
+    id:"structures3", title:"Common Structures",
+    core:"spend time V-ing · have difficulty V-ing · it's worth V-ing · can't help V-ing · feel like V-ing · go + V-ing",
+    blocks:[
+      {t:"h", x:"1. Các cấu trúc quan trọng khác"},
+      {t:"tbl", head:["Cấu trúc","Ví dụ"], rows:[
+        ["<b>spend time + V-ing</b>","I spend a lot of time <b>studying</b> English."],
+        ["<b>have difficulty + V-ing</b>","I have difficulty <b>understanding</b> native speakers."],
+        ["<b>it's worth + V-ing</b>","It's worth <b>trying</b>."],
+        ["<b>can't help + V-ing</b>","I can't help <b>laughing</b>."],
+        ["<b>feel like + V-ing</b>","I feel like <b>going</b> out."],
+        ["<b>be busy + V-ing</b>","She is busy <b>doing</b> her homework."],
+        ["<b>there's no point in + V-ing</b>","There's no point in <b>arguing</b>."]
+      ]},
+
+      {t:"h", x:"2. GO + V-ING — các hoạt động"},
+      {t:"ul", x:["go shopping · go swimming · go fishing · go camping · go sightseeing · go skiing · go jogging · go cycling · go dancing · go hiking"]},
+      {t:"ex", x:["We went <b>shopping</b> yesterday."]},
+
+      {t:"h", x:"3. Nhóm động từ dùng cả hai mà không khác nhiều"},
+      {t:"ul", x:["begin · start · continue · prefer · like · love · hate"]},
+      {t:"ex", x:["It started <b>raining</b>. / It started <b>to rain</b>.","She continued <b>working</b>. / She continued <b>to work</b>."]},
+
+      {t:"h", x:"4. Tóm tắt hệ thống"},
+      {t:"tbl", head:["Nhóm","Cấu trúc"], rows:[
+        ["V + V-ing","enjoy doing · avoid doing · suggest doing · finish doing · mind doing · recommend doing · consider doing"],
+        ["V + to V","want to do · decide to do · hope to do · plan to do · promise to do · refuse to do · manage to do"],
+        ["V + object + to V","want somebody to do · tell somebody to do · ask somebody to do · advise somebody to do · encourage somebody to do"],
+        ["V + object + V","make somebody do · let somebody do · help somebody (to) do"],
+        ["Preposition + V-ing","in doing · about doing · for doing · without doing · before doing · after doing"],
+        ["Đặc biệt","stop doing / stop to do · remember doing / remember to do · regret doing / regret to do · try doing / try to do · need doing / need to do · used to do / be used to doing / get used to doing"]
+      ]}
+    ],
+    quick:{q:"I can't help ___ when I watch this comedy.", o:["to laugh","laughing","laugh","laughed"], a:1,
+      e:"<b>can't help + V-ing</b> = không thể nhịn được.", r:"can't help + V-ing"},
+    questions:[
+      {q:"I spend a lot of time ___ English.", o:["study","to study","studying","studied"], a:2,
+       e:"<b>spend time + V-ing</b>.", r:"spend time + V-ing"},
+      {q:"I have difficulty ___ native speakers.", o:["understand","to understand","understanding","understood"], a:2,
+       e:"<b>have difficulty + V-ing</b>.", r:"have difficulty + V-ing"},
+      {q:"We went ___ last weekend.", o:["shop","to shop","shopping","shopped"], a:2,
+       e:"<b>go + V-ing</b> cho các hoạt động: go shopping / swimming / fishing.", r:"go + V-ing"},
+      {q:"There's no point in ___ about it now.", o:["argue","to argue","arguing","argued"], a:2,
+       e:"<b>there's no point in + V-ing</b>.", r:"there's no point in + V-ing"}
+    ]
+  }
+  ]
+},
+
+/* ================= TOPIC 4 — PARTICIPLES ================= */
+{
+  id:"participles", num:"04", title:"Participles & Past Participles", viTitle:"Phân từ",
+  desc:"V-ing và V3/-ed, tính từ -ing/-ed, cụm phân từ, mệnh đề rút gọn, having + V3 và lỗi dangling participle.",
+  review:[
+    "V-ing → chủ thể thực hiện / gây ra hành động hoặc tác động",
+    "V3/-ed → chủ thể chịu tác động hoặc trạng thái / kết quả",
+    "-ing adjective → gây cảm xúc",
+    "-ed adjective → cảm nhận cảm xúc",
+    "having + V3 → hành động xảy ra trước",
+    "having been + V3 → bị động + xảy ra trước",
+    "Cụm phân từ phải có chủ thể hợp lý (cùng chủ ngữ với mệnh đề chính)"
+  ],
+  sections:[
+  {
+    id:"ving4", title:"Present Participle — V-ing",
+    core:"V-ing dùng trong thì tiếp diễn, như tính từ, trong cụm phân từ và mệnh đề rút gọn",
+    blocks:[
+      {t:"p", x:"<b>Participle (phân từ)</b> là một dạng của động từ nhưng có thể được sử dụng như: tính từ · thành phần trong thì · thành phần trong câu bị động · cụm phân từ · mệnh đề rút gọn."},
+      {t:"p", x:"Có hai dạng chính: <b>present participle (V-ing)</b> và <b>past participle (V3 / -ed)</b>."},
+      {t:"h", x:"1. V-ing dùng trong thì tiếp diễn"},
+      {t:"ex", x:["She is <b>studying</b> English.","They were <b>playing</b> football."]},
+      {t:"note", x:"Ở đây V-ing là một phần của <b>verb phrase</b>, không phải tính từ."},
+      {t:"h", x:"2. V-ing dùng như tính từ"},
+      {t:"p", x:"V-ing thường mô tả <b>người / vật gây ra cảm xúc hoặc tạo ra tác động</b>."},
+      {t:"ex", x:["an <b>interesting</b> book → một cuốn sách gây thú vị","an <b>exciting</b> game → một trận đấu gây hào hứng","a <b>boring</b> lesson → một bài học gây chán"]},
+      {t:"h", x:"3. V-ing trong cụm phân từ"},
+      {t:"ex", x:["<b>Walking down the street</b>, I saw an old friend.","<b>Not knowing what to do</b>, she asked for help."]},
+      {t:"rem", x:"<b>V-ing</b> → chủ thể <b>thực hiện</b> hành động hoặc <b>gây ra</b> tác động."}
+    ],
+    quick:{q:"The film was so ___ that I fell asleep.", o:["bored","boring","bore","boredom"], a:1,
+      e:"Bộ phim <b>gây ra</b> cảm giác chán → dùng V-ing.", r:"-ing adjective"},
+    questions:[
+      {q:"She is ___ English at the moment.", o:["study","studying","studied","to study"], a:1,
+       e:"V-ing là một phần của thì tiếp diễn <i>is studying</i>.", r:"V-ing trong thì tiếp diễn"},
+      {q:"It was an ___ match and everyone enjoyed it.", o:["excited","exciting","excite","excitement"], a:1,
+       e:"Trận đấu <b>gây ra</b> sự hào hứng → dùng V-ing.", r:"-ing adjective"},
+      {q:"___ down the street, I saw an old friend.", o:["Walked","Walking","To walk","Walk"], a:1,
+       e:"Cụm phân từ V-ing rút gọn mệnh đề 'While I was walking...'.", r:"Participial phrase"}
+    ]
+  },
+  {
+    id:"v3", title:"Past Participle — V3 / -ed",
+    core:"V3 dùng trong thì hoàn thành, câu bị động, như tính từ và trong cụm phân từ",
+    blocks:[
+      {t:"p", x:"Past participle có thể dùng: trong thì hoàn thành · trong câu bị động · như tính từ · trong cụm phân từ · trong mệnh đề rút gọn."},
+      {t:"ex", x:[
+        "She has <b>finished</b> her homework. (thì hoàn thành)",
+        "The window was <b>broken</b>. (bị động)",
+        "I am <b>interested</b> in English. (tính từ)",
+        "<b>Shocked by the news</b>, she couldn't speak. (cụm phân từ)"
+      ]},
+      {t:"rem", x:"<b>V3/-ed</b> → chủ thể <b>chịu tác động</b> hoặc ở trạng thái / kết quả."}
+    ],
+    quick:{q:"The window was ___ by the storm.", o:["breaking","broken","broke","breaks"], a:1,
+      e:"Câu bị động dùng V3: <i>was broken</i>.", r:"Past participle trong bị động"},
+    questions:[
+      {q:"She has ___ her homework already.", o:["finish","finishing","finished","finishes"], a:2,
+       e:"Thì hiện tại hoàn thành dùng V3.", r:"V3 trong thì hoàn thành"},
+      {q:"I am ___ in English literature.", o:["interesting","interested","interest","interests"], a:1,
+       e:"Người <b>cảm nhận</b> cảm xúc → dùng V3/-ed.", r:"-ed adjective"}
+    ]
+  },
+  {
+    id:"ing-ed-adj", title:"-ing vs -ed Adjectives",
+    core:"V-ing = gây ra cảm xúc · V-ed = cảm nhận / trải nghiệm cảm xúc",
+    blocks:[
+      {t:"rule", x:"<b>V-ing</b> → gây ra cảm xúc. <b>V-ed</b> → cảm nhận / trải nghiệm cảm xúc."},
+      {t:"ex", x:["The film was <b>boring</b>. → Bộ phim gây chán.","I was <b>bored</b>. → Tôi cảm thấy chán."]},
+      {t:"h", x:"Một số cặp thường gặp"},
+      {t:"tbl", head:["V-ing","V-ed"], rows:[
+        ["interesting","interested"],
+        ["boring","bored"],
+        ["exciting","excited"],
+        ["surprising","surprised"],
+        ["confusing","confused"],
+        ["frightening","frightened"],
+        ["disappointing","disappointed"],
+        ["tiring","tired"],
+        ["annoying","annoyed"],
+        ["embarrassing","embarrassed"],
+        ["worrying","worried"],
+        ["satisfying","satisfied"]
+      ]},
+      {t:"h", x:"Quy tắc ý nghĩa"},
+      {t:"ul", x:["<b>THING → thường -ING</b>: The news was surprising.","<b>PERSON → thường -ED</b>: I was surprised by the news."]},
+      {t:"note", x:"Không phải lúc nào chủ ngữ là người cũng bắt buộc -ed, nhưng quy tắc này rất hữu ích:"},
+      {t:"ex", x:["The teacher was <b>boring</b>. → Giáo viên gây chán.","The students were <b>bored</b>. → Học sinh cảm thấy chán."]},
+      {t:"warn", x:"❌ I am interesting in English. · ✅ I am interested in English."}
+    ],
+    quick:{q:"I was ___ when I heard the news.", o:["surprising","surprised","surprise","surprises"], a:1,
+      e:"Người <b>cảm nhận</b> cảm xúc → dùng V-ed.", r:"-ed adjective"},
+    questions:[
+      {q:"The students were ___ because the lesson was ___.", o:["boring / bored","bored / boring","bored / bored","boring / boring"], a:1,
+       e:"Học sinh <b>cảm thấy</b> chán (bored); bài học <b>gây</b> chán (boring).", r:"-ing vs -ed adjectives"},
+      {q:"Câu nào đúng?", o:["I am interesting in English.","I am interested in English.","The book is interested.","I am boring in English."], a:1,
+       e:"<b>interested in</b> = cảm thấy hứng thú.", r:"-ed adjective"},
+      {q:"It was a very ___ day, so we went home early.", o:["tired","tiring","tire","tires"], a:1,
+       e:"Ngày <b>gây ra</b> sự mệt mỏi → tiring.", r:"-ing adjective"}
+    ]
+  },
+  {
+    id:"phrases", title:"Participial Phrases",
+    core:"Cụm phân từ bắt đầu bằng V-ing hoặc V3/-ed, bổ sung thông tin cho chủ ngữ",
+    blocks:[
+      {t:"p", x:"Một <b>participial phrase</b> thường bắt đầu bằng <b>V-ing</b> hoặc <b>V3/-ed</b> và cung cấp thêm thông tin về chủ ngữ."},
+      {t:"h", x:"V-ing"},
+      {t:"ex", x:["<b>Walking down the street</b>, I saw an old friend. = While I was walking down the street, I saw an old friend."]},
+      {t:"h", x:"V3/-ed"},
+      {t:"ex", x:["<b>Tired after the journey</b>, she went to bed. = Because she was tired after the journey, she went to bed."]},
+      {t:"h", x:"Cụm phân từ sau danh từ"},
+      {t:"ex", x:[
+        "<b>Noun + V-ing</b>: the man <b>standing near the door</b> · students <b>studying English</b> · people <b>living in the city</b>",
+        "<b>Noun + V3</b>: the car <b>damaged in the accident</b> · the documents <b>signed yesterday</b> · the food <b>prepared by the chef</b>"
+      ]},
+      {t:"h", x:"Phân từ chỉ các chức năng khác nhau"},
+      {t:"tbl", head:["Chức năng","Dạng đầy đủ","Dạng rút gọn"], rows:[
+        ["Nguyên nhân","Because she was tired, she went home.","<b>Being tired</b>, she went home. / <b>Tired</b>, she went home."],
+        ["Thời gian","When I entered the room, I saw John.","<b>Entering the room</b>, I saw John."],
+        ["Thời gian (trước)","After she had finished the work, she went home.","<b>Having finished the work</b>, she went home."],
+        ["Điều kiện","If this method is used correctly, it can be effective.","<b>Used properly</b>, the machine is safe."],
+        ["Nhượng bộ","Although she was tired, she continued working.","<b>Although tired</b>, she continued working."]
+      ]},
+      {t:"h", x:"Nối hai hành động cùng chủ ngữ"},
+      {t:"ex", x:[
+        "She opened the door and walked inside. → <b>Opening the door, she walked inside.</b>",
+        "He sat on the sofa and watched TV. → <b>Sitting on the sofa, he watched TV.</b>"
+      ]},
+      {t:"rem", x:"Cấu trúc: <b>V-ing + main clause</b> khi hai hành động có cùng chủ ngữ."},
+      {t:"h", x:"V-ing chỉ hai hành động xảy ra gần nhau / đồng thời"},
+      {t:"ex", x:["She sat on the bed <b>reading</b> a book. → hai hành động xảy ra cùng lúc: sat và read."]}
+    ],
+    quick:{q:"___ after the journey, she went to bed early.", o:["Tiring","Tired","Tire","To tire"], a:1,
+      e:"Cô ấy <b>cảm thấy</b> mệt → dùng V3/-ed.", r:"V3/-ed participial phrase"},
+    questions:[
+      {q:"___ into the room, he smiled.", o:["Walked","Walking","To walk","Walk"], a:1,
+       e:"Rút gọn mệnh đề 'As he walked into the room' → Walking.", r:"V-ing participial clause"},
+      {q:"The man ___ by the door is my teacher.", o:["stand","standing","stood","stands"], a:1,
+       e:"Cụm phân từ chủ động sau danh từ: the man standing...", r:"Noun + V-ing"},
+      {q:"The documents ___ by the manager are important.", o:["signing","signed","sign","signs"], a:1,
+       e:"Tài liệu <b>được ký</b> → dùng V3.", r:"Noun + V3"}
+    ]
+  },
+  {
+    id:"clauses", title:"Participial Clauses",
+    core:"Rút gọn mệnh đề trạng ngữ bằng V-ing hoặc V3 khi hai mệnh đề cùng chủ ngữ",
+    blocks:[
+      {t:"h", x:"1. V-ing participial clause"},
+      {t:"p", x:"Có thể dùng <b>V-ing</b> để rút gọn mệnh đề khi chủ ngữ của hai mệnh đề giống nhau."},
+      {t:"ex", x:[
+        "While I was walking home, I met John. → <b>Walking home</b>, I met John.",
+        "Because she didn't know what to do, she asked for help. → <b>Not knowing what to do</b>, she asked for help.",
+        "As he walked into the room, he smiled. → <b>Walking into the room</b>, he smiled."
+      ]},
+      {t:"h", x:"2. V3/-ed participial clause"},
+      {t:"p", x:"Dùng past participle khi chủ ngữ <b>chịu tác động</b>."},
+      {t:"ex", x:[
+        "Because she was shocked by the news, she couldn't speak. → <b>Shocked by the news</b>, she couldn't speak.",
+        "<b>Built in 1900</b>, the house is still in good condition.",
+        "<b>Written in simple English</b>, the book is easy to understand."
+      ]},
+      {t:"h", x:"3. So sánh V-ing và V3 trong cụm phân từ"},
+      {t:"ul", x:[
+        "<b>Chủ thể thực hiện hành động → V-ing</b>: <b>The man standing by the door</b> is my teacher.",
+        "<b>Chủ thể chịu tác động → V3</b>: <b>The documents signed by the manager</b> are important."
+      ]},
+      {t:"h", x:"4. Các chức năng của mệnh đề phân từ"},
+      {t:"tbl", head:["Chức năng","Ví dụ"], rows:[
+        ["Nguyên nhân","<b>Tired</b>, she went home. (= Because she was tired)"],
+        ["Thời gian","<b>Entering the room</b>, I saw John. (= When I entered the room)"],
+        ["Thời gian (trước)","<b>Having finished the work</b>, she went home."],
+        ["Điều kiện","<b>Used properly</b>, the machine is safe. (= If it is used properly)"],
+        ["Nhượng bộ","<b>Although tired</b>, she continued working."]
+      ]}
+    ],
+    quick:{q:"___ by the news, she couldn't speak.", o:["Shocking","Shocked","Shock","To shock"], a:1,
+      e:"Cô ấy <b>bị sốc</b> → dùng V3.", r:"V3 participial clause"},
+    questions:[
+      {q:"___ home, I met John.", o:["Walked","Walking","To walk","Walk"], a:1,
+       e:"Rút gọn 'While I was walking home' → Walking home.", r:"V-ing participial clause"},
+      {q:"___ in 1900, the house is still in good condition.", o:["Building","Built","Build","Builds"], a:1,
+       e:"Ngôi nhà <b>được xây</b> → dùng V3.", r:"V3 participial clause"},
+      {q:"___ in simple English, the book is easy to understand.", o:["Writing","Written","Write","Wrote"], a:1,
+       e:"Cuốn sách <b>được viết</b> → V3.", r:"Passive participle"}
+    ]
+  },
+  {
+    id:"having", title:"Having + V3",
+    core:"having + V3 = hành động xảy ra TRƯỚC hành động chính",
+    blocks:[
+      {t:"p", x:"Khi một hành động xảy ra <b>trước</b> hành động chính, có thể dùng <b>having + V3</b>."},
+      {t:"ex", x:[
+        "<b>Having finished</b> her homework, she went to bed. = After she had finished her homework, she went to bed.",
+        "<b>Having seen</b> the movie before, I didn't want to watch it again. → Vì đã xem bộ phim trước đó, tôi không muốn xem lại.",
+        "<b>Having completed</b> the project, they celebrated. → Sau khi hoàn thành dự án, họ ăn mừng."
+      ]},
+      {t:"rem", x:"<b>having + V3</b> → hành động xảy ra trước, chủ động."}
+    ],
+    quick:{q:"___ her homework, she went to bed.", o:["Finishing","Having finished","Finished","To finish"], a:1,
+      e:"Hành động làm bài tập xảy ra <b>trước</b> → having + V3.", r:"Having + V3"},
+    questions:[
+      {q:"___ the movie before, I didn't want to watch it again.", o:["Seeing","Having seen","Seen","To see"], a:1,
+       e:"Đã xem trước đó → <b>having + V3</b>.", r:"Having + V3"},
+      {q:"___ the project, they celebrated.", o:["Completing","Having completed","Completed","To complete"], a:1,
+       e:"Sau khi hoàn thành (trước khi ăn mừng) → having + V3.", r:"Having + V3"}
+    ]
+  },
+  {
+    id:"having-been", title:"Having been + V3",
+    core:"having been + V3 = bị động + hành động xảy ra trước",
+    blocks:[
+      {t:"p", x:"Dùng khi hành động trước đó ở dạng <b>bị động</b>."},
+      {t:"ex", x:["<b>Having been warned</b> about the danger, they left immediately. = After they had been warned about the danger, they left."]},
+      {t:"h", x:"BEING + V3"},
+      {t:"p", x:"Dùng trong participial clause bị động, đặc biệt khi hành động xảy ra đồng thời hoặc đang diễn ra."},
+      {t:"ex", x:["<b>Being surrounded by strangers</b>, she felt uncomfortable. = Because she was surrounded by strangers, she felt uncomfortable."]},
+      {t:"h", x:"Bảng các dạng participle quan trọng"},
+      {t:"tbl", head:["Dạng","Chức năng chính","Ví dụ"], rows:[
+        ["<b>V-ing</b>","active participle","the man standing there"],
+        ["<b>V3/-ed</b>","passive / result","the window broken yesterday"],
+        ["<b>being + V3</b>","passive, đang diễn ra","being watched"],
+        ["<b>having + V3</b>","hành động xảy ra trước","having finished"],
+        ["<b>having been + V3</b>","passive + trước đó","having been warned"]
+      ]},
+      {t:"h", x:"So sánh toàn bộ"},
+      {t:"ex", x:[
+        "Active – đồng thời: <b>Walking home</b>, I called my mother.",
+        "Active – xảy ra trước: <b>Having finished</b> my work, I went home.",
+        "Passive: <b>Built in 1990</b>, the house is still beautiful.",
+        "Passive – đang diễn ra: <b>Being watched</b>, he felt nervous.",
+        "Passive – xảy ra trước: <b>Having been warned</b>, they left."
+      ]}
+    ],
+    quick:{q:"___ about the danger, they left immediately.", o:["Warning","Having been warned","Warned","To warn"], a:1,
+      e:"Bị động + xảy ra trước → having been + V3.", r:"Having been + V3"},
+    questions:[
+      {q:"___ by strangers, she felt uncomfortable.", o:["Surrounding","Being surrounded","Surrounded by","Surround"], a:1,
+       e:"Bị động, đang diễn ra → <b>being + V3</b>.", r:"Being + V3"},
+      {q:"Câu nào diễn tả hành động bị động xảy ra TRƯỚC hành động chính?", o:["Having finished","Having been warned","Being watched","Walking"], a:1,
+       e:"<b>having been + V3</b> = bị động + xảy ra trước.", r:"Having been + V3"}
+    ]
+  },
+  {
+    id:"reduced", title:"Reduced Relative Clauses",
+    core:"Rút gọn mệnh đề quan hệ: chủ động → V-ing · bị động → V3",
+    blocks:[
+      {t:"h", x:"1. Mệnh đề quan hệ chủ động → V-ing"},
+      {t:"ex", x:[
+        "The woman <b>who is standing</b> over there is my teacher. → The woman <b>standing</b> over there is my teacher.",
+        "Students <b>who study</b> English regularly improve faster. → Students <b>studying</b> English regularly improve faster."
+      ]},
+      {t:"h", x:"2. Mệnh đề quan hệ bị động → V3"},
+      {t:"ex", x:[
+        "The books <b>which were written</b> by Orwell are famous. → The books <b>written</b> by Orwell are famous.",
+        "The products <b>which are made</b> in Vietnam are exported worldwide. → The products <b>made</b> in Vietnam are exported worldwide."
+      ]},
+      {t:"h", x:"3. Mệnh đề quan hệ có BE → bỏ relative pronoun + BE"},
+      {t:"ex", x:[
+        "The people <b>who are interested</b> in English can join the club. → The people <b>interested</b> in English can join the club.",
+        "The students <b>who were selected</b> for the competition will travel tomorrow. → The students <b>selected</b> for the competition will travel tomorrow."
+      ]},
+      {t:"h", x:"4. Chủ động vs bị động trong mệnh đề quan hệ"},
+      {t:"ul", x:[
+        "<b>Active</b>: The girl <b>wearing a red dress</b> is my sister. (= The girl who is wearing a red dress...)",
+        "<b>Passive</b>: The dress <b>worn by the girl</b> is beautiful. (= The dress which is worn by the girl...)"
+      ]},
+      {t:"rem", x:"Chủ thể <b>làm</b> hành động → V-ing. Chủ thể <b>chịu</b> hành động → V3."}
+    ],
+    quick:{q:"The products ___ in Vietnam are exported worldwide.", o:["making","made","make","makes"], a:1,
+      e:"Sản phẩm <b>được làm</b> → V3.", r:"Reduced passive relative clause"},
+    questions:[
+      {q:"The woman ___ over there is my teacher.", o:["stand","standing","stood","stands"], a:1,
+       e:"Rút gọn 'who is standing' → standing.", r:"Reduced active relative clause"},
+      {q:"The books ___ by Orwell are famous.", o:["writing","written","wrote","write"], a:1,
+       e:"Rút gọn 'which were written' → written.", r:"Reduced passive relative clause"},
+      {q:"The students ___ for the competition will travel tomorrow.", o:["selecting","selected","select","selects"], a:1,
+       e:"Rút gọn 'who were selected' → selected.", r:"Reduced passive relative clause"}
+    ]
+  },
+  {
+    id:"gerund", title:"Gerund vs Participle",
+    core:"Gerund = V-ing làm danh từ · Participle = V-ing làm tính từ / cụm phân từ",
+    blocks:[
+      {t:"p", x:"Cả hai đều có dạng <b>V-ing</b>, nhưng chức năng khác nhau."},
+      {t:"h", x:"Gerund"},
+      {t:"p", x:"V-ing hoạt động như <b>danh từ</b>."},
+      {t:"ex", x:["<b>Swimming</b> is good exercise. → Swimming là chủ ngữ.","I enjoy <b>reading</b>. → reading là tân ngữ của enjoy."]},
+      {t:"h", x:"Participle"},
+      {t:"p", x:"V-ing hoạt động như <b>tính từ / cụm phân từ</b> hoặc tạo mệnh đề rút gọn."},
+      {t:"ex", x:["The girl <b>wearing a blue dress</b> is my sister. → wearing mô tả girl."]},
+      {t:"h", x:"Phân biệt participle và continuous tense"},
+      {t:"ul", x:[
+        "<b>Continuous tense</b>: She is <b>running</b>. → running là một phần của động từ <i>is running</i>.",
+        "<b>Participle</b>: The girl <b>running in the park</b> is my sister. → running bổ nghĩa cho <i>the girl</i>."
+      ]}
+    ],
+    quick:{q:"Trong câu “Swimming is good exercise”, “Swimming” là gì?", o:["Participle","Gerund (danh động từ)","Continuous tense","Infinitive"], a:1,
+      e:"V-ing làm chủ ngữ → hoạt động như danh từ → gerund.", r:"Gerund vs Participle"},
+    questions:[
+      {q:"Trong câu “The girl wearing a blue dress is my sister”, “wearing” là gì?", o:["Gerund","Participle","Infinitive","Bare infinitive"], a:1,
+       e:"<b>wearing</b> bổ nghĩa cho danh từ <i>the girl</i> → participle.", r:"Participle bổ nghĩa danh từ"},
+      {q:"Trong câu “I enjoy reading”, “reading” là gì?", o:["Gerund","Participle","Continuous tense","Past participle"], a:0,
+       e:"<b>reading</b> là tân ngữ của <i>enjoy</i> → gerund.", r:"Gerund làm tân ngữ"}
+    ]
+  },
+  {
+    id:"perception", title:"Perception Verbs",
+    core:"see / hear / watch / notice + object + V-ing (hành động đang diễn ra)",
+    blocks:[
+      {t:"p", x:"Một số cấu trúc dùng <b>see / hear / watch / notice + object + V-ing</b>."},
+      {t:"ex", x:["I saw him <b>crossing</b> the road. → Tôi nhìn thấy anh ấy đang băng qua đường."]},
+      {t:"note", x:"V-ing nhấn mạnh <b>hành động đang diễn ra</b>."},
+      {t:"h", x:"SEE + OBJECT + V3"},
+      {t:"p", x:"Có thể dùng past participle để nhấn mạnh đối tượng <b>chịu tác động</b>."},
+      {t:"ex", x:["I saw the car <b>damaged</b> in the accident. → Tôi thấy chiếc xe bị hư hỏng trong vụ tai nạn."]},
+      {t:"rem", x:"<b>see somebody doing</b> = thấy ai đang làm · <b>see something done</b> = thấy cái gì bị / được làm."}
+    ],
+    quick:{q:"I saw him ___ the road.", o:["cross","crossing","crossed","to cross"], a:1,
+      e:"<b>see + object + V-ing</b> = thấy ai đang làm gì.", r:"Perception verb + V-ing"},
+    questions:[
+      {q:"I saw the car ___ in the accident.", o:["damaging","damaged","damage","damages"], a:1,
+       e:"Chiếc xe <b>bị</b> hư hỏng → dùng V3 sau see.", r:"see + object + V3"},
+      {q:"She heard someone ___ at the door.", o:["knock","knocking","knocked","to knock"], a:1,
+       e:"<b>hear + object + V-ing</b> = nghe thấy ai đang làm gì.", r:"Perception verb + V-ing"}
+    ]
+  },
+  {
+    id:"causative", title:"Causative Structures",
+    core:"have / get + object + V3 = nhờ / yêu cầu ai đó làm gì cho mình",
+    blocks:[
+      {t:"p", x:"Cấu trúc causative: <b>have / get + object + V3</b> = nhờ / yêu cầu ai đó làm gì cho mình."},
+      {t:"ex", x:["I had my hair <b>cut</b>.","She got her phone <b>repaired</b>."]},
+      {t:"note", x:"Không có nghĩa là chủ thể tự làm hành động đó — chủ thể <b>thu xếp</b> cho người khác làm."},
+      {t:"rem", x:"<b>have / get + something + V3</b>: have my hair cut · get my phone repaired · have the house painted."}
+    ],
+    quick:{q:"I had my hair ___ yesterday.", o:["cut","cutting","to cut","cuts"], a:0,
+      e:"<b>have + object + V3</b> = nhờ ai đó cắt tóc cho mình.", r:"Causative: have + object + V3"},
+    questions:[
+      {q:"She got her phone ___ last week.", o:["repair","repairing","repaired","repairs"], a:2,
+       e:"<b>get + object + V3</b>.", r:"get + object + V3"},
+      {q:"“I had my house painted” có nghĩa là gì?", o:["Tôi tự sơn nhà","Tôi nhờ người sơn nhà cho mình","Tôi đang sơn nhà","Nhà tôi sơn tôi"], a:1,
+       e:"Cấu trúc causative: chủ thể thu xếp cho người khác làm.", r:"Causative meaning"}
+    ]
+  },
+  {
+    id:"dangling", title:"Dangling Participles",
+    core:"Cụm phân từ phải có chủ thể hợp lý — thường cùng chủ ngữ với mệnh đề chính",
+    blocks:[
+      {t:"p", x:"Đây là lỗi quan trọng ở B2. Participial phrase phải có <b>chủ thể hợp lý</b>, thường là cùng chủ ngữ với mệnh đề chính."},
+      {t:"h", x:"Đúng"},
+      {t:"ex", x:["<b>Walking home</b>, I saw an accident. → <b>I</b> là người đi bộ."]},
+      {t:"h", x:"Sai về logic"},
+      {t:"ex", x:["❌ <b>Walking home</b>, the rain started. → Câu này có vẻ như <b>the rain</b> đang đi bộ về nhà."]},
+      {t:"p", x:"Sửa lại:"},
+      {t:"ex", x:["<b>While I was walking home</b>, it started to rain."]},
+      {t:"h", x:"Các lỗi thường gặp khác"},
+      {t:"tbl", head:["Lỗi","Sai","Đúng"], rows:[
+        ["Dùng -ed thay cho -ing","I am interesting in English. ❌","I am interested in English. ✅"],
+        ["Dùng -ing thay cho -ed","The students were boring. ❌ (nếu muốn nói học sinh cảm thấy chán)","The students were bored. ✅"],
+        ["Sai chủ ngữ của participial clause","Walking down the street, the accident happened. ❌","Walking down the street, I saw an accident. ✅"],
+        ["Rút gọn sai active / passive","the man built the house (nếu muốn nói người đàn ông được xây) ❌","the man building the house ✅ / the house built by the man ✅"]
+      ]},
+      {t:"rem", x:"5 điểm cần nhớ nhất: <b>1)</b> V-ing → chủ thể thực hiện / gây ra. <b>2)</b> V3/-ed → chủ thể chịu tác động. <b>3)</b> -ing adjective → gây cảm xúc. <b>4)</b> -ed adjective → cảm nhận cảm xúc. <b>5)</b> Participial clause phải có chủ thể hợp lý."}
+    ],
+    quick:{q:"Câu nào SAI?", o:["Walking home, I saw an accident.","Walking home, the rain started.","Having finished work, she went home.","Built in 1900, the house is old."], a:1,
+      e:"“the rain” không thể là chủ thể của hành động “walking home”.", r:"Dangling participle"},
+    questions:[
+      {q:"Câu nào mắc lỗi dangling participle?", o:["Walking down the street, I saw an accident.","Walking down the street, the accident happened.","Having finished dinner, we went out.","Shocked by the news, she cried."], a:1,
+       e:"“the accident” không thể là chủ thể của “walking down the street”.", r:"Dangling participle"},
+      {q:"Câu nào đúng?", o:["I am interesting in English.","I am interested in English.","The students were boring. (ý: cảm thấy chán)","Walking home, the rain started."], a:1,
+       e:"Người <b>cảm thấy</b> hứng thú → interested.", r:"-ed adjective"}
+    ]
+  }
+  ]
+},
+
+/* ================= TOPIC 5 — SENTENCE STRUCTURE ================= */
+{
+  id:"sentence-structure", num:"05", title:"Sentence Structure", viTitle:"Cấu trúc câu",
+  desc:"Mệnh đề, câu đơn, câu ghép, câu phức, câu ghép-phức, FANBOYS, subordinators, relative clauses, noun clauses và các lỗi câu.",
+  review:[
+    "Simple = 1 independent clause",
+    "Compound = 2+ independent clauses",
+    "Complex = independent + dependent clause",
+    "Compound-complex = 2+ independent + dependent",
+    "FANBOYS = for, and, nor, but, or, yet, so",
+    "Dependent clause không đứng một mình.",
+    "Defining relative clause → không có dấu phẩy.",
+    "Non-defining relative clause → có dấu phẩy, không dùng that.",
+    "Indirect question → dùng trật tự S + V, không đảo trợ động từ.",
+    "Fragment / run-on / comma splice là ba lỗi cấu trúc câu quan trọng."
+  ],
+  sections:[
+  {
+    id:"clauses5", title:"Clauses",
+    core:"Independent clause = S + V + ý nghĩa hoàn chỉnh · Dependent clause = không đứng một mình",
+    blocks:[
+      {t:"p", x:"Trước tiên cần phân biệt <b>clause</b> và <b>sentence</b>."},
+      {t:"h", x:"1. Independent clause — mệnh đề độc lập"},
+      {t:"p", x:"Có: <b>subject</b> · <b>verb</b> · <b>ý nghĩa hoàn chỉnh</b>. Có thể đứng một mình thành câu."},
+      {t:"ex", x:["<b>I study English.</b>","<b>She lives in Can Tho.</b>"]},
+      {t:"h", x:"2. Dependent clause — mệnh đề phụ thuộc"},
+      {t:"p", x:"Có subject + verb nhưng <b>không thể đứng một mình</b>."},
+      {t:"ex", x:["because I was tired","although she was busy","when he arrived","who lives next door"]},
+      {t:"warn", x:"❌ Because I was tired. → chưa hoàn chỉnh. ✅ Because I was tired, I went home."}
+    ],
+    quick:{q:"“because I was tired” là gì?", o:["Independent clause","Dependent clause","Simple sentence","Compound sentence"], a:1,
+      e:"Có S + V nhưng không đứng một mình → dependent clause.", r:"Dependent clause"},
+    questions:[
+      {q:"Câu nào là một independent clause?", o:["although she was busy","when he arrived","She lives in Can Tho.","who lives next door"], a:2,
+       e:"Chỉ có “She lives in Can Tho.” là mệnh đề độc lập, đứng một mình được.", r:"Independent clause"},
+      {q:"Câu nào chưa hoàn chỉnh?", o:["I study English.","Because I was tired.","She is happy.","They live in Can Tho."], a:1,
+       e:"“Because I was tired” là dependent clause, cần thêm mệnh đề chính.", r:"Fragment"}
+    ]
+  },
+  {
+    id:"simple5", title:"Simple Sentences",
+    core:"Một independent clause — S + V (+ O / C / A)",
+    blocks:[
+      {t:"p", x:"Câu đơn có <b>một independent clause</b>."},
+      {t:"h", x:"Các mẫu cơ bản"},
+      {t:"ul", x:[
+        "<b>Subject + Verb</b>: I study.",
+        "<b>Subject + Verb + Object</b>: I study English.",
+        "<b>Subject + Verb + Complement</b>: She is happy.",
+        "<b>Subject + Verb + Adverbial</b>: They live in Can Tho."
+      ]},
+      {t:"h", x:"Compound subject / compound object"},
+      {t:"p", x:"Một câu đơn vẫn có thể có nhiều chủ thể hoặc nhiều tân ngữ."},
+      {t:"ex", x:["<b>Tom and Mary</b> study English. → vẫn là simple sentence vì chỉ có một mệnh đề.","I bought <b>books and notebooks</b>. → vẫn là câu đơn."]}
+    ],
+    quick:{q:"“Tom and Mary study English.” là loại câu gì?", o:["Simple sentence","Compound sentence","Complex sentence","Compound-complex"], a:0,
+      e:"Chỉ có một mệnh đề (compound subject) → simple sentence.", r:"Simple sentence"},
+    questions:[
+      {q:"“She is happy.” thuộc mẫu câu nào?", o:["S + V + O","S + V + C","S + V + A","S + V"], a:1,
+       e:"<i>happy</i> là complement của <i>is</i>.", r:"S + V + Complement"},
+      {q:"Câu nào là simple sentence?", o:["I was tired, but I kept working.","Tom and Mary study English.","Because I was tired, I went home.","I study English, and my brother studies French."], a:1,
+       e:"Compound subject vẫn chỉ là một mệnh đề → simple sentence.", r:"Simple sentence"}
+    ]
+  },
+  {
+    id:"compound5", title:"Compound Sentences",
+    core:"Independent clause + coordinating conjunction + independent clause",
+    blocks:[
+      {t:"p", x:"Câu ghép gồm <b>hai hoặc nhiều independent clauses</b> được nối với nhau."},
+      {t:"rule", x:"Công thức: <b>Independent clause + coordinating conjunction + independent clause</b>"},
+      {t:"ex", x:["I was tired, <b>but</b> I continued studying."]},
+      {t:"p", x:"Có hai mệnh đề: <b>1)</b> I was tired. <b>2)</b> I continued studying. Cả hai đều có thể đứng riêng."},
+      {t:"h", x:"Dấu phẩy với FANBOYS"},
+      {t:"rule", x:"Khi FANBOYS nối <b>hai independent clauses</b>, thường dùng dấu phẩy trước conjunction."},
+      {t:"ex", x:["I was tired<b>, but</b> I kept working. ✅"]},
+      {t:"warn", x:"Không nên viết: I was tired but I kept working. (Trong một số câu ngắn, dấu phẩy có thể được bỏ trong văn phong không trang trọng, nhưng với bài học cấu trúc câu nên nhớ: <b>Independent clause, + FANBOYS + independent clause</b>.)"}
+    ],
+    quick:{q:"“I was tired, but I continued studying.” là loại câu gì?", o:["Simple","Compound","Complex","Compound-complex"], a:1,
+      e:"Hai independent clauses nối bằng <b>but</b> → compound sentence.", r:"Compound sentence"},
+    questions:[
+      {q:"Câu nào là compound sentence?", o:["I study English.","I study English, and my brother studies French.","Because I want to be a teacher, I study English.","Tom and Mary study English."], a:1,
+       e:"Hai mệnh đề độc lập nối bằng <b>and</b>.", r:"Compound sentence"},
+      {q:"Trong câu ghép, dấu phẩy thường đặt ở đâu?", o:["Sau FANBOYS","Trước FANBOYS","Không bao giờ dùng","Sau chủ ngữ"], a:1,
+       e:"<b>Independent clause, + FANBOYS + independent clause</b>.", r:"Dấu phẩy với FANBOYS"}
+    ]
+  },
+  {
+    id:"complex5", title:"Complex Sentences",
+    core:"1 independent clause + ít nhất 1 dependent clause",
+    blocks:[
+      {t:"p", x:"Câu phức gồm <b>1 independent clause + ít nhất 1 dependent clause</b>."},
+      {t:"ex", x:["<b>Because I was tired, I went home.</b>"]},
+      {t:"ul", x:["Because I was tired = dependent clause","I went home = independent clause"]},
+      {t:"h", x:"Vị trí của dependent clause"},
+      {t:"ul", x:[
+        "<b>Dependent clause trước</b>: Because I was tired<b>,</b> I went home. → thường dùng dấu phẩy.",
+        "<b>Dependent clause sau</b>: I went home because I was tired. → thông thường không cần dấu phẩy."
+      ]},
+      {t:"h", x:"BECAUSE và SO"},
+      {t:"ex", x:["It was raining, <b>so</b> I stayed home. (kết quả)","I stayed home <b>because</b> it was raining. (nguyên nhân)"]},
+      {t:"h", x:"ALTHOUGH / DESPITE / IN SPITE OF"},
+      {t:"tbl", head:["Cấu trúc","Ví dụ"], rows:[
+        ["<b>Although + clause</b>","Although <b>it was raining</b>, we went out."],
+        ["<b>Despite + noun / V-ing</b>","Despite <b>the rain</b>, we went out. · Despite <b>being tired</b>, she continued working."],
+        ["<b>In spite of + noun / V-ing</b>","In spite of <b>the rain</b>, we went out. · In spite of <b>being tired</b>, she continued working."]
+      ]},
+      {t:"warn", x:"❌ despite it was raining · ✅ although it was raining hoặc ✅ despite the rain"}
+    ],
+    quick:{q:"“Because I was tired, I went home.” là loại câu gì?", o:["Simple","Compound","Complex","Compound-complex"], a:2,
+      e:"1 independent + 1 dependent clause → complex sentence.", r:"Complex sentence"},
+    questions:[
+      {q:"Câu nào là complex sentence?", o:["I study English.","I study English, and my brother studies French.","I study English because I want to be a teacher.","Tom and Mary study English."], a:2,
+       e:"Có mệnh đề phụ thuộc <i>because I want to be a teacher</i>.", r:"Complex sentence"},
+      {q:"Câu nào SAI?", o:["Although it was raining, we went out.","Despite the rain, we went out.","Despite it was raining, we went out.","In spite of being tired, she continued working."], a:2,
+       e:"<b>despite</b> không đi với mệnh đề đầy đủ; phải dùng <i>although</i> hoặc <i>despite + noun/V-ing</i>.", r:"Although vs Despite"},
+      {q:"Điền vào chỗ trống: “I stayed home ___ it was raining.”", o:["so","because","although","despite"], a:1,
+       e:"Nguyên nhân → <b>because</b>.", r:"Because vs So"}
+    ]
+  },
+  {
+    id:"compound-complex5", title:"Compound-Complex Sentences",
+    core:"ít nhất 2 independent clauses + ít nhất 1 dependent clause",
+    blocks:[
+      {t:"p", x:"Ngoài ba loại trên, còn có <b>compound-complex sentence</b>: <b>ít nhất 2 independent clauses + ít nhất 1 dependent clause</b>."},
+      {t:"ex", x:["<b>Because I was tired</b>, I went home, <b>and</b> I went to bed."]},
+      {t:"ul", x:["Because I was tired → dependent clause","I went home → independent clause","I went to bed → independent clause"]},
+      {t:"h", x:"Cách phân tích một câu"},
+      {t:"p", x:"Khi gặp một câu dài, hãy tìm <b>finite verbs</b> và xác định các mệnh đề."},
+      {t:"ex", x:["Although I was tired, I finished my homework, and I went to bed."]},
+      {t:"ul", x:["Dependent clause: Although I was tired","Independent clause 1: I finished my homework","Independent clause 2: I went to bed"]},
+      {t:"p", x:"→ <b>Compound-complex sentence</b>."},
+      {t:"h", x:"So sánh 4 loại câu"},
+      {t:"tbl", head:["Loại","Cấu trúc","Ví dụ"], rows:[
+        ["<b>Simple</b>","1 independent clause","I study English."],
+        ["<b>Compound</b>","2+ independent clauses","I study English, and my brother studies French."],
+        ["<b>Complex</b>","1 independent + 1+ dependent","I study English because I want to be a teacher."],
+        ["<b>Compound-complex</b>","2+ independent + 1+ dependent","Because I was tired, I went home, and I went to bed."]
+      ]}
+    ],
+    quick:{q:"“Because I was tired, I went home, and I went to bed.” là loại câu gì?", o:["Simple","Compound","Complex","Compound-complex"], a:3,
+      e:"2 independent + 1 dependent → compound-complex.", r:"Compound-complex sentence"},
+    questions:[
+      {q:"Câu nào là compound-complex sentence?", o:["I study English.","I study English, and my brother studies French.","Because I want to be a teacher, I study English.","Although I was tired, I finished my homework, and I went to bed."], a:3,
+       e:"Có 1 dependent + 2 independent clauses.", r:"Compound-complex sentence"},
+      {q:"“Although I was tired, I finished my homework, and I went to bed.” có mấy independent clause?", o:["1","2","3","0"], a:1,
+       e:"<i>I finished my homework</i> và <i>I went to bed</i> là hai mệnh đề độc lập.", r:"Phân tích mệnh đề"}
+    ]
+  },
+  {
+    id:"fanboys", title:"FANBOYS",
+    core:"for · and · nor · but · or · yet · so",
+    blocks:[
+      {t:"p", x:"7 coordinating conjunctions:"},
+      {t:"ul", x:[
+        "<b>F — for</b> = vì / bởi vì",
+        "<b>A — and</b> = và",
+        "<b>N — nor</b> = cũng không",
+        "<b>B — but</b> = nhưng",
+        "<b>O — or</b> = hoặc",
+        "<b>Y — yet</b> = tuy nhiên / thế nhưng",
+        "<b>S — so</b> = vì vậy"
+      ]},
+      {t:"h", x:"AND — thêm thông tin"},
+      {t:"ex", x:["I study English, <b>and</b> my brother studies French."]},
+      {t:"h", x:"BUT — tương phản"},
+      {t:"ex", x:["I was tired, <b>but</b> I continued working."]},
+      {t:"h", x:"OR — lựa chọn"},
+      {t:"ex", x:["You can study now, <b>or</b> you can study later."]},
+      {t:"h", x:"SO — kết quả"},
+      {t:"ex", x:["It was raining, <b>so</b> we stayed home."]},
+      {t:"h", x:"FOR — lý do (văn viết)"},
+      {t:"ex", x:["I stayed home, <b>for</b> I was feeling sick."]},
+      {t:"note", x:"Trong giao tiếp hiện đại, <b>because</b> thường tự nhiên hơn."},
+      {t:"h", x:"YET — tương phản, nhấn mạnh"},
+      {t:"ex", x:["He is young, <b>yet</b> he is very experienced."]},
+      {t:"h", x:"NOR — bổ sung ý phủ định"},
+      {t:"ex", x:["She doesn't like coffee, <b>nor</b> does she like tea."]},
+      {t:"warn", x:"Sau <b>nor</b>, có thể có <b>subject–auxiliary inversion</b>: nor <b>does she</b> like tea."}
+    ],
+    quick:{q:"FANBOYS gồm những từ nào?", o:["for, and, nor, but, or, yet, so","for, and, not, but, or, yet, so","from, and, nor, but, or, yet, so","for, and, nor, but, or, yes, so"], a:0,
+      e:"FANBOYS = for, and, nor, but, or, yet, so.", r:"FANBOYS"},
+    questions:[
+      {q:"It was raining, ___ we stayed home.", o:["because","so","although","nor"], a:1,
+       e:"<b>so</b> thể hiện kết quả.", r:"SO = kết quả"},
+      {q:"He is young, ___ he is very experienced.", o:["so","yet","nor","for"], a:1,
+       e:"<b>yet</b> nhấn mạnh sự tương phản.", r:"YET = tương phản"},
+      {q:"She doesn't like coffee, ___ does she like tea.", o:["or","nor","so","and"], a:1,
+       e:"<b>nor</b> bổ sung ý phủ định, có đảo trợ động từ.", r:"NOR + inversion"},
+      {q:"Câu nào SAI?", o:["I was tired, but I kept working.","I was tired but I kept working, so I went home early.","It was raining, so we stayed home.","He is young, yet he is very experienced."], a:1,
+       e:"Khi nối hai independent clause nên có dấu phẩy trước FANBOYS; câu B viết thiếu dấu phẩy trước <i>but</i>.", r:"Dấu phẩy với FANBOYS"}
+    ]
+  },
+  {
+    id:"subordinators", title:"Subordinators",
+    core:"because · although · when · while · if · unless · so that — tạo mệnh đề phụ thuộc",
+    blocks:[
+      {t:"p", x:"Các từ thường dùng để tạo <b>dependent clause</b>."},
+      {t:"tbl", head:["Nhóm","Subordinators","Ví dụ"], rows:[
+        ["Nguyên nhân","because · since · as","I stayed home <b>because I was sick</b>."],
+        ["Tương phản","although · though · even though · while · whereas","<b>Although I was tired</b>, I continued studying."],
+        ["Thời gian","when · while · before · after · until · since · as soon as · once","<b>When I arrived</b>, everyone was waiting."],
+        ["Điều kiện","if · unless · provided that · as long as","<b>If you study hard</b>, you will improve. · You won't pass <b>unless you study</b>."],
+        ["Mục đích","so that · in order that","I studied hard <b>so that I could pass the exam</b>."]
+      ]},
+      {t:"h", x:"Vị trí của dependent clause"},
+      {t:"ul", x:[
+        "Dependent clause <b>trước</b>: Because I was tired<b>,</b> I went home. → thường dùng dấu phẩy.",
+        "Dependent clause <b>sau</b>: I went home because I was tired. → thông thường không cần dấu phẩy."
+      ]}
+    ],
+    quick:{q:"You won't pass the exam ___ you study harder.", o:["if","unless","although","so that"], a:1,
+      e:"<b>unless</b> = nếu không.", r:"Subordinator of condition"},
+    questions:[
+      {q:"___ I was tired, I continued studying.", o:["Because","Although","So that","Unless"], a:1,
+       e:"Tương phản → <b>although</b>.", r:"Subordinator of contrast"},
+      {q:"I studied hard ___ I could pass the exam.", o:["although","so that","unless","while"], a:1,
+       e:"<b>so that</b> chỉ mục đích.", r:"Subordinator of purpose"},
+      {q:"Câu nào SAI?", o:["When I arrived, everyone was waiting.","If you study hard, you will improve.","Because I was tired.","I went home because I was tired."], a:2,
+       e:"“Because I was tired.” là dependent clause đứng một mình → fragment.", r:"Fragment"}
+    ]
+  },
+  {
+    id:"relative5", title:"Relative Clauses",
+    core:"who · whom · which · that · whose — defining (không phẩy) và non-defining (có phẩy)",
+    blocks:[
+      {t:"p", x:"Relative clause cung cấp thêm thông tin về một danh từ. Các relative pronouns quan trọng: <b>who, whom, which, that, whose</b>."},
+      {t:"h", x:"WHO — dùng chủ yếu cho người"},
+      {t:"ex", x:["The woman <b>who lives next door</b> is a teacher."]},
+      {t:"h", x:"WHICH — dùng cho vật / sự việc"},
+      {t:"ex", x:["The book <b>which I bought yesterday</b> is interesting."]},
+      {t:"h", x:"THAT — người hoặc vật trong defining relative clauses"},
+      {t:"ex", x:["The man <b>that I met</b> was friendly.","The book <b>that I bought</b> is expensive."]},
+      {t:"h", x:"WHOSE — sở hữu"},
+      {t:"ex", x:["The student <b>whose phone was lost</b> reported it to the teacher."]},
+      {t:"h", x:"WHOM — người làm object, văn phong trang trọng"},
+      {t:"ex", x:["The man <b>whom I met</b> was very friendly."]},
+      {t:"note", x:"Trong giao tiếp, thường dùng: The man <b>who I met</b>... hoặc The man <b>that I met</b>..."},
+
+      {t:"h", x:"Defining relative clause — mệnh đề quan hệ xác định"},
+      {t:"p", x:"Giúp chúng ta biết <b>đang nói đến người / vật nào</b>. Không dùng dấu phẩy."},
+      {t:"ex", x:["The students <b>who study hard</b> usually get good results. → không phải tất cả học sinh, mà là những học sinh học chăm chỉ."]},
+
+      {t:"h", x:"Non-defining relative clause — mệnh đề quan hệ không xác định"},
+      {t:"p", x:"Chỉ cung cấp thông tin bổ sung. <b>Luôn có dấu phẩy.</b>"},
+      {t:"ex", x:["My brother<b>, who lives in Can Tho,</b> is an English teacher."]},
+      {t:"warn", x:"Không dùng <b>that</b> trong non-defining relative clauses. ❌ My brother, that lives in Can Tho,... ✅ My brother, who lives in Can Tho,..."},
+
+      {t:"h", x:"Relative pronoun có thể bỏ"},
+      {t:"ul", x:[
+        "Nếu relative pronoun là <b>object</b>, có thể bỏ trong defining relative clause: The book <b>that I bought</b> → The book <b>I bought</b>.",
+        "Nếu relative pronoun là <b>subject</b>, <b>không thể bỏ</b>: The man <b>who lives next door</b> is a doctor. — ❌ The man lives next door is a doctor."
+      ]},
+      {t:"h", x:"Lỗi cần tránh"},
+      {t:"tbl", head:["Lỗi","Sai","Đúng"], rows:[
+        ["Dùng that trong non-defining","My father, that lives in Can Tho,...","My father, who lives in Can Tho,..."],
+        ["Dùng comma với defining","The students, who study hard, usually pass. (nếu ý là chỉ những học sinh học chăm chỉ)","The students who study hard usually pass."]
+      ]}
+    ],
+    quick:{q:"The woman ___ lives next door is a teacher.", o:["which","who","whose","whom"], a:1,
+      e:"<b>who</b> dùng cho người làm chủ ngữ trong mệnh đề quan hệ.", r:"Relative pronoun WHO"},
+    questions:[
+      {q:"The book ___ I bought yesterday is interesting.", o:["who","whose","which","whom"], a:2,
+       e:"<b>which / that</b> dùng cho vật.", r:"Relative pronoun WHICH"},
+      {q:"My brother, ___ lives in Can Tho, is an English teacher.", o:["that","who","which","whose"], a:1,
+       e:"Non-defining relative clause không dùng <b>that</b>.", r:"Non-defining relative clause"},
+      {q:"Câu nào SAI?", o:["The man who lives next door is a doctor.","The man that I met was friendly.","My father, that lives in Can Tho, is a teacher.","The student whose phone was lost reported it."], a:2,
+       e:"Không dùng <b>that</b> trong non-defining relative clause.", r:"Non-defining relative clause"},
+      {q:"Câu nào có thể bỏ relative pronoun?", o:["The man who lives next door is a doctor.","The book that I bought is interesting.","The woman who is standing there is my teacher.","The student who answered first got a prize."], a:1,
+       e:"Relative pronoun làm <b>object</b> → có thể bỏ: The book I bought is interesting.", r:"Bỏ relative pronoun làm object"}
+    ]
+  },
+  {
+    id:"noun5", title:"Noun Clauses",
+    core:"Mệnh đề danh từ làm chủ ngữ / tân ngữ / bổ ngữ — what, where, when, why, how, whether, if, that",
+    blocks:[
+      {t:"p", x:"<b>Noun clause</b> là một mệnh đề hoạt động như <b>danh từ</b>. Có thể làm: subject · object · complement."},
+      {t:"p", x:"Các từ thường gặp: <b>what · where · when · why · how · who · whether · if · that</b>."},
+      {t:"h", x:"1. Noun clause làm object"},
+      {t:"ex", x:["I don't know <b>where he lives</b>.","She told me <b>that she was busy</b>.","I wonder <b>why he left</b>."]},
+      {t:"h", x:"2. Indirect questions — lỗi rất thường gặp"},
+      {t:"tbl", head:["Direct question","Indirect question"], rows:[
+        ["Where does he live?","Do you know <b>where he lives</b>?"],
+        ["What does she want?","I don't know <b>what she wants</b>."],
+        ["Where did they go?","I don't know <b>where they went</b>."]
+      ]},
+      {t:"warn", x:"❌ Do you know where does he live? — Trong noun clause dùng <b>trật tự câu khẳng định</b>: <b>where + subject + verb</b>."},
+      {t:"h", x:"3. WHETHER / IF"},
+      {t:"p", x:"Dùng để diễn đạt câu hỏi Yes/No gián tiếp."},
+      {t:"ex", x:["I don't know <b>whether he will come</b>.","I don't know <b>if he will come</b>.","I don't know <b>whether or not he will come</b>."]},
+      {t:"note", x:"<b>whether</b> thường được ưu tiên trong văn viết trang trọng."},
+      {t:"h", x:"4. THAT-clause"},
+      {t:"ex", x:["I think <b>that she is right</b>.","He said <b>that he was tired</b>."]},
+      {t:"note", x:"Trong nhiều trường hợp, <b>that</b> có thể được bỏ: I think <b>she is right</b>. · He said <b>he was tired</b>."},
+      {t:"h", x:"5. Subject clause"},
+      {t:"ex", x:["<b>What he said</b> was true.","<b>Where she lives</b> is unknown.","<b>Why he left</b> is unclear."]},
+      {t:"note", x:"Trong giao tiếp, thường dùng <b>it</b> làm chủ ngữ giả: <b>It is unclear why he left.</b>"}
+    ],
+    quick:{q:"Do you know where ___?", o:["does he live","he lives","he does live","lives he"], a:1,
+      e:"Trong noun clause dùng trật tự S + V, không đảo trợ động từ.", r:"Indirect question"},
+    questions:[
+      {q:"I don't know ___ she wants.", o:["what does","what","what do","what is"], a:1,
+       e:"Noun clause dùng trật tự khẳng định: what + S + V.", r:"Indirect question"},
+      {q:"___ he said was true.", o:["What","That","Which","Who"], a:0,
+       e:"<b>What</b> mở đầu noun clause làm chủ ngữ.", r:"Subject clause"},
+      {q:"Câu nào SAI?", o:["I don't know where he lives.","I don't know where does he live.","I wonder why he left.","She told me that she was busy."], a:1,
+       e:"Không đảo trợ động từ trong noun clause.", r:"Indirect question"},
+      {q:"I don't know ___ he will come or not.", o:["if","whether","that","what"], a:1,
+       e:"Với <b>or not</b> phải dùng <b>whether</b>: whether ... or not.", r:"WHETHER / IF"}
+    ]
+  },
+  {
+    id:"errors5", title:"Sentence Errors",
+    core:"Fragment · Run-on · Comma splice · lỗi indirect question · lỗi relative clause",
+    blocks:[
+      {t:"h", x:"1. Sentence fragments"},
+      {t:"p", x:"<b>Fragment</b> = câu không hoàn chỉnh."},
+      {t:"ex", x:["❌ Because I was tired. → đây chỉ là dependent clause.","✅ Because I was tired, I went home.","✅ I went home because I was tired."]},
+
+      {t:"h", x:"2. Run-on sentence"},
+      {t:"p", x:"Xảy ra khi hai independent clauses bị nối với nhau <b>không có dấu câu hoặc conjunction thích hợp</b>."},
+      {t:"ex", x:["❌ I was tired I went home."]},
+      {t:"p", x:"Sửa:"},
+      {t:"ul", x:["✅ I was tired<b>, so</b> I went home.","✅ I was tired<b>.</b> I went home.","✅ I was tired<b>;</b> I went home."]},
+
+      {t:"h", x:"3. Comma splice"},
+      {t:"p", x:"Xảy ra khi hai independent clauses chỉ được nối bằng <b>dấu phẩy</b>."},
+      {t:"ex", x:["❌ I was tired, I went home."]},
+      {t:"p", x:"Sửa bằng FANBOYS / dấu chấm / dấu chấm phẩy:"},
+      {t:"ul", x:["✅ I was tired<b>, so</b> I went home.","✅ I was tired<b>.</b> I went home.","✅ I was tired<b>;</b> I went home."]},
+
+      {t:"h", x:"4. Semicolon — dấu chấm phẩy"},
+      {t:"p", x:"Có thể nối hai independent clauses có quan hệ gần gũi."},
+      {t:"ex", x:["I was tired; I went home.","I was tired; <b>therefore</b>, I went home."]},
+      {t:"p", x:"Các conjunctive adverbs thường gặp: <b>however · therefore · moreover · nevertheless · consequently · furthermore</b>."},
+      {t:"warn", x:"Không nhầm <b>however</b> với FANBOYS. ✅ I was tired<b>; however,</b> I continued working. ❌ I was tired, however, I continued working."},
+
+      {t:"h", x:"5. Tổng hợp lỗi cần tránh"},
+      {t:"tbl", head:["Lỗi","Sai","Đúng"], rows:[
+        ["Fragment","Because I was tired.","Because I was tired, I went home."],
+        ["Run-on","I was tired I went home.","I was tired, so I went home."],
+        ["Comma splice","I was tired, I went home.","I was tired; I went home."],
+        ["Sai trật tự indirect question","I don't know where does he live.","I don't know where he lives."],
+        ["Dùng that trong non-defining","My father, that lives in Can Tho,...","My father, who lives in Can Tho,..."],
+        ["Dùng comma với defining","The students, who study hard, usually pass.","The students who study hard usually pass."]
+      ]},
+
+      {t:"h", x:"6. Các cấu trúc câu cốt lõi"},
+      {t:"tbl", head:["Loại","Công thức"], rows:[
+        ["<b>Simple</b>","S + V."],
+        ["<b>Compound</b>","S + V, <b>and / but / or / so</b> + S + V."],
+        ["<b>Complex</b>","<b>Subordinator + S + V</b>, S + V. — hoặc — S + V + <b>subordinator + S + V</b>."],
+        ["<b>Relative clause</b>","Noun + <b>who / which / that + clause</b>"],
+        ["<b>Noun clause</b>","Main clause + <b>what / where / why / how / whether / if / that + S + V</b>"]
+      ]}
+    ],
+    quick:{q:"“I was tired, I went home.” mắc lỗi gì?", o:["Fragment","Run-on","Comma splice","Không có lỗi"], a:2,
+      e:"Hai independent clauses chỉ nối bằng dấu phẩy → comma splice.", r:"Comma splice"},
+    questions:[
+      {q:"“Because I was tired.” mắc lỗi gì?", o:["Fragment","Run-on","Comma splice","Sai thì"], a:0,
+       e:"Dependent clause đứng một mình → fragment.", r:"Sentence fragment"},
+      {q:"“I was tired I went home.” mắc lỗi gì?", o:["Fragment","Run-on","Comma splice","Không có lỗi"], a:1,
+       e:"Hai independent clauses không có dấu câu / conjunction → run-on.", r:"Run-on sentence"},
+      {q:"Cách sửa nào KHÔNG đúng cho comma splice “I was tired, I went home.”?", o:["I was tired, so I went home.","I was tired. I went home.","I was tired; I went home.","I was tired, however I went home."], a:3,
+       e:"<b>however</b> không phải FANBOYS; phải dùng dấu chấm phẩy: I was tired; however, I went home.", r:"Conjunctive adverb"},
+      {q:"Câu nào mắc lỗi sai trật tự indirect question?", o:["I don't know where he lives.","Do you know where does he live?","I wonder why he left.","She asked what I wanted."], a:1,
+       e:"Trong noun clause dùng trật tự S + V.", r:"Indirect question"}
+    ]
+  },
+  {
+    id:"review5", title:"Review",
+    core:"Tổng ôn 5 chủ điểm ngữ pháp B1–B2",
+    blocks:[
+      {t:"h", x:"10 điểm trọng tâm cần nhớ"},
+      {t:"ul", x:[
+        "<b>Simple</b> = 1 independent clause",
+        "<b>Compound</b> = 2+ independent clauses",
+        "<b>Complex</b> = independent + dependent clause",
+        "<b>Compound-complex</b> = 2+ independent + dependent",
+        "<b>FANBOYS</b> = for, and, nor, but, or, yet, so",
+        "<b>Dependent clause</b> không đứng một mình.",
+        "<b>Defining relative clause</b> → không có dấu phẩy.",
+        "<b>Non-defining relative clause</b> → có dấu phẩy, không dùng <b>that</b>.",
+        "<b>Indirect question</b> → dùng trật tự <b>S + V</b>, không đảo trợ động từ.",
+        "<b>Fragment / run-on / comma splice</b> là ba lỗi cấu trúc câu quan trọng cần nhận diện và sửa."
+      ]},
+      {t:"h", x:"Bản đồ 5 chủ điểm"},
+      {t:"tbl", head:["Chủ điểm","Nội dung cốt lõi"], rows:[
+        ["<b>1. Prepositions</b>","Giới từ thời gian, vị trí, chuyển động, phương tiện, cụm cố định, prep + V-ing"],
+        ["<b>2. Phrasal Verbs</b>","Cụm động từ, separable / inseparable, three-word, particle families"],
+        ["<b>3. Verb + -ing / to-infinitive</b>","Chọn V-ing hay to V, động từ đổi nghĩa, bare infinitive, used to"],
+        ["<b>4. Participles</b>","V-ing, V3/-ed, tính từ -ing/-ed, cụm phân từ, rút gọn mệnh đề quan hệ"],
+        ["<b>5. Sentence Structure</b>","Simple, Compound, Complex, FANBOYS, relative clauses, noun clauses, lỗi câu"]
+      ]},
+      {t:"rem", x:"Hãy làm phần <b>Practice</b> của từng chủ điểm, sau đó kiểm tra <b>Progress</b> và ôn lại <b>Mistakes</b> để khắc phục điểm yếu."}
+    ],
+    quick:{q:"“I study English because I want to be a teacher.” là loại câu gì?", o:["Simple","Compound","Complex","Compound-complex"], a:2,
+      e:"1 independent + 1 dependent → complex sentence.", r:"Complex sentence"},
+    questions:[
+      {q:"Câu nào là compound sentence?", o:["I study English.","I study English, and my brother studies French.","I study English because I want to be a teacher.","Because I was tired, I went home, and I went to bed."], a:1,
+       e:"Hai independent clauses nối bằng <b>and</b>.", r:"Compound sentence"},
+      {q:"Câu nào mắc lỗi fragment?", o:["Although she was busy, she helped me.","Because I was tired.","I was tired, so I went home.","I don't know where he lives."], a:1,
+       e:"Dependent clause đứng một mình → fragment.", r:"Sentence fragment"},
+      {q:"Câu nào SAI?", o:["My brother, who lives in Can Tho, is a teacher.","The students who study hard usually pass.","My father, that lives in Can Tho, is a teacher.","Do you know where he lives?"], a:2,
+       e:"Không dùng <b>that</b> trong non-defining relative clause.", r:"Non-defining relative clause"}
+    ]
+  }
+  ]
+}
+];
+
+/* =====================================================================
+   2. GLOSSARY
+   ===================================================================== */
+const glossary = [
+  {term:"independent clause", vi:"Mệnh đề độc lập — có chủ ngữ, động từ và ý nghĩa hoàn chỉnh, có thể đứng một mình thành câu.", ex:"I study English."},
+  {term:"dependent clause", vi:"Mệnh đề phụ thuộc — có chủ ngữ và động từ nhưng không thể đứng một mình.", ex:"because I was tired"},
+  {term:"preposition", vi:"Giới từ — từ chỉ quan hệ thời gian, vị trí, hướng, phương tiện...", ex:"at, on, in, under, between"},
+  {term:"particle", vi:"Tiểu từ — thành phần đi kèm động từ để tạo phrasal verb (thường là adverb hoặc preposition).", ex:"up trong give up, off trong turn off"},
+  {term:"phrasal verb", vi:"Cụm động từ — động từ + particle, tạo thành nghĩa mới.", ex:"give up = từ bỏ"},
+  {term:"gerund", vi:"Danh động từ — dạng V-ing hoạt động như danh từ.", ex:"Swimming is good exercise."},
+  {term:"infinitive", vi:"Động từ nguyên mẫu có to.", ex:"to learn, to go"},
+  {term:"bare infinitive", vi:"Động từ nguyên mẫu không có to.", ex:"make me study, let me go"},
+  {term:"present participle", vi:"Phân từ hiện tại — dạng V-ing, dùng như tính từ hoặc trong cụm phân từ.", ex:"the man standing there"},
+  {term:"past participle", vi:"Phân từ quá khứ — dạng V3/-ed, dùng trong bị động, thì hoàn thành, như tính từ.", ex:"the window broken yesterday"},
+  {term:"participial clause", vi:"Mệnh đề phân từ — mệnh đề rút gọn bắt đầu bằng V-ing hoặc V3.", ex:"Walking home, I met John."},
+  {term:"relative clause", vi:"Mệnh đề quan hệ — bổ sung thông tin cho một danh từ.", ex:"The woman who lives next door is a teacher."},
+  {term:"noun clause", vi:"Mệnh đề danh từ — mệnh đề hoạt động như danh từ.", ex:"I don't know where he lives."},
+  {term:"subordinator", vi:"Liên từ phụ thuộc — từ mở đầu mệnh đề phụ thuộc.", ex:"because, although, when, if"},
+  {term:"coordinating conjunction", vi:"Liên từ kết hợp — nối hai mệnh đề độc lập (FANBOYS).", ex:"and, but, or, so"},
+  {term:"fragment", vi:"Câu thiếu thành phần — nhóm từ không tạo thành câu hoàn chỉnh.", ex:"Because I was tired."},
+  {term:"run-on sentence", vi:"Câu nối sai — hai mệnh đề độc lập nối mà không có dấu câu hay liên từ phù hợp.", ex:"I was tired I went home."},
+  {term:"comma splice", vi:"Lỗi dùng dấu phẩy nối hai mệnh đề độc lập.", ex:"I was tired, I went home."}
+];
+
+/* =====================================================================
+   3. STORAGE / STATE
+   ===================================================================== */
+const LS_KEY = "egram_b1b2_v1";
+
+function blankStore(){
+  return {
+    completed:{},
+    stats:{correct:0, incorrect:0},
+    practice:{},
+    mistakes:[],
+    last:{view:"home"}
+  };
+}
+let store = (function(){
+  try{
+    const raw = JSON.parse(localStorage.getItem(LS_KEY));
+    if(raw && typeof raw === "object"){
+      const b = blankStore();
+      b.completed = raw.completed || {};
+      b.stats = Object.assign({correct:0,incorrect:0}, raw.stats||{});
+      b.practice = raw.practice || {};
+      b.mistakes = Array.isArray(raw.mistakes) ? raw.mistakes : [];
+      b.last = raw.last || {view:"home"};
+      return b;
+    }
+  }catch(e){ /* ignore corrupted data */ }
+  return blankStore();
+})();
+function save(){ try{ localStorage.setItem(LS_KEY, JSON.stringify(store)); }catch(e){} }
+
+const state = {
+  view:"home", topicId:null, sectionId:null,
+  quiz:null, qc:null
+};
+
+/* =====================================================================
+   4. HELPERS
+   ===================================================================== */
+const $ = id => document.getElementById(id);
+const mainEl = $("main");
+const sidebarEl = $("sidebar");
+
+/* Escape HTML — an toàn cho text content */
+function esc(s){
+  return String(s)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#39;");
+}
+/* Letter A, B, C, D... cho đáp án */
+function letter(i){ return String.fromCharCode(65 + i); }
+
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    const t = arr[i]; arr[i]=arr[j]; arr[j]=t;
+  }
+  return arr;
+}
+function findTopic(id){ return lessons.find(t=>t.id===id) || null; }
+function findSection(topicId, sectionId){
+  const t = findTopic(topicId);
+  if(!t) return null;
+  const s = t.sections.find(x=>x.id===sectionId);
+  return s ? {topic:t, section:s} : null;
+}
+function secKey(topicId, sectionId){ return topicId + "/" + sectionId; }
+function isDone(topicId, sectionId){ return !!store.completed[secKey(topicId,sectionId)]; }
+
+function topicDone(topic){
+  return topic.sections.filter(s=>isDone(topic.id, s.id)).length;
+}
+function topicPercent(topic){
+  return Math.round(topicDone(t) / topic.sections.length * 100);
+}
+function totalSections(){ return lessons.reduce((a,t)=>a+t.sections.length,0); }
+function totalDone(){ return lessons.reduce((a,t)=>a+topicDone(t),0); }
+function overallPercent(){ return Math.round(totalDone()/totalSections()*100); }
+function accuracy(){
+  const s = store.stats;
+  const tot = s.correct + s.incorrect;
+  return tot ? Math.round(s.correct/tot*100) : 0;
+}
+function topicAccuracy(topicId){
+  const p = store.practice[topicId];
+  if(!p) return null;
+  const tot = p.correct + p.incorrect;
+  return tot ? Math.round(p.correct/tot*100) : null;
+}
+function allQuestionsOfTopic(topic){
+  const out = [];
+  topic.sections.forEach(s=>{
+    (s.questions||[]).forEach(q=>{
+      out.push(Object.assign({}, q, {
+        topicId:topic.id, sectionId:s.id,
+        topicTitle:topic.title, sectionTitle:s.title
+      }));
+    });
+  });
+  return out;
+}
+
+/* =====================================================================
+   5. SIDEBAR
+   ===================================================================== */
+function renderSidebar(){
+  let h = "";
+  h += '<button class="nav-item '+(state.view==="home"?"active":"")+'" data-nav="home">HOME</button>';
+
+  lessons.forEach(t=>{
+    const active = state.topicId===t.id;
+    h += '<div class="side-group">';
+    h += '<button class="side-topic '+(active?"active":"")+'" data-nav="topic" data-topic="'+t.id+'">'+
+         '<span class="num">'+t.num+'</span> '+esc(t.title.toUpperCase())+'</button>';
+    h += '<div class="side-subs">';
+    t.sections.forEach(s=>{
+      const cls = (state.topicId===t.id && state.sectionId===s.id) ? "side-sub active" : "side-sub";
+      const tick = isDone(t.id,s.id) ? '<span class="tick">✓</span>' : "";
+      h += '<button class="'+cls+'" data-nav="section" data-topic="'+t.id+'" data-section="'+s.id+'">'+
+           '<span>'+esc(s.title)+'</span>'+tick+'</button>';
+    });
+    h += '</div></div>';
+  });
+
+  h += '<div class="side-sep"></div>';
+  h += '<div class="side-label">TOOLS</div>';
+  h += '<button class="nav-item '+(state.view==="practice"?"active":"")+'" data-nav="practice">PRACTICE</button>';
+  h += '<button class="nav-item '+(state.view==="progress"?"active":"")+'" data-nav="progress">PROGRESS</button>';
+  h += '<button class="nav-item '+(state.view==="mistakes"?"active":"")+'" data-nav="mistakes">MISTAKES</button>';
+  h += '<button class="nav-item '+(state.view==="glossary"?"active":"")+'" data-nav="glossary">MINI GLOSSARY</button>';
+  sidebarEl.innerHTML = h;
+}
+
+/* =====================================================================
+   6. NAVIGATION
+   ===================================================================== */
+function closeMobileMenu(){
+  sidebarEl.classList.remove("open");
+  $("overlay").classList.remove("show");
+}
+function go(view, opts){
+  opts = opts || {};
+  /* Reset quiz state khi rời khỏi màn hình quiz */
+  if(view !== "quiz") state.quiz = null;
+  state.view = view;
+  state.topicId = opts.topicId || null;
+  state.sectionId = opts.sectionId || null;
+  store.last = {view:view, topicId:state.topicId, sectionId:state.sectionId};
+  save();
+  render();
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+function openTopic(topicId){ go("topic", {topicId:topicId}); }
+function openSection(topicId, sectionId){
+  state.qc = null;
+  go("section", {topicId:topicId, sectionId:sectionId});
+}
+
+function render(){
+  renderSidebar();
+  if(state.view==="home") renderHome();
+  else if(state.view==="topic") renderTopicPage();
+  else if(state.view==="section") renderSectionPage();
+  else if(state.view==="practice") renderPracticePage();
+  else if(state.view==="quiz") renderQuiz();
+  else if(state.view==="progress") renderProgressPage();
+  else if(state.view==="mistakes") renderMistakesPage();
+  else if(state.view==="glossary") renderGlossaryPage();
+  else renderHome();
+}
+
+/* =====================================================================
+   7. HOME
+   ===================================================================== */
+function renderHome(){
+  const acc = accuracy();
+  const tot = store.stats.correct + store.stats.incorrect;
+  const totalQ = lessons.reduce((a,t)=>a+allQuestionsOfTopic(t).length,0);
+
+  let h = "";
+  h += '<section class="hero">';
+  h += '<h1>ENGLISH GRAMMAR B1–B2</h1>';
+  h += '<p>Grammar Learning &amp; Practice — 5 chủ điểm ngữ pháp dành cho sinh viên chuyên ngành English.</p>';
+  h += '<span class="pill">'+lessons.length+' topics · '+totalSections()+' lessons · '+totalQ+' practice questions</span>';
+  h += '</section>';
+
+  h += '<h2 style="font-size:18px;margin-bottom:12px">YOUR PROGRESS</h2>';
+  h += '<div class="stats">';
+  h += '<div class="stat"><div class="l">Overall progress</div><div class="v">'+overallPercent()+'%</div>'+
+       '<div class="bar" style="margin-top:8px"><i style="width:'+overallPercent()+'%"></i></div>'+
+       '<div class="sub" style="margin-top:6px">'+totalDone()+' / '+totalSections()+' subtopics</div></div>';
+  h += '<div class="stat"><div class="l">Topics completed</div><div class="v">'+
+       lessons.filter(t=>topicPercent(t)===100).length+' / '+lessons.length+'</div>'+
+       '<div class="sub" style="margin-top:8px">hoàn thành 100% bài giảng</div></div>';
+  h += '<div class="stat"><div class="l">Practice accuracy</div><div class="v">'+acc+'%</div>'+
+       '<div class="bar" style="margin-top:8px"><i style="width:'+acc+'%"></i></div>'+
+       '<div class="sub" style="margin-top:6px">'+store.stats.correct+' đúng · '+store.stats.incorrect+' sai</div></div>';
+  h += '<div class="stat"><div class="l">Questions completed</div><div class="v">'+tot+'</div>'+
+       '<div class="sub" style="margin-top:8px">'+store.mistakes.length+' câu cần ôn lại</div></div>';
+  h += '</div>';
+
+  h += '<h2 style="font-size:18px;margin-bottom:12px">LESSONS</h2>';
+  h += '<div class="grid-cards">';
+  lessons.forEach(t=>{
+    const pct = topicPercent(t);
+    const started = topicDone(t) > 0;
+    h += '<article class="tcard">';
+    h += '<div class="num">'+t.num+' — '+esc(t.title.toUpperCase())+'</div>';
+    h += '<h3>'+esc(t.viTitle)+'</h3>';
+    h += '<p>'+esc(t.desc)+'</p>';
+    h += '<div class="tmeta"><span>'+t.sections.length+' phần bài học</span><span>'+pct+'%</span></div>';
+    h += '<div class="bar"><i style="width:'+pct+'%"></i></div>';
+    h += '<div class="row" style="margin-top:6px">';
+    h += '<button class="btn sm" data-act="open-topic" data-topic="'+t.id+'">'+(started?"Continue":"Start Learning")+'</button>';
+    h += '<button class="btn sm ghost" data-act="start-topic-quiz" data-topic="'+t.id+'">Practice</button>';
+    h += '</div>';
+    h += '</article>';
+  });
+  h += '</div>';
+  mainEl.innerHTML = h;
+}
+
+/* =====================================================================
+   8. TOPIC PAGE (QUICK REVIEW)
+   ===================================================================== */
+function renderTopicPage(){
+  const t = findTopic(state.topicId);
+  if(!t) return go("home");
+  const pct = topicPercent(t);
+  const nq = allQuestionsOfTopic(t).length;
+  let h = "";
+  h += '<div class="breadcrumb"><span data-act="home">HOME</span> › '+esc(t.num)+' '+esc(t.title.toUpperCase())+'</div>';
+  h += '<div class="sec-head"><span class="badge">'+esc(t.num)+' — '+esc(t.title.toUpperCase())+'</span>';
+  h += '<h2>'+esc(t.viTitle)+'</h2>';
+  h += '<p style="color:var(--muted)">'+esc(t.desc)+'</p></div>';
+
+  h += '<div class="card" style="margin-bottom:18px">';
+  h += '<div class="tmeta"><span>Tiến độ chủ điểm</span><span>'+pct+'% — '+topicDone(t)+' / '+t.sections.length+' phần</span></div>';
+  h += '<div class="bar"><i style="width:'+pct+'%"></i></div>';
+  h += '<div class="row" style="margin-top:14px">';
+  h += '<button class="btn" data-act="open-section" data-topic="'+t.id+'" data-section="'+t.sections[0].id+'">Bắt đầu học</button>';
+  h += '<button class="btn ghost" data-act="start-topic-quiz" data-topic="'+t.id+'">Practice ('+nq+' câu)</button>';
+  h += '<button class="btn ghost" data-act="start-topic-test" data-topic="'+t.id+'">Test Mode</button>';
+  h += '</div></div>';
+
+  h += '<div class="box rem" style="margin-bottom:18px"><div class="box-label">QUICK REVIEW</div><ul style="margin:0;padding-left:20px">';
+  t.review.forEach(r=>{ h += '<li>'+r+'</li>'; });
+  h += '</ul></div>';
+
+  h += '<h3 class="bh">Nội dung bài học</h3>';
+  h += '<div class="grid-cards">';
+  t.sections.forEach((s,i)=>{
+    const done = isDone(t.id,s.id);
+    h += '<article class="tcard" style="gap:8px">';
+    h += '<div class="num">PHẦN '+(i+1)+'</div>';
+    h += '<h3 style="font-size:16px">'+esc(s.title)+' '+(done?'<span class="tick">✓</span>':'')+'</h3>';
+    h += '<p>'+esc(s.core)+'</p>';
+    h += '<div class="row"><button class="btn sm" data-act="open-section" data-topic="'+t.id+'" data-section="'+s.id+'">'+(done?"Ôn lại":"Học")+'</button>';
+    h += '<button class="btn sm ghost" data-act="start-section-quiz" data-topic="'+t.id+'" data-section="'+s.id+'">Luyện tập</button></div>';
+    h += '</article>';
+  });
+  h += '</div>';
+  mainEl.innerHTML = h;
+}
+
+/* =====================================================================
+   9. SECTION PAGE
+   ===================================================================== */
+function renderBlocks(blocks){
+  let h = "";
+  blocks.forEach(b=>{
+    if(b.t==="h") h += '<h3 class="bh">'+b.x+'</h3>';
+    else if(b.t==="p") h += '<p>'+b.x+'</p>';
+    else if(b.t==="ul") h += '<ul class="bul">'+b.x.map(i=>'<li>'+i+'</li>').join("")+'</ul>';
+    else if(b.t==="ex") h += '<div class="box ex"><div class="box-label">📌 EXAMPLES</div><ul>'+b.x.map(i=>'<li>'+i+'</li>').join("")+'</ul></div>';
+    else if(b.t==="rule") h += '<div class="box rule"><div class="box-label">✓ RULE</div><p>'+b.x+'</p></div>';
+    else if(b.t==="note") h += '<div class="box note"><div class="box-label">💡 NOTE</div><p>'+b.x+'</p></div>';
+    else if(b.t==="warn") h += '<div class="box warn"><div class="box-label">⚠ COMMON MISTAKE</div><p>'+b.x+'</p></div>';
+    else if(b.t==="rem") h += '<div class="box rem"><div class="box-label">🧠 REMEMBER</div><p>'+b.x+'</p></div>';
+    else if(b.t==="ext") h += '<div class="box ext"><div class="box-label">EXTENDED EXPLANATION</div><p>'+b.x+'</p></div>';
+    else if(b.t==="tbl"){
+      h += '<div class="tbl-wrap"><table class="tbl"><thead><tr>'+b.head.map(c=>'<th>'+c+'</th>').join("")+'</tr></thead><tbody>';
+      b.rows.forEach(r=>{ h += '<tr>'+r.map(c=>'<td>'+c+'</td>').join("")+'</tr>'; });
+      h += '</tbody></table></div>';
+    }
+  });
+  return h;
+}
+
+function renderSectionPage(){
+  const found = findSection(state.topicId, state.sectionId);
+  if(!found) return go("home");
+  const t = found.topic, s = found.section;
+  const idx = t.sections.findIndex(x=>x.id===s.id);
+  const prev = idx>0 ? t.sections[idx-1] : null;
+  const next = idx<t.sections.length-1 ? t.sections[idx+1] : null;
+  const done = isDone(t.id,s.id);
+  const nQ = (s.questions||[]).length;
+
+  let h = "";
+  h += '<div class="breadcrumb"><span data-act="home">HOME</span> › <span data-act="open-topic" data-topic="'+t.id+'">'+esc(t.num)+' '+esc(t.title.toUpperCase())+'</span> › '+esc(s.title)+'</div>';
+  h += '<div class="sec-head"><span class="badge">'+esc(t.num)+' — '+esc(t.title.toUpperCase())+' · PHẦN '+(idx+1)+'/'+t.sections.length+'</span>';
+  h += '<h2>'+esc(s.title)+'</h2>';
+  h += '<div class="core">'+s.core+'</div></div>';
+
+  h += '<div class="blocks">'+renderBlocks(s.blocks)+'</div>';
+
+  /* Quick check */
+  h += '<div class="qc" id="qcBox">'+quickCheckHTML(t,s)+'</div>';
+
+  /* Actions */
+  h += '<div class="section-actions">';
+  h += '<button class="btn" data-act="mark-complete" data-topic="'+t.id+'" data-section="'+s.id+'">'+(done?"✓ Đã hoàn thành":"Mark as Completed")+'</button>';
+  if(nQ > 0){
+    h += '<button class="btn ghost" data-act="start-section-quiz" data-topic="'+t.id+'" data-section="'+s.id+'">Practice phần này ('+nQ+' câu)</button>';
+  }
+  if(prev) h += '<button class="btn ghost" data-act="open-section" data-topic="'+t.id+'" data-section="'+prev.id+'">← '+esc(prev.title)+'</button>';
+  if(next) h += '<button class="btn ghost" data-act="open-section" data-topic="'+t.id+'" data-section="'+next.id+'">'+esc(next.title)+' →</button>';
+  h += '</div>';
+
+  mainEl.innerHTML = h;
+}
+
+function quickCheckHTML(t,s){
+  const qc = s.quick;
+  if(!qc) return "";
+  const answered = state.qc && state.qc.key === secKey(t.id,s.id) ? state.qc : null;
+  let h = '<h4>QUICK CHECK — kiểm tra nhanh</h4>';
+  h += '<p style="font-weight:600;color:var(--navy)">'+qc.q+'</p>';
+  qc.o.forEach((opt,i)=>{
+    let cls = "opt";
+    if(answered){
+      if(i===qc.a) cls += " correct";
+      else if(i===answered.chosen) cls += " wrong";
+    }
+    const dis = answered ? " disabled" : "";
+    h += '<button class="'+cls+'" data-act="qc-opt" data-topic="'+t.id+'" data-section="'+s.id+'" data-i="'+i+'"'+dis+'>'+letter(i)+'. '+opt+'</button>';
+  });
+  if(answered){
+    const ok = answered.chosen === qc.a;
+    h += '<div class="feedback '+(ok?"ok":"no")+'">'+
+         (ok ? '<b>✓ Chính xác!</b>' : '<b>✗ Chưa đúng.</b> Đáp án đúng: <b>'+letter(qc.a)+'. '+qc.o[qc.a]+'</b>')+
+         '<div style="margin-top:6px">'+qc.e+'</div>'+
+         '<div class="rule-line"><b>Rule:</b> '+qc.r+'</div></div>';
+  }
+  return h;
+}
+
+/* =====================================================================
+   10. PRACTICE PAGE
+   ===================================================================== */
+function renderPracticePage(){
+  let h = "";
+  h += '<div class="sec-head"><span class="badge">PRACTICE</span><h2>Luyện tập theo chủ điểm</h2>';
+  h += '<p style="color:var(--muted)">Chọn <b>Practice Mode</b> để xem đáp án và giải thích sau mỗi câu, hoặc <b>Test Mode</b> để làm toàn bộ bài rồi mới xem kết quả.</p></div>';
+  h += '<div class="grid-cards">';
+  lessons.forEach(t=>{
+    const nq = allQuestionsOfTopic(t).length;
+    const acc = topicAccuracy(t.id);
+    h += '<article class="tcard">';
+    h += '<div class="num">'+t.num+'</div><h3>'+esc(t.title)+'</h3>';
+    h += '<p>'+nq+' câu hỏi · '+t.sections.length+' phần bài học</p>';
+    h += '<div class="tmeta"><span>Độ chính xác</span><span>'+(acc===null?"—":acc+"%")+'</span></div>';
+    h += '<div class="bar"><i style="width:'+(acc===null?0:acc)+'%"></i></div>';
+    h += '<div class="row"><button class="btn sm" data-act="start-topic-quiz" data-topic="'+t.id+'">Practice Mode</button>';
+    h += '<button class="btn sm ghost" data-act="start-topic-test" data-topic="'+t.id+'">Test Mode</button></div>';
+    h += '</article>';
+  });
+  h += '</div>';
+  mainEl.innerHTML = h;
+}
+
+/* =====================================================================
+   11. QUIZ ENGINE
+   ===================================================================== */
+function buildQuiz(rawQuestions, mode, title, meta){
+  const prepared = shuffle(rawQuestions.slice()).map(q=>{
+    const opts = q.o.map((text,i)=>({text:text, correct:i===q.a}));
+    shuffle(opts);
+    return {
+      q:q.q, o:opts.map(x=>x.text), a:opts.findIndex(x=>x.correct),
+      e:q.e, r:q.r,
+      topicId:q.topicId, sectionId:q.sectionId,
+      topicTitle:q.topicTitle, sectionTitle:q.sectionTitle
+    };
+  });
+  return {
+    mode:mode, title:title, meta:meta||"",
+    questions:prepared,
+    i:0,
+    answers:new Array(prepared.length).fill(null),
+    checked:false,
+    finished:false
+  };
+}
+
+function startTopicQuiz(topicId, mode){
+  const t = findTopic(topicId);
+  if(!t) return;
+  const qs = allQuestionsOfTopic(t);
+  if(!qs.length) return;
+  state.quiz = buildQuiz(qs, mode||"practice", t.num+" — "+t.title, "topic");
+  state.view = "quiz";
+  store.last = {view:"practice"};
+  save(); render(); window.scrollTo({top:0});
+}
+function startSectionQuiz(topicId, sectionId, mode){
+  const f = findSection(topicId, sectionId);
+  if(!f) return;
+  if(!(f.section.questions||[]).length) return;
+  const qs = f.section.questions.map(q=>Object.assign({},q,{
+    topicId:topicId, sectionId:sectionId,
+    topicTitle:f.topic.title, sectionTitle:f.section.title
+  }));
+  state.quiz = buildQuiz(qs, mode||"practice", f.topic.num+" · "+f.section.title, "section");
+  state.view = "quiz";
+  store.last = {view:"practice"};
+  save(); render(); window.scrollTo({top:0});
+}
+function startMistakesQuiz(){
+  if(!store.mistakes.length) return;
+  const qs = store.mistakes.map(m=>({
+    q:m.q, o:m.o.slice(), a:m.a, e:m.e, r:m.r,
+    topicId:m.topicId, sectionId:m.sectionId,
+    topicTitle:m.topicTitle, sectionTitle:m.sectionTitle
+  }));
+  state.quiz = buildQuiz(qs, "practice", "Mistakes Review", "mistakes");
+  state.view = "quiz";
+  render(); window.scrollTo({top:0});
+}
+
+function recordAnswer(q, userIndex){
+  const correct = userIndex === q.a;
+  store.stats.correct += correct ? 1 : 0;
+  store.stats.incorrect += correct ? 0 : 1;
+  if(q.topicId){
+    if(!store.practice[q.topicId]) store.practice[q.topicId] = {correct:0, incorrect:0};
+    store.practice[q.topicId].correct += correct ? 1 : 0;
+    store.practice[q.topicId].incorrect += correct ? 0 : 1;
+  }
+  /* Key duy nhất cho mỗi câu để tránh ghi đè khi trùng text giữa các topic */
+  const key = (q.topicId||"") + "::" + (q.sectionId||"") + "::" + q.q;
+  if(correct){
+    const idx = store.mistakes.findIndex(m=>((m.topicId||"")+"::"+(m.sectionId||"")+"::"+m.q) === key);
+    if(idx >= 0) store.mistakes.splice(idx,1);
+  }else{
+    const existing = store.mistakes.find(m=>((m.topicId||"")+"::"+(m.sectionId||"")+"::"+m.q) === key);
+    const entry = {
+      q:q.q, o:q.o.slice(), a:q.a, user:userIndex,
+      e:q.e, r:q.r,
+      topicId:q.topicId, sectionId:q.sectionId,
+      topicTitle:q.topicTitle, sectionTitle:q.sectionTitle
+    };
+    if(existing) Object.assign(existing, entry);
+    else store.mistakes.push(entry);
+  }
+  save();
+}
+
+function renderQuiz(){
+  const q = state.quiz;
+  if(!q){ state.view="practice"; return render(); }
+  if(q.finished) return renderQuizResult();
+
+  const cur = q.questions[q.i];
+  const chosen = q.answers[q.i];
+  const total = q.questions.length;
+  const pct = Math.round((q.i)/total*100);
+
+  let h = "";
+  h += '<div class="quiz-head">';
+  h += '<div class="qt">'+esc(q.title)+'</div>';
+  h += '<div class="qm">'+(q.mode==="practice"?"PRACTICE MODE — xem đáp án sau mỗi câu":"TEST MODE — đáp án hiện ở cuối bài")+
+       ' · Question '+(q.i+1)+' / '+total+'</div>';
+  h += '<div class="bar"><i style="width:'+pct+'%"></i></div>';
+  h += '</div>';
+
+  h += '<div class="qcard">';
+  h += '<p class="qtext">'+(q.i+1)+'. '+cur.q+'</p>';
+  h += '<div class="opts">';
+  cur.o.forEach((opt,i)=>{
+    let cls = "opt";
+    if(q.mode==="practice" && q.checked){
+      if(i===cur.a) cls += " correct";
+      else if(i===chosen) cls += " wrong";
+    }else if(chosen===i){
+      cls += " sel";
+    }
+    const dis = (q.mode==="practice" && q.checked) ? " disabled" : "";
+    h += '<button class="'+cls+'" data-act="qopt" data-i="'+i+'"'+dis+'>'+letter(i)+'. '+opt+'</button>';
+  });
+  h += '</div>';
+
+  if(q.mode==="practice" && q.checked){
+    const ok = chosen === cur.a;
+    h += '<div class="feedback '+(ok?"ok":"no")+'">'+
+         (ok ? '<b>✓ Đúng!</b>' : '<b>✗ Sai.</b> Đáp án đúng: <b>'+letter(cur.a)+'. '+cur.o[cur.a]+'</b>')+
+         '<div style="margin-top:6px">'+cur.e+'</div>'+
+         '<div class="rule-line"><b>Rule:</b> '+cur.r+'</div></div>';
+  }
+
+  h += '<div class="qactions">';
+  if(q.mode==="practice"){
+    if(!q.checked){
+      h += '<button class="btn" data-act="quiz-check"'+(chosen===null?" disabled":"")+'>Check Answer</button>';
+    }else{
+      if(q.i < total-1) h += '<button class="btn" data-act="quiz-next">Next Question</button>';
+      else h += '<button class="btn" data-act="quiz-finish">Xem kết quả</button>';
+    }
+  }else{
+    h += '<button class="btn" data-act="quiz-next"'+(chosen===null?" disabled":"")+'>'+(q.i<total-1?"Next Question":"Finish Test")+'</button>';
+  }
+  h += '<button class="btn ghost" data-act="quiz-quit">Thoát</button>';
+  h += '</div></div>';
+
+  mainEl.innerHTML = h;
+}
+
+function renderQuizResult(){
+  const q = state.quiz;
+  let correct = 0;
+  q.questions.forEach((item,i)=>{ if(q.answers[i]===item.a) correct++; });
+  const total = q.questions.length;
+  const incorrect = total - correct;
+  const pct = Math.round(correct/total*100);
+
+  let h = "";
+  h += '<div class="card result-head">';
+  h += '<div class="badge">RESULT</div>';
+  h += '<h2 style="margin-top:10px">'+esc(q.title)+'</h2>';
+  h += '<div class="score-big">'+pct+'%</div>';
+  h += '<p style="color:var(--muted)">'+correct+' correct · '+incorrect+' incorrect · '+total+' questions</p>';
+  h += '<div class="bar" style="max-width:420px;margin:12px auto"><i style="width:'+pct+'%"></i></div>';
+  h += '<div class="row" style="justify-content:center;margin-top:14px">';
+  h += '<button class="btn" data-act="quiz-retry">Làm lại</button>';
+  h += '<button class="btn ghost" data-act="quiz-quit">Về trang Practice</button>';
+  h += '<button class="btn ghost" data-act="home">Về trang chủ</button>';
+  h += '</div></div>';
+
+  h += '<h3 class="bh">Chi tiết &amp; giải thích</h3>';
+  q.questions.forEach((item,i)=>{
+    const ua = q.answers[i];
+    const ok = ua === item.a;
+    h += '<div class="rev-item">';
+    h += '<div class="rq">'+(i+1)+'. '+item.q+'</div>';
+    h += '<div class="line">Bạn chọn: <span class="'+(ok?"tag-ok":"tag-no")+'">'+(ua===null?"(không trả lời)":letter(ua)+'. '+item.o[ua])+'</span></div>';
+    if(!ok) h += '<div class="line">Đáp án đúng: <span class="tag-ok">'+letter(item.a)+'. '+item.o[item.a]+'</span></div>';
+    h += '<div class="line" style="color:var(--muted)">'+item.e+'</div>';
+    h += '<div class="line" style="font-size:13px;color:var(--muted)"><b>Rule:</b> '+item.r+'</div>';
+    h += '</div>';
+  });
+
+  mainEl.innerHTML = h;
+}
+
+/* =====================================================================
+   12. PROGRESS PAGE
+   ===================================================================== */
+function renderProgressPage(){
+  const acc = accuracy();
+  const tot = store.stats.correct + store.stats.incorrect;
+  let h = "";
+  h += '<div class="sec-head"><span class="badge">PROGRESS</span><h2>Tiến độ học tập</h2></div>';
+
+  h += '<div class="card" style="margin-bottom:18px">';
+  h += '<div style="font-weight:700;color:var(--navy);margin-bottom:8px">Overall Progress — '+overallPercent()+'%</div>';
+  h += '<div class="bar" style="height:14px"><i style="width:'+overallPercent()+'%"></i></div>';
+  h += '<p style="color:var(--muted);font-size:13.5px;margin-top:10px">Đã hoàn thành '+totalDone()+' / '+totalSections()+' phần bài học.</p>';
+  h += '</div>';
+
+  h += '<div class="stats">';
+  h += '<div class="stat"><div class="l">Practice accuracy</div><div class="v">'+acc+'%</div><div class="sub">'+store.stats.correct+' đúng · '+store.stats.incorrect+' sai</div></div>';
+  h += '<div class="stat"><div class="l">Questions completed</div><div class="v">'+tot+'</div><div class="sub">tổng số câu đã làm</div></div>';
+  h += '<div class="stat"><div class="l">Mistakes to review</div><div class="v">'+store.mistakes.length+'</div><div class="sub">câu trả lời sai</div></div>';
+  h += '<div class="stat"><div class="l">Topics completed</div><div class="v">'+lessons.filter(t=>topicPercent(t)===100).length+' / '+lessons.length+'</div><div class="sub">hoàn thành 100%</div></div>';
+  h += '</div>';
+
+  h += '<div class="card">';
+  h += '<h3 style="font-size:16px;margin-bottom:14px">Topic Progress</h3>';
+  lessons.forEach(t=>{
+    const p = topicPercent(t);
+    const a = topicAccuracy(t.id);
+    h += '<div class="prog-row">';
+    h += '<div class="name">'+esc(t.title)+'</div>';
+    h += '<div class="bar"><i style="width:'+p+'%"></i></div>';
+    h += '<div class="pct">'+p+'%</div>';
+    h += '</div>';
+    h += '<div style="font-size:12.5px;color:var(--muted);margin:-6px 0 12px 202px">'+topicDone(t)+'/'+t.sections.length+' phần · độ chính xác: '+(a===null?"—":a+"%")+'</div>';
+  });
+  h += '</div>';
+
+  h += '<div class="card" style="margin-top:18px">';
+  h += '<h3 style="font-size:16px;margin-bottom:8px">Điểm yếu cần ôn tập</h3>';
+  const weak = lessons.map(t=>({t:t, a:topicAccuracy(t.id)})).filter(x=>x.a!==null && x.a<70);
+  if(!weak.length){
+    h += '<p style="color:var(--muted)">Chưa có dữ liệu đủ để xác định điểm yếu. Hãy làm thêm bài luyện tập.</p>';
+  }else{
+    h += '<ul class="bul">';
+    weak.forEach(w=>{ h += '<li><b>'+esc(w.t.title)+'</b> — độ chính xác '+w.a+'%. Nên ôn lại và làm Practice Mode.</li>'; });
+    h += '</ul>';
+  }
+  h += '</div>';
+
+  h += '<div class="section-actions">';
+  h += '<button class="btn danger" data-act="reset-progress">Reset Progress</button>';
+  h += '</div>';
+
+  mainEl.innerHTML = h;
+}
+
+/* =====================================================================
+   13. MISTAKES PAGE
+   ===================================================================== */
+function renderMistakesPage(){
+  let h = "";
+  h += '<div class="sec-head"><span class="badge">MISTAKES</span><h2>Ôn lại lỗi sai</h2>';
+  h += '<p style="color:var(--muted)">Những câu bạn trả lời sai được lưu lại để ôn tập. Khi trả lời đúng lại, câu đó sẽ tự động được xoá khỏi danh sách.</p></div>';
+
+  h += '<div class="row" style="margin-bottom:18px">';
+  h += '<button class="btn" data-act="mistakes-practice"'+(store.mistakes.length?"":" disabled")+'>Practice Mistakes Again</button>';
+  h += '<button class="btn ghost danger" data-act="clear-mistakes"'+(store.mistakes.length?"":" disabled")+'>Xoá danh sách lỗi</button>';
+  h += '</div>';
+
+  if(!store.mistakes.length){
+    h += '<div class="empty">Chưa có câu trả lời sai nào. Hãy tiếp tục luyện tập!</div>';
+  }else{
+    store.mistakes.forEach((m,i)=>{
+      h += '<div class="list-item">';
+      h += '<div class="rq" style="font-weight:600;color:var(--navy);margin-bottom:8px">'+(i+1)+'. '+m.q+'</div>';
+      h += '<div class="line">Bạn chọn: <span class="tag-no">'+letter(m.user)+'. '+m.o[m.user]+'</span></div>';
+      h += '<div class="line">Đáp án đúng: <span class="tag-ok">'+letter(m.a)+'. '+m.o[m.a]+'</span></div>';
+      h += '<div class="line" style="color:var(--muted)">'+m.e+'</div>';
+      h += '<div class="line" style="font-size:13px;color:var(--muted)"><b>Rule:</b> '+m.r+'</div>';
+      h += '<div class="line" style="font-size:13px;color:var(--muted)"><b>Topic:</b> '+esc(m.topicTitle||"")+' › '+esc(m.sectionTitle||"")+'</div>';
+      if(m.topicId && m.sectionId){
+        h += '<button class="btn sm ghost" style="margin-top:8px" data-act="open-section" data-topic="'+m.topicId+'" data-section="'+m.sectionId+'">Học lại phần này</button>';
+      }
+      h += '</div>';
+    });
+  }
+  mainEl.innerHTML = h;
+}
+
+/* =====================================================================
+   14. GLOSSARY PAGE
+   ===================================================================== */
+function renderGlossaryPage(){
+  let h = "";
+  h += '<div class="sec-head"><span class="badge">MINI GLOSSARY</span><h2>Thuật ngữ ngữ pháp</h2>';
+  h += '<p style="color:var(--muted)">Định nghĩa tiếng Anh, giải thích tiếng Việt và ví dụ cho các thuật ngữ quan trọng.</p></div>';
+  glossary.forEach(g=>{
+    h += '<div class="gloss">';
+    h += '<div class="term">'+esc(g.term)+'</div>';
+    h += '<div class="vi">'+esc(g.vi)+'</div>';
+    h += '<div class="exm">Example: '+esc(g.ex)+'</div>';
+    h += '</div>';
+  });
+  mainEl.innerHTML = h;
+}
+
+/* =====================================================================
+   15. SEARCH
+   ===================================================================== */
+let searchIndex = null;
+function buildSearchIndex(){
+  if(searchIndex) return searchIndex;
+  searchIndex = [];
+  lessons.forEach(t=>{
+    t.sections.forEach(s=>{
+      let text = s.title+" "+s.core+" ";
+      s.blocks.forEach(b=>{
+        if(b.t==="tbl"){
+          text += b.head.join(" ")+" ";
+          b.rows.forEach(r=>{ text += r.join(" ")+" "; });
+        }else if(Array.isArray(b.x)){
+          text += b.x.join(" ")+" ";
+        }else{
+          text += b.x+" ";
+        }
+      });
+      text += (s.questions||[]).map(q=>q.q+" "+q.o.join(" ")).join(" ");
+      searchIndex.push({
+        topicId:t.id, sectionId:s.id,
+        title:s.title, topicTitle:t.title,
+        text:text.replace(/<[^>]+>/g," ").toLowerCase()
+      });
+    });
+  });
+  glossary.forEach(g=>{
+    searchIndex.push({
+      topicId:null, sectionId:null,
+      title:"Glossary: "+g.term, topicTitle:"Mini Glossary",
+      text:(g.term+" "+g.vi+" "+g.ex).toLowerCase()
+    });
+  });
+  return searchIndex;
+}
+
+function doSearch(query){
+  const box = $("searchResults");
+  const q = query.trim().toLowerCase();
+  if(q.length < 2){ box.classList.remove("show"); box.innerHTML=""; return; }
+  const idx = buildSearchIndex();
+  const results = idx.filter(item=>item.text.indexOf(q) !== -1).slice(0,12);
+  if(!results.length){
+    box.innerHTML = '<div class="sr-empty">Không tìm thấy kết quả cho “'+esc(query)+'”.</div>';
+    box.classList.add("show");
+    return;
+  }
+  box.innerHTML = results.map((r,i)=>{
+    const pos = r.text.indexOf(q);
+    const from = Math.max(0, pos-45);
+    let snippet = r.text.substring(from, pos+75);
+    /* bỏ hẳn các dấu < > còn sót (nếu có) */
+    snippet = snippet.replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    return '<div class="sr-item" data-sr="'+i+'" data-topic="'+(r.topicId||"")+'" data-section="'+(r.sectionId||"")+'">'+
+           '<b>'+esc(r.title)+'</b><small>'+esc(r.topicTitle)+' — …'+snippet+'…</small></div>';
+  }).join("");
+  box.classList.add("show");
+}
+
+/* =====================================================================
+   16. EVENTS
+   ===================================================================== */
+/* Sidebar navigation */
+sidebarEl.addEventListener("click", function(e){
+  const btn = e.target.closest("[data-nav]");
+  if(!btn) return;
+  const nav = btn.dataset.nav;
+  if(nav==="home") go("home");
+  else if(nav==="topic") openTopic(btn.dataset.topic);
+  else if(nav==="section") openSection(btn.dataset.topic, btn.dataset.section);
+  else if(nav==="practice") go("practice");
+  else if(nav==="progress") go("progress");
+  else if(nav==="mistakes") go("mistakes");
+  else if(nav==="glossary") go("glossary");
+  closeMobileMenu();
+});
+
+/* Main actions */
+mainEl.addEventListener("click", function(e){
+  const el = e.target.closest("[data-act]");
+  if(!el) return;
+  const act = el.dataset.act;
+  const topicId = el.dataset.topic;
+  const sectionId = el.dataset.section;
+
+  if(act==="home"){ go("home"); return; }
+  if(act==="open-topic"){ openTopic(topicId); return; }
+  if(act==="open-section"){ openSection(topicId, sectionId); return; }
+
+  if(act==="mark-complete"){
+    const k = secKey(topicId, sectionId);
+    if(store.completed[k]) delete store.completed[k];
+    else store.completed[k] = true;
+    save(); renderSectionPage(); renderSidebar();
+    return;
+  }
+
+  if(act==="qc-opt"){
+    const key = secKey(topicId, sectionId);
+    if(state.qc && state.qc.key === key) return;
+    state.qc = {key:key, chosen:parseInt(el.dataset.i,10)};
+    const f = findSection(topicId, sectionId);
+    if(f) $("qcBox").innerHTML = quickCheckHTML(f.topic, f.section);
+    return;
+  }
+
+  if(act==="start-topic-quiz"){ startTopicQuiz(topicId, "practice"); return; }
+  if(act==="start-topic-test"){ startTopicQuiz(topicId, "test"); return; }
+  if(act==="start-section-quiz"){ startSectionQuiz(topicId, sectionId, "practice"); return; }
+
+  /* ---- quiz ---- */
+  const q = state.quiz;
+  if(act==="qopt"){
+    if(!q) return;
+    if(q.mode==="practice" && q.checked) return;
+    q.answers[q.i] = parseInt(el.dataset.i,10);
+    renderQuiz();
+    return;
+  }
+  if(act==="quiz-check"){
+    if(!q || q.answers[q.i]===null) return;
+    q.checked = true;
+    recordAnswer(q.questions[q.i], q.answers[q.i]);
+    renderQuiz();
+    return;
+  }
+  if(act==="quiz-next"){
+    if(!q) return;
+    if(q.answers[q.i]===null) return;
+    if(q.mode==="test") recordAnswer(q.questions[q.i], q.answers[q.i]);
+    if(q.i < q.questions.length-1){
+      q.i++;
+      q.checked = false;
+      renderQuiz();
+      window.scrollTo({top:0, behavior:"smooth"});
+    }else{
+      q.finished = true;
+      renderQuiz();
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    return;
+  }
+  if(act==="quiz-finish"){
+    if(!q) return;
+    q.finished = true;
+    renderQuiz();
+    window.scrollTo({top:0, behavior:"smooth"});
+    return;
+  }
+  if(act==="quiz-retry"){
+    if(!q) return;
+    if(q.meta==="mistakes"){ startMistakesQuiz(); }
+    else{
+      const sameMode = q.mode;
+      if(q.meta==="topic"){
+        const t = findTopic(q.questions[0].topicId);
+        if(t) startTopicQuiz(t.id, sameMode);
+      }else if(q.meta==="section"){
+        const first = q.questions[0];
+        startSectionQuiz(first.topicId, first.sectionId, sameMode);
+      }else{
+        go("practice");
+      }
+    }
+    return;
+  }
+  if(act==="quiz-quit"){
+    state.quiz = null;
+    go("practice");
+    return;
+  }
+
+  /* ---- mistakes ---- */
+  if(act==="mistakes-practice"){ startMistakesQuiz(); return; }
+  if(act==="clear-mistakes"){
+    if(window.confirm("Xoá toàn bộ danh sách câu trả lời sai?")){
+      store.mistakes = [];
+      save(); renderMistakesPage();
+    }
+    return;
+  }
+
+  /* ---- reset ---- */
+  if(act==="reset-progress"){
+    if(window.confirm("Bạn có chắc muốn xoá toàn bộ tiến độ học tập, điểm bài tập và danh sách lỗi sai? Hành động này không thể hoàn tác.")){
+      store = blankStore();
+      save();
+      state.quiz = null;
+      go("home");
+    }
+    return;
+  }
+});
+
+/* Search */
+const searchInput = $("searchInput");
+const searchResults = $("searchResults");
+searchInput.addEventListener("input", function(){ doSearch(this.value); });
+searchInput.addEventListener("focus", function(){ if(this.value.trim().length>=2) doSearch(this.value); });
+document.addEventListener("click", function(e){
+  if(!e.target.closest(".search")) searchResults.classList.remove("show");
+});
+searchResults.addEventListener("click", function(e){
+  const item = e.target.closest(".sr-item");
+  if(!item) return;
+  const topicId = item.dataset.topic;
+  const sectionId = item.dataset.section;
+  searchResults.classList.remove("show");
+  searchInput.value = "";
+  if(topicId && sectionId) openSection(topicId, sectionId);
+  else go("glossary");
+});
+
+/* Mobile menu */
+$("menuBtn").addEventListener("click", function(){
+  sidebarEl.classList.toggle("open");
+  $("overlay").classList.toggle("show");
+});
+$("overlay").addEventListener("click", closeMobileMenu);
+
+/* =====================================================================
+   17. INIT
+   ===================================================================== */
+(function init(){
+  const last = store.last || {view:"home"};
+  if(last.view === "section" && last.topicId && last.sectionId && findSection(last.topicId, last.sectionId)){
+    state.view = "section"; state.topicId = last.topicId; state.sectionId = last.sectionId;
+  }else if(last.view === "topic" && findTopic(last.topicId)){
+    state.view = "topic"; state.topicId = last.topicId;
+  }else if(["home","practice","progress","mistakes","glossary"].indexOf(last.view) !== -1){
+    state.view = last.view;
+  }else{
+    state.view = "home";
+  }
+  render();
+})();
+</script>
+</body>
+</html>
